@@ -14,7 +14,7 @@
 \usepackage{multirow}
 \usepackage{hhline}
 \usepackage{fancyhdr}
-\usepackage[numbers]{natbib}
+\usepackage{natbib}
 \usepackage{vruler}
 \usepackage{sectsty}
 \usepackage{ctable}
@@ -387,7 +387,6 @@ GPIO stuff, LED stimuli generation (with sleep and with timeout expiration), cod
 
 \mysubsection{Emotiv EPOC EEG}\label{seq:emotivepoceeg}
 
-%Some text \citep{Peidro:09}...
 \par{
     Emotiv EPOC EEG (Figure ~\ref{fig:emotiv_epoc_headset}) is a battery-powered wireless consumer headset which can acquire 14 channels
     of EEG signal. The headset internally applies a notch filter (At line frequency 50/60Hz) and a
@@ -395,6 +394,10 @@ GPIO stuff, LED stimuli generation (with sleep and with timeout expiration), cod
     of the headset is 2048Hz, the data packets are delivered to the USB dongle with a rate of 128 samples/second.
     Full technical specifications found in the manufacturer's website\footnote{\url{http://www.emotiv.com/eeg/download_specs.php}} 
     are summarized in Table ~\ref{table:emotiv_epoc_specs}.
+}
+\par{
+Some text \citep{sanei_eeg_2008}...
+Some other text \citep{fazli_enhanced_2012}...
 }
 \begin{figure}[ht]
     \centering
@@ -463,16 +466,11 @@ Python module called \emph{python-emotiv}\footnote{\url{https://github.com/ozanc
 %%%%%%%%%%%%%%%%
 \clearpage
 \vspace*{-0.35cm}
+\bibliographystyle{apalike}
+\phantomsection
 \thispagestyle{empty}
-\section*{References}
-%\bibliographystyle{chicago}
-%\phantomsection
-%\thispagestyle{empty}
-%\vspace*{-0.35cm}
 \addcontentsline{toc}{section}{References}
-%\bibliography{ThesisLibrary}
-
-Stopczynski, A., Larsen, J. E., Stahlhut, C., Petersen, M. K. and Hansen, L. K. (2011). A smartphone interface for a wireless EEG headset with real-time 3D reconstruction. In Affective Computing and Intelligent Interaction (pp. 317-318). Springer Berlin Heidelberg.
+\bibliography{ThesisLibrary}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%
 %% BIOGRAPHICAL SKETCH %%
