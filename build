@@ -1,6 +1,9 @@
 #!/bin/bash
 
 pdflatex Thesis.tex
-bibtex Thesis.aux
-pdflatex Thesis.tex
-pdflatex Thesis.tex
+
+if [[ "x$1" == "xref" ]]; then
+    bibtex Thesis.aux
+    pdflatex Thesis.tex
+    pdflatex Thesis.tex
+fi
