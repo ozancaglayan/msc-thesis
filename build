@@ -1,9 +1,11 @@
 #!/bin/bash
 
 pdflatex Thesis.tex
+makeindex Thesis.nlo -s nomencl.ist -o Thesis.nls
 
 if [[ "x$1" == "xref" ]]; then
     bibtex Thesis.aux
     pdflatex Thesis.tex
-    pdflatex Thesis.tex
 fi
+
+pdflatex Thesis.tex

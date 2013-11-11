@@ -19,6 +19,8 @@
 \usepackage{sectsty}
 \usepackage{ctable}
 \usepackage[utf8]{inputenc}
+\usepackage{nomencl}
+\makenomenclature
 
 \usepackage{hyperref}
 \usepackage[
@@ -187,12 +189,12 @@ Ozan Çağlayan
 %%%%%%%%%%%%%%%%%%%%%
 %% LIST OF SYMBOLS %%
 %%%%%%%%%%%%%%%%%%%%%
-\vspace*{-0.35cm}
+\renewcommand\nomname{\normalsize\bfseries List of Symbols}
+\phantomsection
 \thispagestyle{empty}
-\section*{List of Symbols}
+\vspace*{0.15cm}
 \addcontentsline{toc}{section}{List of Symbols}
-Some text...
-\vspace*{6pt}
+\printnomenclature
 \clearpage
 
 %%%%%%%%%%%%%%%%%%%%%
@@ -274,7 +276,7 @@ BCIs constitute the only way of interaction/communication with the outer world f
 }
 \par {
 Electroencephalography is a non-invasive method for measuring the electrical activity generated within the brain structures, through the scalp.
-Although an electrode placed on the scalp measures a linear mixture of various electrical sources underlying the electrode site, 
+Although an electrode placed on the scalp measures a linear mixture of various electrical sources underlying the electrode site,
 we can deduce some informations from those measurements using various signal processing and pattern recognition techniques.
 }
 \clearpage
@@ -285,7 +287,7 @@ we can deduce some informations from those measurements using various signal pro
 \mysection{BRAIN COMPUTER INTERFACES}\label{seq:bci}
 
 \par{
-    The locked-in syndrome (LIS) is a medical condition in which patients are awake and conscious but 
+    The locked-in syndrome (\nomenclature{LIS}{Locked-in Syndrome}) is a medical condition in which patients are awake and conscious but 
     cannot move or communicate verbally because of complete paralysis of nearly all voluntary muscles. 
     LIS is mostly caused by traumatic brain injuries, brain strokes, hemorrhages, head trauma, demyelinating diseases 
     or infectious conditions.
@@ -294,9 +296,9 @@ we can deduce some informations from those measurements using various signal pro
 % LIS classification
 
 \par {
-    Amyotrophic Lateral Sclerosis (ALS), also known as Lou Gehrig's disease (Lou Gehrig is a popular baseball 
-    player who was diagnosed with ALS in 1939) is another disease leading to LIS. ALS basically attacks 
-    motor neurons that control voluntary muscles in the body. When those motor neurons stops functioning, 
+    Amyotrophic Lateral Sclerosis (\nomenclature{ALS}{Amyotrophic Lateral Sclerosis}), also known as Lou Gehrig's disease (Lou Gehrig is a popular baseball
+    player who was diagnosed with ALS in 1939) is another disease leading to LIS. ALS basically attacks
+    motor neurons that control voluntary muscles in the body. When those motor neurons stops functioning,
     the muscles lose strength and progressively die (Atrophy).
 }
 
@@ -311,7 +313,8 @@ we can deduce some informations from those measurements using various signal pro
     possible to use healthy brain activity in order to build a novel way of interaction 
     between the subject's brain and the environment using special brain signal 
     acquisition techniques and computers. These composite systems are called 
-    Brain-Computer Interfaces (BCI) or Brain-Machine Interfaces (BMI).
+    Brain-Computer Interfaces (\nomenclature{BCI}{Brain-Computer Interface}) or
+    Brain-Machine Interfaces (\nomenclature{BMI}{Brain-Machine Interface}).
 }
 
 \mysubsection{Definition}\label{seq:bci_definition}
@@ -330,12 +333,47 @@ Parts of the brain (visual, auditory, vs, resim), linear mixture of sources, bel
 \mysubsubsection{fMRI}\label{seq:bci_methods_fmri}
 \mysubsubsection{fNIRS}\label{seq:bci_methods_fnirs}
 
-
 % EEG based BCIs
 \mysubsection{EEG based BCIs}\label{seq:eeg_bci}
+
+\mysubsubsection{Electrode placement}\label{seq:eeg_placement}
+\par{
+Human EEG is recorded using an internationally recognized electrode naming and placement 
+standard called 10-20 system (Figure ~\ref{fig:eeg_1020}) \citep{jasper_ten_1958}. 
+This standard is based on the relationship between electrode locations and the underlying 
+area of the brain. A combination of a letter and a number is further used to identify each electrode location.
+}
+\begin{figure}[ht]
+    \centering
+    \includegraphics[scale=0.7]{images/10_20_bembook1}
+    \caption[International 10-20 system.]{International 10-20 system. \citep{malmivuo_bioelectromagnetism:_1995}}
+    \label{fig:eeg_1020}
+\end{figure}
+
+\par{
+    The letters \emph{F, Fp, T, C, P} and \emph{O} respectively denotes \textbf{F}rontal, \textbf{F}ronto\textbf{P}olar
+    (or \textbf{F}rontal \textbf{P}olar), \textbf{T}emporal, \textbf{C}entral, \textbf{P}arietal and
+    \textbf{O}ccipital lobes. (Note that the \emph{C} letter is only meaningful as a notation to define the central line
+    as the brain does not have an area called central lobe.) An A is used to refer to earlobes.
+    Electrodes over the left hemisphere are suffixed with odd numbers and those over the right hemisphere
+    are suffixed with even numbers. A \emph{"z"} instead of a number refers to an electrode placed on the midline, which
+    is named the \emph{vertex}.
+}
+
+\par{
+    Two anatomical landmarks are used to define the longitudinal axis over the scalp: First, the \emph{Nasion (Ns or Nz)}, which is the
+    depressed area between the eyes where the bridge of the nose joins the forehead; second, the \emph{Inion (In or Iz)}, which is
+    indicated by a bump at the lower rear part of the skull. From these landmarks, Ns-In perimeters are divided into 10\% and 20\% intervals
+    and electrode locations are fixed at those division points. Three other electrodes are placed on each hemisphere
+    (\emph{(F3,C3,P3) and (F4,C4,P4)}) equidistantly from the already placed adjacent electrodes. The percentage of division intervals
+    clearly reveals why the system is named after the term 10-20.
+}
+
+
+
 \mysubsubsection{Montage and Recording}\label{seq:eeg_recording}
 \par{
-10-20 setup (resim), electrode naming (tek, cift), bipolar-unipolar recordings, referencing, 
+bipolar-unipolar recordings, referencing, 
 electrode types (aktif, pasif, jel, dry, resim)
 }
 
@@ -423,6 +461,17 @@ Several unused system services like BLAH, BLAH, BLAH are completely disabled so 
 }
 
 % FIXME: Possible figure for wiring
+
+\par{
+    One advantage of BBB compared to its closest rival Raspberry Pi is its Programmable 
+    Reaultime Unit (PRU). Since these embedded computers are single-core and thus 
+    limited in processing power, it is probable to see some operating system (OS) scheduling delays when 
+    both EEG acquisition and SSVEP stimulation are running simultaneously. This can negatively 
+    impact the precision of flickering intervals causing the BCI to perform badly. Offloading SSVEP 
+    stimulation to the PRU resolves this problem as PRU is a distinct microcontroller unit which is 
+    completely decoupled from the main CPU of the device. By now, the PRU can only be programmed using 
+    assembly language.
+}
 
 
 \mysubsection{Emotiv EPOC EEG}\label{seq:emotivepoceeg}
