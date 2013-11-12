@@ -156,15 +156,15 @@
 \addcontentsline{toc}{section}{Acknowledgements}
 \vspace*{6pt}
 \par{
-Back in 2007, I remember how I was fascinated when I had heard about Brain-computer interfaces.
+Back in 2007, I remember how I was fascinated when I had heard about Brain-Computer interfaces.
 }
 \par{
 Last but not least, I would like to thank my family and my friends for supporting me throughout my life.
 }
 \par{
 Finally, I would like to dedicate this thesis to Ethem Sarısülük, Mehmet Ayvalıtaş, Abdullah Cömert, Medeni Yıldırım, Ali İsmail Korkmaz,
-Ahmet Atakan and Hasan Ferit Gedik who passed away during \em{Gezi Unrest}.\\
-"Our hearts shall wither if we ever forget."
+Ahmet Atakan and Hasan Ferit Gedik who passed away during Gezi Protests.\\
+\emph{"Our hearts shall wither if we ever forget."}
 }
 
 \vspace*{2cm}
@@ -336,16 +336,16 @@ Parts of the brain (visual, auditory, vs, resim), linear mixture of sources, bel
 \mysubsubsection{fMRI}\label{seq:bci_methods_fmri}
 \mysubsubsection{fNIRS}\label{seq:bci_methods_fnirs}
 
-% EEG based BCIs
-\mysubsection{EEG based BCIs}\label{seq:eeg_bci}
+\mysubsection{Principles of EEG}\label{seq:eeg_principles}
 
-\mysubsubsection{Electrode placement}\label{seq:eeg_placement}
+\mysubsubsection{Electrode Placement}\label{seq:eeg_placement}
 \par{
-Human EEG is recorded using an internationally recognized electrode naming and placement 
-standard called 10-20 system (Figure ~\ref{fig:eeg_1020}) \citep{jasper_ten_1958}. 
-This standard is based on the relationship between electrode locations and the underlying 
+Human EEG is recorded using an internationally recognized electrode naming and placement
+standard called 10-20 system \citep{jasper_ten_1958} (Figure ~\ref{fig:eeg_1020}).
+This standard is based on the relationship between electrode locations and the underlying
 area of the brain. A combination of a letter and a number is further used to identify each electrode location.
 }
+
 \begin{figure}[ht]
     \centering
     \includegraphics[scale=0.7]{images/10_20_bembook1}
@@ -368,11 +368,31 @@ area of the brain. A combination of a letter and a number is further used to ide
     depressed area between the eyes where the bridge of the nose joins the forehead; second, the \emph{Inion (In or Iz)}, which is
     indicated by a bump at the lower rear part of the skull. From these landmarks, Ns-In perimeters are divided into 10\% and 20\% intervals
     and electrode locations are fixed at those division points. Three other electrodes are placed on each hemisphere
-    (\emph{(F3,C3,P3) and (F4,C4,P4)}) equidistantly from the already placed adjacent electrodes. The percentage of division intervals
+    (F3,C3,P3 and F4,C4,P4) equidistantly from the already placed adjacent electrodes. The percentage of division intervals
     clearly reveals why the system is named after the term 10-20.
 }
 
+\par{
+    Another widely used electrode placement schema is the full 10-10 combinatorial
+    system \citeyearpar{guideline_1994} which is a sophisticated 10-20
+    variant with more and more electrodes placed in between 10-20 locations
+    (Figure ~\ref{fig:eeg_1020_comb}\footnote{Image courtesy of Marius 't Hart (\url{http://www.mariusthart.net/?e=200})}).
+    New letters are introduced to define intermediate electrode sites: \emph{AF} is between Fp and F, \emph{FC} is between F and C,
+    \emph{FT} is between F and T, \emph{CP} is between C and P, \emph{TP} is between T and P, and finally \emph{PO} is between P and O.
+    The colored locations are actually T3, T4, T5 and T6 electrodes in 10-20 system but
+    they are renamed to T7, T8, P7 and P8 in this modified schema.
+}
 
+\par{
+    A new 10-5 extension with 345 electrodes was also proposed by \citet{oostenveld_five_2001} for high resolution EEG studies.
+}
+
+\begin{figure}[ht]
+    \centering
+    \includegraphics[scale=0.6]{images/10_20_extended}
+    \caption{10-10 combinatorial system.}
+    \label{fig:eeg_1020_comb}
+\end{figure}
 
 \mysubsubsection{Montage and Recording}\label{seq:eeg_recording}
 \par{
@@ -480,20 +500,24 @@ Several unused system services like BLAH, BLAH, BLAH are completely disabled so 
 \mysubsection{Emotiv EPOC EEG}\label{seq:emotivepoceeg}
 
 \par{
-    Emotiv EPOC EEG (Figure ~\ref{fig:emotiv_epoc_headset}) is a battery-powered wireless consumer headset which can acquire 14 channels
-    of EEG signal. The headset internally applies a notch filter (At line frequency 50/60Hz) and a
-    5\textsuperscript{th} order band-pass filter (0.2-45Hz) to the signal. Although the internal sampling rate
-    of the headset is 2048Hz, the data packets are delivered to the USB dongle with a rate of 128 samples/second.
-    Full technical specifications found in the manufacturer's website\footnote{\url{http://www.emotiv.com/eeg/download_specs.php}} 
-    are summarized in Table ~\ref{table:emotiv_epoc_specs}.
+    Emotiv EPOC EEG (Figure ~\ref{fig:emotiv_epoc_headset}) is a battery-powered wireless consumer headset which can
+    acquire 14 channels (Figure ~\ref{fig:emotiv_epoc_1020}) of EEG signal. The headset internally applies a
+    notch filter (At line frequency 50/60Hz) and a 5\textsuperscript{th} order band-pass filter (0.2-45Hz)
+    to the signal. Although the internal sampling rate of the headset is 2048Hz, the data packets are
+    delivered to the USB dongle with a rate of 128 samples/second. Full technical specifications found in the
+    manufacturer's website\footnote{\url{http://www.emotiv.com/eeg/download_specs.php}} are summarized in Table ~\ref{table:emotiv_epoc_specs}.
 }
-\par{
-Some text \citep{sanei_eeg_2008}...
-Some other text \citep{fazli_enhanced_2012}...
-}
+
 \begin{figure}[ht]
     \centering
-    \includegraphics[width=0.4\textwidth]{images/emotiv}
+    \includegraphics[scale=0.6]{images/10_20_emotiv}
+    \caption{Emotiv EPOC Electrode Locations.}
+    \label{fig:emotiv_epoc_1020}
+\end{figure}
+
+\begin{figure}[ht]
+    \centering
+    \includegraphics[width=0.5\textwidth]{images/emotiv}
     \caption{Emotiv EPOC EEG Headset.}
     \label{fig:emotiv_epoc_headset}
 \end{figure}
@@ -544,7 +568,7 @@ the USB dongle acts as a simple Human Interface Device (HID) which relays a
 Each decrypted packet contains a sequence number to determine lost packets. 
 This number ranges from 0 to 127 for raw EEG data. A special sequence number 
 128 indicates a status packet which contains battery level and contact 
-qualities instead of raw EEG.(The headset reports those status data once in a second.)
+qualities instead of raw EEG. (The headset reports those status data once in a second.)
 }
 
 \par{

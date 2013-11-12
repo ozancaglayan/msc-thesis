@@ -4,6 +4,7 @@ pdflatex Thesis.tex
 makeindex Thesis.nlo -s nomencl.ist -o Thesis.nls
 
 if [[ "x$1" == "xref" ]]; then
+    sed -i "s/_guideline_1994/guideline_1994/g" ThesisLibrary.bib
     bibtex Thesis.aux
     pdflatex Thesis.tex
 fi
