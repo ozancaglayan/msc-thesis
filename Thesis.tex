@@ -456,6 +456,8 @@ flash storage pre-loaded with Ångström Linux distribution. Along with a single
     \label{fig:bbb}
 \end{figure}
 
+\mysubsubsection{Programmable Realtime Unit}\label{seq:embeddedcomputer_bbb_pru}
+
 \mysubsubsection{Initial Setup and Customization}\label{seq:embeddedcomputer_initialsetup}
 \par{
 We first installed Ubuntu (into the onboard eMMC storage) as it is a widely adopted Linux distribution with a rich software repository. A rich software repository is important for avoiding 
@@ -472,18 +474,22 @@ Several unused system services like BLAH, BLAH, BLAH are completely disabled so 
 
 \mysubsubsection{Stimuli Generation on BBB}\label{seq:embeddedcomputer_stimuligen}
 \par{
-    BBB has several General-Purpose Input/Output (GPIO) pins that can be used 
-    to communicate with external devices and circuits. These pins can be raised 
-    HIGH (+3.3v) or LOW (0v) programatically, using GPIO libraries available for 
-    Python.
 }
 \par{
-    In order to preserve the portability of the system, we decided to use BBB's 
-    GPIO pins for LED SSVEP stimulation instead of a separate/dedicated microcontroller. 
-    The wiring of LEDs is quite trivial and can be seen in Figure??.
+    In order to preserve the portability of the system, we decided to use BBB's
+    Input/Output capabilities for LED SSVEP stimulation (Figure ~\ref{fig:bbb_led_schema}).
+    BBB has several General-Purpose Input/Output (GPIO) pins that can be used to communicate with external
+    devices and circuits. These pins can be raised HIGH (+3.3v) or LOW (0v)
+    using Adafruit BBIO library\footnote{\url{https://github.com/adafruit/adafruit-beaglebone-io-python}} for Python.
 }
 
-% FIXME: Possible figure for wiring
+\begin{figure}[ht]
+    \centering
+    \includegraphics[width=0.7\textwidth]{images/led_circuit}
+    \caption{SSVEP LED stimulator schematic.}
+    \label{fig:bbb_led_schema}
+\end{figure}
+
 
 \par{
     One advantage of BBB compared to its closest rival Raspberry Pi is its Programmable 
