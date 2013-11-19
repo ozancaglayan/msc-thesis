@@ -288,40 +288,75 @@ we can deduce some informations from those measurements using various signal pro
 
 \par{
     \nomenclature{LIS}{Locked-in Syndrome}
+    \nomenclature{ALS}{Amyotrophic Lateral Sclerosis}
     The locked-in syndrome (LIS) is a medical condition in which patients are awake and conscious but
     cannot move or communicate verbally because of complete paralysis of nearly all voluntary muscles.
     LIS is mostly caused by traumatic brain injuries, brain strokes, hemorrhages, head trauma, demyelinating diseases
-    or infectious conditions.
-}
-
-% LIS classification
-
-\par {
-    \nomenclature{ALS}{Amyotrophic Lateral Sclerosis}
-    Amyotrophic Lateral Sclerosis (ALS), also known as Lou Gehrig's disease (Lou Gehrig is a popular baseball
-    player who was diagnosed with ALS in 1939) is another disease leading to LIS. ALS basically attacks
-    motor neurons that control voluntary muscles in the body. When those motor neurons stops functioning,
-    the muscles lose strength and progressively die (Atrophy).
+    or infectious conditions. Amyotrophic Lateral Sclerosis (ALS) (Also known as Lou Gehrig's disease,
+    named after a popular baseball player who was diagnosed with ALS in 1939) is a neurodegenerative disease
+    which is one of the major causes of LIS. ALS basically attacks motor neurons that control voluntary muscles in the body.
+    When those motor neurons stops functioning, the muscles lose strength and progressively die (Atrophy).
+    A cure for ALS is currently not available and the cause of the disease is still unknown.
 }
 
 \par {
     According to ALS Association, nearly 5600 people in the United States are
     diagnosed with ALS each year and the incidence of the disease is 2 per 100.000
-    people\footnote{\url{http://www.alsa.org/about-als/facts-you-should-know.html}}.
+    people\footnote{\url{http://www.alsa.org/about-als/facts-you-should-know.html}}. Although
+    there doesn't seem to be an incidence study related to ALS in Turkey, it is estimated that
+    6000-8000 people have the disease.\footnote{\url{http://www.als.org.tr/haber_detay.asp?haberID=77}}.
 }
 
 \par{
     \nomenclature{BCI}{Brain-Computer Interface}
+    \nomenclature{HCI}{Human-Computer Interaction}
     \nomenclature{BMI}{Brain-Machine Interface}
-    When consciousness and cortical functions are preserved, it may actually be 
-    possible to use healthy brain activity in order to build a novel way of interaction 
-    between the subject's brain and the environment using special brain signal 
-    acquisition techniques and computers. These composite systems are called 
-    Brain-Computer Interfaces (BCI) or Brain-Machine Interfaces (BMI).
+    \nomenclature{DBI}{Direct Brain Interface}
+    When consciousness and cortical functions are preserved, it may actually be
+    possible to use healthy brain activity in order to build a novel way of interaction
+    between the subject's brain and the environment using special brain signal
+    acquisition techniques and computers. These composite systems are called
+    Brain-Computer Interfaces (BCI), Brain-Machine Interfaces (BMI) or Direct Brain Interfaces (DBI).
+    BCIs in general have the potential to improve the life quality of disabled people and may actually
+    be the only way of interaction for completely locked-in people.
 }
 
-\mysubsection{Definition}\label{seq:bci_definition}
-\mysubsection{Objective and Motivation}\label{seq:bci_motivation}
+\mysubsection{Definition of a BCI}\label{seq:bci_definition}
+\par{
+    According to \citet{wolpaw_braincomputer_2002}, a BCI is a communication system
+    in which messages or commands sent to the external world do not pass through the
+    brain's normal neuromuscular output pathways; thus BCIs provide an alternative
+    way for people to act on the world.
+}
+\par{
+    Three mandatory elements for a BCI system has further been enumerated by \citet{graimann_braincomputer_2010}:
+    \begin{enumerate}
+        \item A BCI must directly record brain activity,
+        \item A BCI must provide \emph{realtime} feedback to the user,
+        \item A BCI must be based on intentional control.
+    \end{enumerate}
+    The \emph{intentional control} constraint mentioned above, leaves the devices
+    that detect changes in brain activity occurring without any intent like
+    workload, arousal or sleep, out of the definition for BCIs.
+}
+\par{
+    A more application-focused definition from the perspective of
+    Human-Computer Interaction (HCI) proposed by \citet{zander_enhancing_2010}
+    is as follows:
+    \quotation{\emph{"A BCI is a system to provide computer applications with access to real-time
+    information about cognitive state, on the basis of measured brain activity."}}
+}
+\par{
+    \citet{zander_enhancing_2008} also categorized BCIs into three types:
+    \begin{itemize}
+        \item \emph{Active BCI} A BCI deriving its outputs from consciously controlled brain activity.
+        \item \emph{Reactive BCI} A BCI deriving its outputs from brain activity arising in response to external stimuli.
+        \item \emph{Passive BCI} A BCI deriving its outputs from arbitrary brain activity without the purpose of voluntary control.
+    \end{itemize}
+    According to this categorization, the definition of \emph{Passive BCI} embraces the systems
+    based on arbitrary activity detection which were not previously counted as BCIs by \citet{graimann_braincomputer_2010}.
+}
+
 \mysubsection{History}\label{seq:bci_history}
 \mysubsection{Principles}\label{seq:bci_principles}
 \par{
@@ -415,37 +450,39 @@ and machine learning algorithms while probably presenting visual stimuli in a pr
 }
 
 \par{
-Today, the embedded computers found on smartphones are much powerful compared to the desktop PCs 
-used in the BCI systems designed years ago. The main concern of this study is to assess whether small, 
-(possibly) battery-powered and cheap embedded computers can be used to replace big, power hungry and 
+Today, the embedded computers found on smartphones are much powerful compared to the desktop PCs
+used in the BCI systems designed years ago. The main concern of this study is to assess whether small,
+(possibly) battery-powered and cheap embedded computers can be used to replace big, power hungry and
 expensive computers in a simple, online BCI system.
 }
 
 \mysubsubsection{Advantages}\label{seq:embeddedcomputer_advantages}
 
 \par{
-Majority of embedded computers runs Linux which does not require a graphical desktop environment 
-to be available. This allows to reduce memory and CPU usage on these systems as the most resource 
+Majority of embedded computers runs Linux which does not require a graphical desktop environment
+to be available. This allows to reduce memory and CPU usage on these systems as the most resource
 hungry component of a modern operating systems is the Graphical User Interface (GUI).
 }
 
 \par{
-Using Linux also helps to prepare a custom OS designed to run the BCI loop efficiently. 
+Using Linux also helps to prepare a custom OS designed to run the BCI loop efficiently.
 This is achieved by removing/disabling system services and applications which won't be required at all by BCIs.
 }
 
 \par{
-All of these optimizations reduce the overall power consumption of the embedded BCI which brings 
-the possibility to use a battery-pack as power supply. This final achievement is key to ultimate 
+All of these optimizations reduce the overall power consumption of the embedded BCI which brings
+the possibility to use a battery-pack as power supply. This final achievement is key to ultimate
 portability of BCI systems.
 }
 
 \mysubsection{BeagleBone Black}\label{seq:embeddedcomputer_bbb}
 
 \par{
-BeagleBone Black (BBB) (Figure ~\ref{fig:bbb}) is a 45\$ single board computer released in 2013. It has 1GHz TI AM3359 Sitara ARM Cortex-A8 microprocessor, 
-512MB DDR3 memory, 3D accelerated PowerVR SGX530 graphical processing unit (GPU) with HDMI output, onboard 2GB embedded MMC (eMMC) 
-flash storage pre-loaded with Ångström Linux distribution. Along with a single USB 2.0 host port and 10/100 RJ45 Ethernet port for general purpose connectivity, the board also provides a wide variety of low-level expansion interfaces: 
+    \nomenclature{BBB}{BeagleBone Black}
+BeagleBone Black (BBB) (Figure ~\ref{fig:bbb}) is a 45\$ single board computer released in 2013. It has 1GHz TI AM3359 Sitara ARM Cortex-A8 microprocessor,
+512MB DDR3 memory, 3D accelerated PowerVR SGX530 graphical processing unit (GPU) with HDMI output, onboard 2GB embedded MMC (eMMC)
+flash storage pre-loaded with Ångström Linux distribution. Along with a single USB 2.0 host port and 10/100 RJ45 Ethernet port for
+general purpose connectivity, the board also provides a wide variety of low-level expansion interfaces:
 4xUART, 8xPWM, 2xSPI, 1xADC and 2xI\textsuperscript{2}C.
 }
 
@@ -457,6 +494,30 @@ flash storage pre-loaded with Ångström Linux distribution. Along with a single
 \end{figure}
 
 \mysubsubsection{Programmable Realtime Unit}\label{seq:embeddedcomputer_bbb_pru}
+\par{
+    \nomenclature{PRU}{Programmable Realtime Unit}
+    \nomenclature{OS}{Operating System}
+    Although the Cortex-A8 processor is powerful, real-time control of high-speed external hardware
+    and high precision tasks can be affected by operating system (OS) latencies. BBB improves the
+    situation by providing two programmable realtime units (PRU) optimized to perform embedded tasks
+    with hard realtime constraints. The PRUs have:
+    \begin{itemize}
+        \item Two 32-bit RISC cores running at 200MHz (Each instruction completes in 5ns)
+        \item 8KB data memory and 8KB instruction memory
+        \item 12KB shared memory
+        \item A small instruction set
+    \end{itemize}
+    It is sometimes possible to encounter delays in OS scheduling while EEG
+    acquisition and SSVEP stimulation are both running simultaneously. This can negatively
+    impact the precision of flickering intervals causing the BCI to perform badly.
+    Offloading SSVEP stimulation to the PRU resolves this problem as PRU is a distinct
+    microcontroller unit which is completely decoupled from the main CPU of the device.
+}
+\par{
+    By now, the PRU can only be programmed using assembly language. A helper library
+    for C and Python is available to launch and terminate custom programs written for the PRU.
+    It is also possible to share data between the PRU and the CPU using shared memory.
+}
 
 \mysubsubsection{Initial Setup and Customization}\label{seq:embeddedcomputer_initialsetup}
 \par{
@@ -465,7 +526,7 @@ manual compilation/installation of several tools and libraries, which in turn de
 }
 
 \par{
-The list of tools and libraries that we'll be frequently using throughout this work are: {\em Git, python-emotiv, SciPy, NumPy, python-bitstring, pycrypto, pyusb, python GPIO library for BBB.}
+The list of tools and libraries that we'll be frequently using throughout this work are: {\em Git, python-emotiv, SciPy, NumPy, pycrypto, pyusb, python GPIO library for BBB.}
 }
 
 \par{
@@ -490,27 +551,14 @@ Several unused system services like BLAH, BLAH, BLAH are completely disabled so 
     \label{fig:bbb_led_schema}
 \end{figure}
 
-
-\par{
-    One advantage of BBB compared to its closest rival Raspberry Pi is its Programmable 
-    Reaultime Unit (PRU). Since these embedded computers are single-core and thus 
-    limited in processing power, it is probable to see some operating system (OS) scheduling delays when 
-    both EEG acquisition and SSVEP stimulation are running simultaneously. This can negatively 
-    impact the precision of flickering intervals causing the BCI to perform badly. Offloading SSVEP 
-    stimulation to the PRU resolves this problem as PRU is a distinct microcontroller unit which is 
-    completely decoupled from the main CPU of the device. By now, the PRU can only be programmed using 
-    assembly language.
-}
-
-
 \mysubsection{Emotiv EPOC EEG}\label{seq:emotivepoceeg}
 
 \par{
     Emotiv EPOC EEG (Figure ~\ref{fig:emotiv_epoc_headset}) is a battery-powered wireless consumer headset which can
     acquire 14 channels (Figure ~\ref{fig:emotiv_epoc_1020}) of EEG signal. The headset internally applies a
     notch filter (At line frequency 50/60Hz) and a 5\textsuperscript{th} order band-pass filter (0.2-45Hz)
-    to the signal. Although the internal sampling rate of the headset is 2048Hz, the data packets are
-    delivered to the USB dongle with a rate of 128 samples/second. Full technical specifications found in the
+    to the signal. Although the internal sampling rate of the headset is 2048Hz, the device
+    downsamples the signal to 128Hz before sending them to the computer. Full technical specifications found in the
     manufacturer's website\footnote{\url{http://www.emotiv.com/eeg/download_specs.php}} are summarized in Table ~\ref{table:emotiv_epoc_specs}.
 }
 
@@ -553,33 +601,33 @@ Several unused system services like BLAH, BLAH, BLAH are completely disabled so 
 \mysubsubsection{Official Software Development Kit (SDK)}\label{seq:emotivepoceeg_sdk}
 
 \par{
-Emotiv provides an SDK for Windows, Mac OS X and Linux operating systems but the provided SDK is 
-closed-source and only available for x86 CPU architecture. This means that it is not possible 
-to use the SDK on ARM embedded computers like Raspberry Pi or Beaglebone Black. 
-Currently, the only way of using the EPOC headset with an ARM based embedded computer is to use the 
-open-source protocol\footnote{\url{https://github.com/openyou/emokit}} reverse-engineered by Cody Brocious and Kyle Machulis. 
-%Stopczynski et al. (2011) developed a mobile brain scanner framework\footnote{\url{https://github.com/SmartphoneBrainScanner}} 
+Emotiv provides an SDK for Windows, Mac OS X and Linux operating systems but the provided SDK is
+closed-source and only available for x86 CPU architecture. This means that it is not possible
+to use the SDK on ARM embedded computers like Raspberry Pi or Beaglebone Black.
+Currently, the only way of using the EPOC headset with an ARM based embedded computer is to use the
+open-source protocol reverse-engineered by Cody Brocious and Kyle Machulis.
+%Stopczynski et al. (2011) developed a mobile brain scanner framework\footnote{\url{https://github.com/SmartphoneBrainScanner}}
 %which runs on Nokia N900 ARM smartphones.
 }
 
 \mysubsubsection{Open-Source Protocol}\label{seq:emotivepoceeg_opensource}
 
 \par{
-According to the protocol details revealed by the open-source community, 
-the USB dongle acts as a simple Human Interface Device (HID) which relays a 
-32 bytes AES encrypted data packet with a rate of 128 packets/sec.
+According to the protocol details\footnote{\url{https://raw.github.com/openyou/emokit/master/doc/emotiv_protocol.asciidoc}}
+the USB dongle acts as a simple Human Interface Device (HID) which relays an AES encrypted data packet of size 32 bytes with a rate of 128 packets/sec.
+Each decrypted EEG packet is tagged with an 8-bit sequence number ranging from 0 to 127.
+A sequence number greater than 127 carries the battery level of the device instead of EEG data.
+Real-time contact quality information for each sensor is also embedded within the EEG
+packets in a special rotating order: 0\textsuperscript{th} packet contains the contact quality for F3,
+1\textsuperscript{st} packet for FC5, and so on.
 }
 
 \par{
-Each decrypted packet contains a sequence number to determine lost packets. 
-This number ranges from 0 to 127 for raw EEG data. A special sequence number 
-128 indicates a status packet which contains battery level and contact 
-qualities instead of raw EEG. (The headset reports those status data once in a second.)
-}
-
-\par{
-Since we decided to develop the BCI in pure Python, we wrote an object oriented 
-Python module called \emph{python-emotiv}\footnote{\url{https://github.com/ozancaglayan/python-emotiv}} implementing the open-source protocol to access the device on Linux.
+Since we decided to develop the BCI in pure Python, we wrote an object oriented
+Python module called \emph{python-emotiv}\footnote{\url{https://github.com/ozancaglayan/python-emotiv}}
+implementing the open-source protocol to access the device on Linux. The module uses \emph{libusb}
+to access the dongle in a cross-platform manner although it has only been tested on Linux
+so far.
 }
 
 
