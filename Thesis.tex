@@ -551,35 +551,35 @@ Several unused system services like BLAH, BLAH, BLAH are completely disabled so 
     \label{fig:bbb_led_schema}
 \end{figure}
 
-\mysubsection{Emotiv EPOC EEG}\label{seq:emotivepoceeg}
+\mysubsection{Emotiv EEG}\label{seq:emotiveeg}
 
 \par{
-    Emotiv EPOC EEG (Figure ~\ref{fig:emotiv_epoc_headset}) is a battery-powered wireless consumer headset which can
-    acquire 14 channels (Figure ~\ref{fig:emotiv_epoc_1020}) of EEG signal. The headset internally applies a
+    Emotiv EEG (Figure ~\ref{fig:emotiv_eeg_headset}) is a battery-powered wireless consumer headset which can
+    acquire 14 channels (Figure ~\ref{fig:emotiv_eeg_1020}) of EEG signal. The headset internally applies a
     notch filter (At line frequency 50/60Hz) and a 5\textsuperscript{th} order band-pass filter (0.2-45Hz)
     to the signal. Although the internal sampling rate of the headset is 2048Hz, the device
     downsamples the signal to 128Hz before sending them to the computer. Full technical specifications found in the
-    manufacturer's website\footnote{\url{http://www.emotiv.com/eeg/download_specs.php}} are summarized in Table ~\ref{table:emotiv_epoc_specs}.
+    manufacturer's website\footnote{\url{http://www.emotiv.com/eeg/download_specs.php}} are summarized in Table ~\ref{table:emotiv_eeg_specs}.
 }
 
 \begin{figure}[ht]
     \centering
     \includegraphics[scale=0.6]{images/10_20_emotiv}
-    \caption{Emotiv EPOC Electrode Locations.}
-    \label{fig:emotiv_epoc_1020}
+    \caption{Emotiv EEG Electrode Locations.}
+    \label{fig:emotiv_eeg_1020}
 \end{figure}
 
 \begin{figure}[ht]
     \centering
     \includegraphics[width=0.5\textwidth]{images/emotiv}
-    \caption{Emotiv EPOC EEG Headset.}
-    \label{fig:emotiv_epoc_headset}
+    \caption{Emotiv EEG Headset.}
+    \label{fig:emotiv_eeg_headset}
 \end{figure}
 
 \begin{table}
     \footnotesize
     \centering
-    \caption{Technical specifications of Emotiv EPOC EEG.}
+    \caption{Technical specifications of Emotiv EEG.}
     \begin{tabular}{| l | l |}
         \hline
         Number of channels & 14 (+ CMS/DRL references, P3/P4 locations) \\ \hline
@@ -595,22 +595,22 @@ Several unused system services like BLAH, BLAH, BLAH are completely disabled so 
         Battery life & 12 hours (typical) \\ \hline
         Impedance measurement & Real-time contact quality using patented system \\ \hline
     \end{tabular}
-    \label{table:emotiv_epoc_specs}
+    \label{table:emotiv_eeg_specs}
 \end{table}
 
-\mysubsubsection{Official Software Development Kit (SDK)}\label{seq:emotivepoceeg_sdk}
+\mysubsubsection{Official Software Development Kit (SDK)}\label{seq:emotiveeg_sdk}
 
 \par{
 Emotiv provides an SDK for Windows, Mac OS X and Linux operating systems but the provided SDK is
 closed-source and only available for x86 CPU architecture. This means that it is not possible
 to use the SDK on ARM embedded computers like Raspberry Pi or Beaglebone Black.
-Currently, the only way of using the EPOC headset with an ARM based embedded computer is to use the
+Currently, the only way of using the Emotiv headset with an ARM based embedded computer is to use the
 open-source protocol reverse-engineered by Cody Brocious and Kyle Machulis.
 %Stopczynski et al. (2011) developed a mobile brain scanner framework\footnote{\url{https://github.com/SmartphoneBrainScanner}}
 %which runs on Nokia N900 ARM smartphones.
 }
 
-\mysubsubsection{Open-Source Protocol}\label{seq:emotivepoceeg_opensource}
+\mysubsubsection{Open-Source Protocol}\label{seq:emotiveeg_opensource}
 
 \par{
 According to the protocol details\footnote{\url{https://raw.github.com/openyou/emokit/master/doc/emotiv_protocol.asciidoc}}
