@@ -90,8 +90,6 @@
 \fancyhead{}
 \fancyfoot{}
 
-\setlength\tabcolsep{1mm}
-\renewcommand\arraystretch{1}
 
 \makeatletter
 \newcommand\captionof[1]{\def\@captype{#1}\caption}
@@ -102,7 +100,7 @@
 \renewcommand{\baselinestretch}{1.5}
 \setlength{\parskip}{\baselineskip}
 \setlength{\parindent}{0mm}
-\setlength{\tabcolsep}{1pt}
+\renewcommand\arraystretch{1.2}
 
 \newenvironment{mytableenv}
 {\setlength{\abovecaptionskip}{24pt}
@@ -353,15 +351,65 @@ we can deduce some informations from those measurements using various signal pro
         \item \emph{Reactive BCI} A BCI deriving its outputs from brain activity arising in response to external stimuli.
         \item \emph{Passive BCI} A BCI deriving its outputs from arbitrary brain activity without the purpose of voluntary control.
     \end{itemize}
-    According to this categorization, the definition of \emph{Passive BCI} embraces the systems
+    According to this categorization, passive BCIs embraces the systems
     based on arbitrary activity detection which were not previously counted as BCIs by \citet{graimann_braincomputer_2010}.
 }
 
-\mysubsection{History}\label{seq:bci_history}
-\mysubsection{Principles}\label{seq:bci_principles}
+\mysubsection{Neural principles}\label{seq:neural_principles}
 \par{
-Parts of the brain (visual, auditory, vs, resim), linear mixture of sources, belki biraz source localization, 
+%linear mixture of sources, belki biraz source localization,
+    \nomenclature{CNS}{Central Nervous System}
+    \nomenclature{PNS}{Peripheral Nervous System}
+    \nomenclature{M1}{Primary Motor Cortex}
+    \nomenclature{V1}{Primary Visual Cortex}
+    The central nervous system (CNS) is the part of the nervous system which
+    integrates sensory information it receives from the body and responds to it accordingly.
+    Together with the peripheral nervous system (PNS) which connects CNS to the
+    limbs and organs, it plays an important role in determining the behavior. The two
+    structures that make up the CNS are the brain and the spinal cord which is the
+    information pathway containing nervous tissue that extends from the brain.
 }
+\par{
+    The human brain is divided into two (left and right) cerebral hemispheres
+    covered with \emph{cortex} which is also known as the \emph{gray matter},
+    the type of CNS tissue made of neurons. Each cerebral hemisphere is further divided
+    into frontal, parietal, occipital and temporal lobes (Figure ~\ref{fig:brain_parts})
+    which have specialized functions (Table ~\ref{table:brain_functions}) driving our cognitive abilities.
+    It should be noted that each hemisphere is primarily involved in sensory and motor processes on
+    the opposite side of the body and the "apparently" similar cerebral hemispheres are
+    neither functionally equivalent nor exactly symmetrical \citep{kandel_principles_2013}.
+
+\begin{figure}[ht]
+    \centering
+    \includegraphics[scale=0.5]{images/Cerebrum_lobes}
+    \caption{Functional regions of the cerebral cortex.}
+    \label{fig:brain_parts}
+\end{figure}
+
+\begin{table}
+    \footnotesize
+    \centering
+    \caption{Functional description of cerebral lobes.}
+    \begin{tabular}{l l}
+        \hline
+        Frontal Lobe & Movement control (\emph{Primary motor cortex (M1)}\\ \hline
+        Parietal Lobe & Multimodal sensory information integration \\ \hline
+        Occipital Lobe & Visual processing center containing the \emph{visual cortex (V1)} \\ \hline
+        Temporal Lobe & Hearing and auditory signal processing, memory, emotion\\ \hline
+    \end{tabular}
+    \label{table:brain_functions}
+\end{table}
+}
+
+
+%\mysubsection{History}\label{seq:bci_history}
+
+%\begin{figure}[ht]
+%    \centering
+%    \includegraphics[scale=1.0]{images/motor_areas}
+%    \caption{Hand and foot areas in brain.}
+%    \label{fig:motor_functions}
+%\end{figure}
 
 % EEG, ECoG, Intracortical, MEG, fMRI, NIRS
 \mysubsection{Signal Acquisition Methods}\label{seq:bci_methods}
@@ -580,7 +628,7 @@ Several unused system services like BLAH, BLAH, BLAH are completely disabled so 
     \footnotesize
     \centering
     \caption{Technical specifications of Emotiv EEG.}
-    \begin{tabular}{| l | l |}
+    \begin{tabular}{ll}
         \hline
         Number of channels & 14 (+ CMS/DRL references, P3/P4 locations) \\ \hline
         Channel names & AF3, F7, F3, FC5, T7, P7, O1, O2, P8, T8, FC6, F4, F8, AF4 \\ \hline
