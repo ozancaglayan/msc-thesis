@@ -20,6 +20,7 @@
 \usepackage{ctable}
 \usepackage[utf8]{inputenc}
 \usepackage{nomencl}
+\usepackage{float}
 \makenomenclature
 
 \usepackage{hyperref}
@@ -29,13 +30,16 @@
     atend
 ]{bookmark}[2011/12/02]
 
+\floatstyle{plaintop}
+\restylefloat{table}
+
 \allsectionsfont{\normalsize\bfseries}
 \renewcommand{\cftsecfont}{\normalfont}
 \renewcommand{\cftsecleader}{\cftdotfill{\cftdotsep}}
 \renewcommand{\cftsecpagefont}{\normalfont}
 
 \renewcommand\rmdefault{ptm}
-\hypersetup{colorlinks=true, linkcolor=black, citecolor=black, filecolor=black, urlcolor=black, pdftitle=Thesis Title, pdfauthor=Author Name, pdfsubject=, pdfkeywords={text1} {text2} {text3}, pdfcreator=, pdfproducer=}
+\hypersetup{colorlinks=true, linkcolor=black, citecolor=black, filecolor=black, urlcolor=black, pdftitle=A Portable and Embedded SSVEP BCI System: emBCI, pdfauthor=Ozan Caglayan, pdfsubject=, pdfkeywords={eeg} {bci} {ssvep}, pdfcreator=, pdfproducer=}
 
 \newcommand\textstyleJournalNames[1]{\foreignlanguage{english}{\textrm{\textmd{\textit{#1}}}}}
 
@@ -102,13 +106,13 @@
 \setlength{\parindent}{0mm}
 \renewcommand\arraystretch{1.2}
 
-\newenvironment{mytableenv}
-{\setlength{\abovecaptionskip}{24pt}
-\setlength{\belowcaptionskip}{-18pt}
-\centering}
-{\setlength{\abovecaptionskip}{0pt}
-\setlength{\belowcaptionskip}{0pt}
-\par}
+%\newenvironment{mytableenv}
+%{\setlength{\abovecaptionskip}{24pt}
+%\setlength{\belowcaptionskip}{-18pt}
+%\centering}
+%{\setlength{\abovecaptionskip}{0pt}
+%\setlength{\belowcaptionskip}{0pt}
+%\par}
 
 \newenvironment{myfigureenv}
 {\setlength{\abovecaptionskip}{-6pt}
@@ -187,11 +191,11 @@ Ozan Çağlayan
 %%%%%%%%%%%%%%%%%%%%%
 %% LIST OF SYMBOLS %%
 %%%%%%%%%%%%%%%%%%%%%
-\renewcommand\nomname{\normalsize\bfseries List of Symbols}
+\renewcommand\nomname{\normalsize\bfseries List of Abbreviations}
 \phantomsection
 \thispagestyle{empty}
 \vspace*{0.15cm}
-\addcontentsline{toc}{section}{List of Symbols}
+\addcontentsline{toc}{section}{List of Abbreviations}
 \printnomenclature
 \clearpage
 
@@ -351,11 +355,12 @@ we can deduce some informations from those measurements using various signal pro
         \item \emph{Reactive BCI} A BCI deriving its outputs from brain activity arising in response to external stimuli.
         \item \emph{Passive BCI} A BCI deriving its outputs from arbitrary brain activity without the purpose of voluntary control.
     \end{itemize}
-    According to this categorization, passive BCIs embraces the systems
+    According to this categorization, passive BCIs embrace the systems
     based on arbitrary activity detection which were not previously counted as BCIs by \citet{graimann_braincomputer_2010}.
 }
 
-\mysubsection{Neural principles}\label{seq:neural_principles}
+\mysubsection{Neural Principles}\label{seq:neural_principles}
+\mysubsubsection{Central Nervous System}\label{seq:neural_principles_cns}
 \par{
 %linear mixture of sources, belki biraz source localization,
     \nomenclature{CNS}{Central Nervous System}
@@ -372,35 +377,91 @@ we can deduce some informations from those measurements using various signal pro
 \par{
     The human brain is divided into two (left and right) cerebral hemispheres
     covered with \emph{cortex} which is also known as the \emph{gray matter},
-    the type of CNS tissue made of neurons. Each cerebral hemisphere is further divided
+    the type of CNS tissue made of neurons. The hemispheres are connected
+    through a central structure called \emph{corpus callosum} which is a bundle
+    of neural fibers that enables the communication between hemispheres.
+}
+
+\par{
+    Each cerebral hemisphere is further divided
     into frontal, parietal, occipital and temporal lobes (Figure ~\ref{fig:brain_parts})
     which have specialized functions (Table ~\ref{table:brain_functions}) driving our cognitive abilities.
     It should be noted that each hemisphere is primarily involved in sensory and motor processes on
     the opposite side of the body and the "apparently" similar cerebral hemispheres are
     neither functionally equivalent nor exactly symmetrical \citep{kandel_principles_2013}.
 
-\begin{figure}[ht]
-    \centering
-    \includegraphics[scale=0.5]{images/Cerebrum_lobes}
-    \caption{Functional regions of the cerebral cortex.}
-    \label{fig:brain_parts}
-\end{figure}
-
-\begin{table}
+\begin{table}[H]
     \footnotesize
     \centering
     \caption{Functional description of cerebral lobes.}
     \begin{tabular}{l l}
         \hline
-        Frontal Lobe & Movement control (\emph{Primary motor cortex (M1)}\\ \hline
+        Frontal Lobe & Executive functions, movement control (\emph{Primary motor cortex (M1)}\\ \hline
         Parietal Lobe & Multimodal sensory information integration \\ \hline
         Occipital Lobe & Visual processing center containing the \emph{visual cortex (V1)} \\ \hline
         Temporal Lobe & Hearing and auditory signal processing, memory, emotion\\ \hline
     \end{tabular}
     \label{table:brain_functions}
 \end{table}
+
+\begin{figure}[ht]
+    \centering
+    \includegraphics[scale=0.5]{images/Cerebrum_lobes}
+    \caption[Functional regions of the cerebral cortex.]{Functional regions of the cerebral cortex. (Adapted from \href{http://en.wikipedia.org/wiki/File:Cerebrum_lobes.svg}{Wikipedia})}
+    \label{fig:brain_parts}
+\end{figure}
 }
 
+\mysubsubsection{Neurons}\label{seq:neural_principles_neurons}
+
+\par{
+    Neurons or nerve cells are the core components of the brain. There are
+    approximately 10\textsuperscript{11} neurons in the human brain \citep{kandel_principles_2013}
+    forming complex interconnected networks to produce human behavior.
+
+\begin{figure}[ht]
+    \centering
+    \includegraphics[scale=0.9]{images/neuron}
+    \caption[The structure of a neuron.]{The structure of a neuron. (Adapted from \href{http://commons.wikimedia.org/wiki/File:Neuron.svg}{Wikipedia})}
+    \label{fig:neuron}
+\end{figure}
+}
+
+\par{
+    A typical neuron is composed of four regions: The cell body or soma, dendrites, axon
+    and presynaptic terminals (Figure ~\ref{fig:neuron}).
+}
+\par{
+    The cell body, surrounded by a membrane made of lipid layers, is the center
+    of the neuron containing the nucleus which is responsible for protein synthesis.
+    A number of short branches called \emph{dendrites} extend from the cell body. The function
+    of dendrites is to receive incoming signals sent by other neurons. In contrast to having
+    multiple dendrites for input, neurons have a single tubular output extension called \emph{axon}.
+    This single axon branches out into extremities known as \emph{presynaptic terminals} which
+    transmit the electrical signal to the (postsynaptic) dendrites of other neurons (postsynaptic cells)
+    using special chemicals called \emph{neurotransmitters}. The zone where these presynaptic terminals
+    and postsynaptic dendrites communicate with the help of neurotransmitters is called the \emph{synapse}.
+    An axon has the ability to carry signals over distances
+    between \emph{0.1mm} and \emph{2m} \citep{kandel_principles_2013}.
+}
+
+\par{
+    \begin{figure}[ht]
+        \centering
+        \includegraphics[scale=0.4]{images/ap}
+        \caption[Action potential.]{Action potential. \citep{sanei_eeg_2008}}
+        \label{fig:action_pot}
+    \end{figure}
+
+}
+
+\par{
+    \nomenclature{EEG}{Electroencephalography}
+    \nomenclature{MEG}{Magnetoencephalography}
+    When neurons are activated, synaptic currents are produced within the dendrites.
+    The magnetic and electric fields generated by these currents can be
+    measured by Magnetoencephalography (MEG) and Electroencephalography (EEG) \citep{sanei_eeg_2008}.
+}
 
 %\mysubsection{History}\label{seq:bci_history}
 
@@ -413,6 +474,14 @@ we can deduce some informations from those measurements using various signal pro
 
 % EEG, ECoG, Intracortical, MEG, fMRI, NIRS
 \mysubsection{Signal Acquisition Methods}\label{seq:bci_methods}
+\par{
+    \begin{figure}[ht]
+        \centering
+        \includegraphics[scale=0.5]{images/eeg_vs_ecog}
+        \caption[Comparison of EEG, ECoG and Intracranial Recordings.]{Comparison of EEG, ECoG and Intracranial Recordings. (Drawing courtesy of B. Blankertz)}
+        \label{fig:methods_eeg_ecog}
+    \end{figure}
+}
 \mysubsubsection{EEG}\label{seq:bci_methods_eeg}
 \mysubsubsection{ECoG}\label{seq:bci_methods_ecog}
 \mysubsubsection{Intracortical Recordings}\label{seq:bci_methods_intracortical}
@@ -431,7 +500,7 @@ area of the brain. A combination of a letter and a number is further used to ide
 
 \begin{figure}[ht]
     \centering
-    \includegraphics[scale=0.7]{images/10_20_bembook1}
+    \includegraphics[scale=0.65]{images/10_20_bembook1}
     \caption[International 10-20 system.]{International 10-20 system. \citep{malmivuo_bioelectromagnetism:_1995}}
     \label{fig:eeg_1020}
 \end{figure}
