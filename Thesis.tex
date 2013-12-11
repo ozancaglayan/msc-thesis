@@ -2,8 +2,7 @@
 \usepackage[T1]{fontenc}
 \usepackage[fleqn]{amsmath}
 \usepackage{amssymb,amsfonts,amsthm,textcomp,mathrsfs}
-\usepackage[subfigure]{tocloft}
-\usepackage[hang]{subfigure}
+\usepackage{tocloft}
 \usepackage[title,titletoc]{appendix}
 \usepackage{array}
 \usepackage[pdftex]{graphicx}
@@ -21,6 +20,8 @@
 \usepackage[utf8]{inputenc}
 \usepackage{nomencl}
 \usepackage{float}
+\usepackage{caption}
+\usepackage{subcaption}
 \makenomenclature
 
 \usepackage{hyperref}
@@ -105,14 +106,6 @@
 \setlength{\parskip}{\baselineskip}
 \setlength{\parindent}{0mm}
 \renewcommand\arraystretch{1.2}
-
-%\newenvironment{mytableenv}
-%{\setlength{\abovecaptionskip}{24pt}
-%\setlength{\belowcaptionskip}{-18pt}
-%\centering}
-%{\setlength{\abovecaptionskip}{0pt}
-%\setlength{\belowcaptionskip}{0pt}
-%\par}
 
 \newenvironment{myfigureenv}
 {\setlength{\abovecaptionskip}{-6pt}
@@ -645,10 +638,51 @@ area of the brain. A combination of a letter and a number is further used to ide
 }
 
 \mysubsubsection{Montage and Recording}\label{seq:eeg_recording}
+\begin{figure}
+    \centering
+    \begin{subfigure}{.5\textwidth}
+        \centering
+        \includegraphics[scale=0.4]{images/unipolar_eeg}
+        \caption{Referential Montage}
+        \label{fig:referential_eeg}
+    \end{subfigure}%
+    \begin{subfigure}{.5\textwidth}
+        \centering
+        \includegraphics[scale=0.4]{images/bipolar_eeg}
+        \caption{Bipolar Montage}
+        \label{fig:bipolar_eeg}
+    \end{subfigure}
+    \caption{A Comparison of Referential and Bipolar Montages}
+    \label{fig:ref_bipolar_eeg}
+\end{figure}
+
+
 \par{
-bipolar-unipolar recordings, referencing, 
-electrode types (aktif, pasif, jel, dry, resim)
+    What is measured in EEG is defined as potential differences between pairs
+    of electrodes placed on various scalp locations \citep{nunez_electric_2006}.
+    One of the electrodes is generally called \emph{recording} or \emph{signal}
+    electrode while the other is defined as the \emph{reference} electrode. It is
+    important to note that although the adjective \emph{reference} seems to
+    designate an electrode which captures an unchanging baseline/neutral signal,
+    both electrodes actually record real and alternating brain signals \citep{wolpaw_brain-computer_2012}.
 }
+\par{
+    \emph{Referential recording} refers to a montage where EEG is recorded
+    between each recording electrode and a reference electrode with a fixed position (Figure ~\ref{fig:referential_eeg}).
+    This is the montage generally used in cognitive studies and BCIs.
+}
+\par{
+    In contrast, \emph{Bipolar recordings} measure potential differences between
+    adjacent/very close electrodes: The reference electrode is not fixed at a
+    specific location but varies according to the recording electrode (Figure ~\ref{fig:bipolar_eeg}).
+}
+\par{
+    It is trivial to switch between montages with basic arithmetic operations once EEG is acquired and digitized.
+    Re-referencing to another electrode is also possible at this stage.
+}
+
+\mysubsubsection{Electrode Types}\label{seq:eeg_electrode_types}
+
 
 %%%%%%%%%%%%%
 %% SECTION %%
