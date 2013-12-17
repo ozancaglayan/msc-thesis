@@ -576,8 +576,6 @@ we can deduce some informations from those measurements using various signal pro
 \end{table}
 }
 
-
-%\mysubsection{History}\label{seq:bci_history}
 \mysubsection{Principles of EEG}\label{seq:eeg_principles}
 
 \mysubsubsection{Electrode Placement}\label{seq:eeg_placement}
@@ -712,7 +710,7 @@ area of the brain. A combination of a letter and a number is further used to ide
 
 }
 \par{
-    \emph{Passive} electrodes are simple metal disks generally made of tin, gold, silver
+    \emph{Passive} electrodes are tiny metal disks usually made of tin, gold, silver
     or silver/silver-chloride (Ag/AgCl) connected to an amplifier
     through electrical wires. The signal they acquire is then amplified in the
     external amplifier circuitry. Since brain signals acquired through the scalp
@@ -727,7 +725,15 @@ area of the brain. A combination of a letter and a number is further used to ide
     improve the signal-to-noise ratio of the acquired signals. A layer of conductive
     gel paste is generally applied before recordings to reduce the skin-electrode impedance (opposition to current).
     Unfortunately, the application of the gel paste is cumbersome, time consuming and
-    leaves pasty residue that will not go away without washing. \emph{Dry} electrodes
+    leaves pasty residue that will not go away without washing. An easier and
+    cleaner alternative to gel paste is to put sponge-like pads between the
+    electrode and the scalp and to soak them with saline solution (e.g. salt and water).
+    This sponge-saline approach is the one preferred in Emotiv's wireless
+    EEG headsets. The obvious disadvantage of this method is that the impedance
+    goes up as the sponges dry \citep{wolpaw_brain-computer_2012}.
+}
+\par{
+    On the other hand, \emph{dry} electrodes
     that do not require the application of a conductive material is heavily
     researched to improve the ergonomy of EEG recordings (\citealp{popescu_single_2007}; \citealp{grozea_bristle-sensorslow-cost_2011}).
     These electrodes generally penetrate through the hair
@@ -742,9 +748,23 @@ area of the brain. A combination of a letter and a number is further used to ide
 \par {
     Passive electrodes are generally the preferred type of electrode in EEG recordings
     since they are simple to design and cheap to manufacture \citep{wolpaw_brain-computer_2012}
-    compared to expensive and sophisticated active electrodes.
+    compared to expensive and sophisticated active electrodes. A visual comparison
+    of the mentioned sensor technologies can be seen in Figure ~\ref{fig:diff_types_electrode}.
 }
 
+\mysubsubsection{Brain Rhythms}\label{seq:brain_rhythms}
+
+\mysubsection{BCI Signals}\label{seq:bci_signals}
+\mysubsubsection{Event-related Potential}\label{seq:bci_erp}
+\par{
+    \nomenclature{ERP}{Event-related Potential}
+}
+\mysubsubsection{Motor Imagery}\label{seq:bci_motor}
+\mysubsubsection{Visual Evoked Potential}\label{seq:bci_vep}
+\par{
+    \nomenclature{VEP}{Visual Evoked Potential}
+    \nomenclature{SSVEP}{Steady-state Visual Evoked Potential}
+}
 
 %%%%%%%%%%%%%
 %% SECTION %%
@@ -756,7 +776,7 @@ area of the brain. A combination of a letter and a number is further used to ide
 \mysubsection{Why Embedded Computer?}\label{seq:embeddedcomputer}
 
 \par{
-Single computer BCIs generally require decent computers as they can make use of heavy signal processing 
+Single computer BCIs generally require decent computers as they can make use of heavy signal processing
 and machine learning algorithms while probably presenting visual stimuli in a precise timing.
 }
 
