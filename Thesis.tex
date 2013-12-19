@@ -502,14 +502,15 @@ we can deduce some informations from those measurements using various signal pro
     In contrast to non-invasive methods, \emph{invasive} methods need to implant
     microelectrodes inside the skull. In electrocorticography (ECoG), microelectrodes
     are placed on the surface of the cortex during a surgery, while intracranial (or
-    intracortical) recordings use arrays of microelectrodes implanted inside the cortex (Figure ~\ref{fig:methods_eeg_ecog}).
+    intracortical) recordings use arrays of microelectrodes implanted inside the cortex (Figure ~\ref{fig:methods_eeg_ecog}\footnote{\url{https://wiki.ml.tu-berlin.de/wiki/NT/Courses/SS13_IL_AAND}}).
+
     Since ECoG electrodes stays on the surface of the cortex, it is sometimes referred to as a
     \emph{partially-invasive} technique \citep{demetriades_brain-machine_2010}.
 
     \begin{figure}[ht]
         \centering
         \includegraphics[scale=0.5]{images/eeg_vs_ecog}
-        \caption[Invasiveness of EEG, ECoG and Intracranial Recordings.]{Invasiveness of EEG, ECoG and Intracranial Recordings. (Drawing courtesy of B. Blankertz)}
+        \caption[Invasiveness of EEG, ECoG and Intracranial Recordings.]{Invasiveness of EEG, ECoG and Intracranial Recordings. (Courtesy of B. Blankertz)}
         \label{fig:methods_eeg_ecog}
     \end{figure}
 }
@@ -683,31 +684,6 @@ area of the brain. A combination of a letter and a number is further used to ide
 \par{
     There are basically two types of electrodes used for recording EEG: \emph{Passive} electrodes and
     \emph{active} electrodes.
-
-    \begin{figure}
-        \centering
-        \begin{subfigure}{.33\textwidth}
-            \centering
-            \includegraphics[height=4cm]{images/gtec_passive}
-            \caption{}
-            \label{fig:electrode_gtec}
-        \end{subfigure}%
-        \begin{subfigure}{.33\textwidth}
-            \centering
-            \includegraphics[height=4cm]{images/active_electrode}
-            \caption{}
-            \label{fig:electrode_active}
-        \end{subfigure}%
-        \begin{subfigure}{.33\textwidth}
-            \centering
-            \includegraphics[height=4cm]{images/bristle_dry}
-            \caption{}
-            \label{fig:electrode_dry}
-        \end{subfigure}
-        \caption[Different Types of Electrode]{Different Types of Electrode: (a) A passive electrode by \emph{g.tec} (b) An active electrode \citep{sullivan_low-noise_2007} (c) A dry electrode prototype \citep{grozea_bristle-sensorslow-cost_2011}.}
-        \label{fig:diff_types_electrode}
-    \end{figure}
-
 }
 \par{
     \emph{Passive} electrodes are tiny metal disks usually made of tin, gold, silver
@@ -746,6 +722,30 @@ area of the brain. A combination of a letter and a number is further used to ide
     the additive noises are not preamplified.
 }
 \par {
+    \begin{figure}
+        \centering
+        \begin{subfigure}{.33\textwidth}
+            \centering
+            \includegraphics[height=4cm]{images/gtec_passive}
+            \caption{}
+            \label{fig:electrode_gtec}
+        \end{subfigure}%
+        \begin{subfigure}{.33\textwidth}
+            \centering
+            \includegraphics[height=4cm]{images/active_electrode}
+            \caption{}
+            \label{fig:electrode_active}
+        \end{subfigure}%
+        \begin{subfigure}{.33\textwidth}
+            \centering
+            \includegraphics[height=4cm]{images/bristle_dry}
+            \caption{}
+            \label{fig:electrode_dry}
+        \end{subfigure}
+        \caption[Different Types of Electrode]{Different Types of Electrode: (a) A passive electrode by \emph{g.tec} (b) An active electrode \citep{sullivan_low-noise_2007} (c) A dry electrode prototype \citep{grozea_bristle-sensorslow-cost_2011}.}
+        \label{fig:diff_types_electrode}
+    \end{figure}
+
     Passive electrodes are generally the preferred type of electrode in EEG recordings
     since they are simple to design and cheap to manufacture \citep{wolpaw_brain-computer_2012}
     compared to expensive and sophisticated active electrodes. A visual comparison
@@ -763,9 +763,17 @@ area of the brain. A combination of a letter and a number is further used to ide
     while the mu rhythm is prominent over the sensorimotor cortex.
 }
     \par{
+    \begin{figure}[ht]
+        \centering
+        \includegraphics[scale=0.8]{images/alpha_eyes}
+        \caption[Alpha Rhythm Over Oz]{Alpha Rhythm Over \emph{Oz} (Courtesy of B.Blankertz)}
+        \label{fig:eeg_alpha}
+    \end{figure}
+
     The observation or absence of these rhythmic activities is generally associated
     with external stimuli processing, sleep states, cognitive actions or pathological
-    findings.
+    findings. For example, an alpha rhythm around 10 Hz over the visual cortex
+    is attenuated during visual processing, e.g. while the eyes are open (Figure ~\ref{fig:eeg_alpha}\footnote{\url{https://wiki.ml.tu-berlin.de/wiki/NT/Courses/SS13_IL_AAND}}).
 }
 
 \mysubsection{BCI Signals}\label{seq:bci_signals}
