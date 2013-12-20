@@ -351,11 +351,14 @@ we can deduce some informations from those measurements using various signal pro
     According to this categorization, passive BCIs embrace the systems
     based on arbitrary activity detection which were not previously counted as BCIs by \citet{graimann_braincomputer_2010}.
 }
+\par{
+    Active and Reactive BCIs are also referred as \emph{endogenous} (self-generated) and \emph{exogenous} (evoked)
+    BCIs in literature \citep{jackson_neural_2010}.
+}
 
 \mysubsection{Neural Principles}\label{seq:neural_principles}
 \mysubsubsection{Central Nervous System}\label{seq:neural_principles_cns}
 \par{
-%linear mixture of sources, belki biraz source localization,
     \nomenclature{CNS}{Central Nervous System}
     \nomenclature{PNS}{Peripheral Nervous System}
     \nomenclature{M1}{Primary Motor Cortex}
@@ -549,7 +552,7 @@ we can deduce some informations from those measurements using various signal pro
 }
 \par{
     fNIRS is recently gaining popularity for portable and non-invasive BCI design
-    among researchers (\citealp{coyle_braincomputer_2007}; \citealp{pfurtscheller_hybrid_2010}; \citealp{fazli_enhanced_2012-1}).
+    among researchers (\citealp{coyle_braincomputer_2007}; \citealp{pfurtscheller_hybrid_2010}; \citealp{fazli_enhanced_2012}).
     Although it has a low temporal resolution; the ease of installation over the
     scalp and its simplistic electronic design will probably make it an even more
     popular acquisition technique in the future years.
@@ -776,18 +779,39 @@ area of the brain. A combination of a letter and a number is further used to ide
     is attenuated during visual processing, e.g. while the eyes are open (Figure ~\ref{fig:eeg_alpha}\footnote{\url{https://wiki.ml.tu-berlin.de/wiki/NT/Courses/SS13_IL_AAND}}).
 }
 
-\mysubsection{BCI Signals}\label{seq:bci_signals}
-\mysubsubsection{Event-related Potential}\label{seq:bci_erp}
+\mysubsection{BCI Paradigms}\label{seq:bci_signals}
 \par{
-    \nomenclature{ERP}{Event-related Potential}
+    There are several paradigms used in BCI design for extracting control information
+    out of the brain. A BCI system is defined as active/endogenous or
+    reactive/exogenous based on the underlying cognitive mechanism of the paradigm used.
 }
-\mysubsubsection{Motor Imagery}\label{seq:bci_motor}
-\mysubsubsection{Visual Evoked Potential}\label{seq:bci_vep}
+\mysubsubsection{Event-Related Potentials}\label{seq:bci_erp}
+\par{
+    \nomenclature{ERP}{Event-Related Potential}
+    Event-Related potentials (ERP) are defined as potential changes in
+    neural activity associated with specific cognitive events \citep{luck_introduction_2005}.
+}
+\mysubsubsection{Visual Evoked Potentials}\label{seq:bci_vep}
 \par{
     \nomenclature{VEP}{Visual Evoked Potential}
-    \nomenclature{SSVEP}{Steady-state Visual Evoked Potential}
+    \nomenclature{SSVEP}{Steady-State Visual Evoked Potential}
 }
 
+\mysubsubsection{Slow Cortical Potentials}\label{seq:bci_scp}
+\par{
+    \nomenclature{SCP}{Slow Cortical Potentials}
+    Slow Cortical Potentials (SCP) are voltage changes in EEG which occur
+    slowly over time, e.g. between 0.5-10 seconds \citep{wolpaw_brain_2010}.
+    The fact that these slow potentials can be consciously regulated
+    by healthy and paralyzed people, makes SCP a choice for BCI design
+    (\citealp{birbaumer_thought_2000}; \citealp{hinterberger_brain-computer_2004}; \citealp{birbaumer_breaking_2006}).
+}
+\par{
+    SCP based BCIs are active/endogenous systems as the user has to voluntarily adjust
+    the polarity (negative/positive) of their slow potentials according to some neurofeedback protocol \citep{jackson_neural_2010}.
+}
+
+\mysubsubsection{Motor Imagery}\label{seq:bci_motor}
 %%%%%%%%%%%%%
 %% SECTION %%
 %%%%%%%%%%%%%
