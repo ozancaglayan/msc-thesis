@@ -886,6 +886,31 @@ the possibility to use a battery-pack as power supply. This final achievement is
 portability of BCI systems.
 }
 
+\mysubsection{Kondo KHR-3HV Humanoid Robot}\label{seq:kondo}
+\par{
+    \begin{figure}[ht]
+        \centering
+        \includegraphics[scale=0.7]{images/kondo}
+        \caption{Kondo KHR-3HV Humanoid Robot.}
+        \label{fig:kondo}
+    \end{figure}
+    Kondo KHR-3HV is a 17 degrees of freedom humanoid robot manufactured by
+    \emph{Kondo Kagaku} (Figure ~\ref{fig:kondo}). The RCB-4 microcontroller of the robot has the
+    ability to drive up to 35 serial servos. The board is also equipped with
+    several I/O ports to extend the robot with sensors and other add-ons.
+}
+\par{
+    The motions for KHR-3HV is designed and programmed into the microcontroller
+    using a Windows application called \emph{Heart-to-Heart}. All communication
+    between the computer and the robot (both for programming and controlling)
+    is realized over a serial USB dongle. Once the motions are designed and written
+    into the microcontroller using the proprietary software,
+    it is possible to play those preprogrammed motions and
+    to control individual servos separately with the open-source and community
+    contributed \emph{libkondo4} library\footnote{\url{https://bitbucket.org/vo/libkondo4}}.
+    The library has also language bindings to allow controlling the robot using Python and Java.
+}
+
 \mysubsection{BeagleBone Black}\label{seq:embeddedcomputer_bbb}
 
 \par{
@@ -948,6 +973,12 @@ Several unused system services like BLAH, BLAH, BLAH are completely disabled so 
 \par{
 }
 \par{
+    \begin{figure}[ht]
+        \centering
+        \includegraphics[width=0.7\textwidth]{images/led_circuit}
+        \caption{Schematic of SSVEP LED Stimulator.}
+        \label{fig:bbb_led_schema}
+    \end{figure}
     In order to preserve the portability of the system, we decided to use BBB's
     Input/Output capabilities for LED SSVEP stimulation (Figure ~\ref{fig:bbb_led_schema}).
     BBB has several General-Purpose Input/Output (GPIO) pins that can be used to communicate with external
@@ -955,16 +986,42 @@ Several unused system services like BLAH, BLAH, BLAH are completely disabled so 
     using Adafruit BBIO library\footnote{\url{https://github.com/adafruit/adafruit-beaglebone-io-python}} for Python.
 }
 
-\begin{figure}[ht]
-    \centering
-    \includegraphics[width=0.7\textwidth]{images/led_circuit}
-    \caption{Schematic of SSVEP LED Stimulator.}
-    \label{fig:bbb_led_schema}
-\end{figure}
-
 \mysubsection{Emotiv EEG}\label{seq:emotiveeg}
 
 \par{
+    \begin{figure}[ht]
+        \centering
+        \includegraphics[width=0.5\textwidth]{images/emotiv}
+        \caption{Emotiv EEG Headset.}
+        \label{fig:emotiv_eeg_headset}
+    \end{figure}
+    \begin{figure}[ht]
+        \centering
+        \includegraphics[scale=0.5]{images/10_20_emotiv}
+        \caption{Emotiv EEG Electrode Locations.}
+        \label{fig:emotiv_eeg_1020}
+    \end{figure}
+    \begin{table}
+        \footnotesize
+        \centering
+        \caption{Technical Specifications of Emotiv EEG Headset.}
+        \begin{tabular}{ll}
+            \hline
+            Number of channels & 14 (+ CMS/DRL references, P3/P4 locations) \\ \hline
+            Channel names & AF3, F7, F3, FC5, T7, P7, O1, O2, P8, T8, FC6, F4, F8, AF4 \\ \hline
+            Sampling method & Sequential sampling, single ADC \\ \hline
+            Sampling rate & 128 SPS (2048 Hz Internal) \\ \hline
+            Resolution & 14 bits 1 LSB = 0.51uV \\ \hline
+            Bandwidth & 0.2-45Hz, digital notch filters at 50Hz and 60Hz \\ \hline
+            Filtering & Built-in digital 5th order Sinc filter \\ \hline
+            Dynamic range (input referred) & 8400uV (pp) \\ \hline
+            Coupling mode & AC coupled \\ \hline
+            Connectivity & Proprietary wireless, 2.4GHz band \\ \hline
+            Battery life & 12 hours (typical) \\ \hline
+            Impedance measurement & Real-time contact quality using patented system \\ \hline
+        \end{tabular}
+        \label{table:emotiv_eeg_specs}
+    \end{table}
     Emotiv EEG (Figure ~\ref{fig:emotiv_eeg_headset}) is a battery-powered wireless consumer headset which can
     acquire 14 channels (Figure ~\ref{fig:emotiv_eeg_1020}) of EEG signal. The headset internally applies a
     notch filter (At line frequency 50/60Hz) and a 5\textsuperscript{th} order band-pass filter (0.2-45Hz)
@@ -972,42 +1029,13 @@ Several unused system services like BLAH, BLAH, BLAH are completely disabled so 
     downsamples the signal to 128Hz before sending them to the computer. Full technical specifications found in the
     manufacturer's website\footnote{\url{http://www.emotiv.com/eeg/download_specs.php}} are summarized in Table ~\ref{table:emotiv_eeg_specs}.
 }
-
-\begin{figure}[ht]
-    \centering
-    \includegraphics[scale=0.6]{images/10_20_emotiv}
-    \caption{Emotiv EEG Electrode Locations.}
-    \label{fig:emotiv_eeg_1020}
-\end{figure}
-
-\begin{figure}[ht]
-    \centering
-    \includegraphics[width=0.5\textwidth]{images/emotiv}
-    \caption{Emotiv EEG Headset.}
-    \label{fig:emotiv_eeg_headset}
-\end{figure}
-
-\begin{table}
-    \footnotesize
-    \centering
-    \caption{Technical Specifications of Emotiv EEG Headset.}
-    \begin{tabular}{ll}
-        \hline
-        Number of channels & 14 (+ CMS/DRL references, P3/P4 locations) \\ \hline
-        Channel names & AF3, F7, F3, FC5, T7, P7, O1, O2, P8, T8, FC6, F4, F8, AF4 \\ \hline
-        Sampling method & Sequential sampling, single ADC \\ \hline
-        Sampling rate & 128 SPS (2048 Hz Internal) \\ \hline
-        Resolution & 14 bits 1 LSB = 0.51uV \\ \hline
-        Bandwidth & 0.2-45Hz, digital notch filters at 50Hz and 60Hz \\ \hline
-        Filtering & Built-in digital 5th order Sinc filter \\ \hline
-        Dynamic range (input referred) & 8400uV (pp) \\ \hline
-        Coupling mode & AC coupled \\ \hline
-        Connectivity & Proprietary wireless, 2.4GHz band \\ \hline
-        Battery life & 12 hours (typical) \\ \hline
-        Impedance measurement & Real-time contact quality using patented system \\ \hline
-    \end{tabular}
-    \label{table:emotiv_eeg_specs}
-\end{table}
+\par{
+    Emotiv EEG uses a fixed reference electrode pair around P3/P4 region as the default
+    reference location. The manufacturer also provided an alternative reference electrode
+    pair right behind the ears. It is possible to switch to that reference location
+    by removing the plastic rubber pads and inserting the spongy pads to those spots
+    instead of the default reference locations\footnote{\url{http://emotiv.com/ideas/forum/forum12/topic2507}}.
+}
 
 \mysubsubsection{Official Software Development Kit (SDK)}\label{seq:emotiveeg_sdk}
 
@@ -1040,7 +1068,6 @@ implementing the open-source protocol to access the device on Linux. The module 
 to access the dongle in a cross-platform manner although it has only been tested on Linux
 so far.
 }
-
 
 %%%%%%%%%%%%%%%%
 %% REFERENCES %%
