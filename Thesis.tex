@@ -231,8 +231,16 @@ Ozan Çağlayan
 \vspace*{6pt}
 
 \par{
-Abstract abstract abstract.
+The objective of a brain-computer interface is to provide an alternative way of interaction between the brain and the environment
+without the involvement of muscular pathways. Besides being a revolutionary human computer interface for gaming and entertainment,
+BCIs constitute the only way of interaction/communication with the outer world for people who cannot voluntarily control/move their muscles.
 }
+\par {
+Electroencephalography is a non-invasive method for measuring the electrical activity generated within the brain structures, through the scalp.
+Although an electrode placed on the scalp measures a linear mixture of various electrical sources underlying the electrode site,
+we can deduce some informations from those measurements using various signal processing and pattern recognition techniques.
+}
+
 \clearpage
 
 %%%%%%%%%%%%
@@ -271,16 +279,6 @@ Ozet ozet ozet.
 \pagenumbering{arabic}
 \chead{\arabic{page}}
 \cfoot{}
-\par{
-The objective of a brain-computer interface is to provide an alternative way of interaction between the brain and the environment
-without the involvement of muscular pathways. Besides being a revolutionary human computer interface for gaming and entertainment,
-BCIs constitute the only way of interaction/communication with the outer world for people who cannot voluntarily control/move their muscles.
-}
-\par {
-Electroencephalography is a non-invasive method for measuring the electrical activity generated within the brain structures, through the scalp.
-Although an electrode placed on the scalp measures a linear mixture of various electrical sources underlying the electrode site,
-we can deduce some informations from those measurements using various signal processing and pattern recognition techniques.
-}
 \clearpage
 
 %%%%%%%%%%%%%%%%%%
@@ -814,7 +812,7 @@ area of the brain. A combination of a letter and a number is further used to ide
     (\citealp{birbaumer_thought_2000}; \citealp{hinterberger_brain-computer_2004}; \citealp{birbaumer_breaking_2006}).
 }
 \par{
-    SCP based BCIs are active/endogenous systems as the user has to voluntarily adjust
+    SCP-based BCIs are active/endogenous systems as the user has to voluntarily adjust
     the polarity (negative/positive) of their slow potentials according to some neurofeedback protocol \citep{jackson_neural_2010}.
     They can be used to select between binary targets (target selection) since the control signal is a bi-state
     negative/positive shift in slow potentials. This binary selection can also be extended
@@ -842,6 +840,19 @@ area of the brain. A combination of a letter and a number is further used to ide
     type of BCI.
 }
 \par{
+    \begin{figure}[ht]
+        \centering
+        \includegraphics[width=0.6\textwidth]{images/bci_hand_rehab}
+        \caption[Hand Orthosis for Neurorehabilitation]{Hand Orthosis for Neurorehabilitation \citep{ramos-murguialday_proprioceptive_2012}}
+        \label{fig:motor_orthosis}
+    \end{figure}
+
+    SMR-based BCIs are active/endogenous systems as the user has to initiate/plan/imagine
+    a movement to adjust their EEG rhythms. SMR-based BCIs are used in cursor control
+    applications to select between targets
+    (\citealp{wolpaw_eeg-based_1991}; \citealp{wolpaw_wadsworth_2003}; \citealp{vaughan_wadsworth_2006}),
+    neurorehabilitation (Figure ~\ref{fig:motor_orthosis}) applications (\citealp{prasad_using_2009}; \citealp{ramos-murguialday_proprioceptive_2012};
+    \citealp{ortner_human-computer_2013}), orthotics and prosthetics control (\citealp{guger_prosthetic_1999}; \citealp{pfurtscheller_motor_2001}).
 }
 
 
@@ -906,7 +917,7 @@ portability of BCI systems.
     is realized over a serial USB dongle. Once the motions are designed and written
     into the microcontroller using the proprietary software,
     it is possible to play those preprogrammed motions and
-    to control individual servos separately with the open-source and community
+    control individual servos separately with the open-source and community
     contributed \emph{libkondo4} library\footnote{\url{https://bitbucket.org/vo/libkondo4}}.
     The library has also language bindings to allow controlling the robot using Python and Java.
 }
@@ -915,9 +926,9 @@ portability of BCI systems.
 
 \par{
     \nomenclature{BBB}{BeagleBone Black}
-BeagleBone Black (BBB) (Figure ~\ref{fig:bbb}) is a 45\$ single board computer released in 2013. It has 1GHz TI AM3359 Sitara ARM Cortex-A8 microprocessor,
+BeagleBone Black (BBB) is a 45\$ single board computer released in 2013. It has 1GHz TI AM3359 Sitara ARM Cortex-A8 microprocessor,
 512MB DDR3 memory, 3D accelerated PowerVR SGX530 graphical processing unit (GPU) with HDMI output, onboard 2GB embedded MMC (eMMC)
-flash storage pre-loaded with Ångström Linux distribution. Along with a single USB 2.0 host port and 10/100 RJ45 Ethernet port for
+flash storage pre-loaded with Ångström Linux distribution (Figure ~\ref{fig:bbb}). Along with a single USB 2.0 host port and 10/100 RJ45 Ethernet port for
 general purpose connectivity, the board also provides a wide variety of low-level expansion interfaces:
 4xUART, 8xPWM, 2xSPI, 1xADC and 2xI\textsuperscript{2}C.
 }
@@ -957,8 +968,9 @@ general purpose connectivity, the board also provides a wide variety of low-leve
 
 \mysubsubsection{Initial Setup and Customization}\label{seq:embeddedcomputer_initialsetup}
 \par{
-We first installed Ubuntu (into the onboard eMMC storage) as it is a widely adopted Linux distribution with a rich software repository. A rich software repository is important for avoiding 
-manual compilation/installation of several tools and libraries, which in turn decreases time needed to start experimenting with the BCI system.
+We first installed Ubuntu to an 8GB micro SD card as it is a widely adopted Linux distribution with a rich software repository.
+A rich software repository is important for avoiding manual compilation/installation of several tools and libraries,
+which in turn decreases time needed to start experimenting with the BCI system.
 }
 
 \par{
@@ -966,7 +978,8 @@ The list of tools and libraries that we'll be frequently using throughout this w
 }
 
 \par{
-Several unused system services like BLAH, BLAH, BLAH are completely disabled so that they don't waste available system resources.
+Several background services are disabled before running the BCI application to avoid wasting
+processing and memory resources.
 }
 
 \mysubsubsection{Stimuli Generation on BBB}\label{seq:embeddedcomputer_stimuligen}
