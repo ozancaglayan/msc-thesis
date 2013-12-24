@@ -279,6 +279,32 @@ Ozet ozet ozet.
 \pagenumbering{arabic}
 \chead{\arabic{page}}
 \cfoot{}
+
+\par{
+Single computer BCIs generally require decent computers as they can make use of heavy signal processing
+and machine learning algorithms while probably presenting stimuli (auditory/visual) in a precise timing.
+}
+
+\par{
+Today, the embedded computers found on smartphones are much powerful compared to the desktop PCs
+used in the initial BCI systems designed years ago. The main concern of this study is to assess whether small,
+and possibly battery-powered, cheap embedded computers can be used to replace big, power hungry and
+expensive computers in a simple, online BCI system.
+}
+
+\par{
+Majority of embedded computers runs Linux which does not require a graphical desktop environment
+to be available. This allows to reduce memory and CPU usage on these systems as the most resource
+hungry component of a modern operating systems is the Graphical User Interface (GUI).
+Using Linux also helps to prepare a custom OS designed to run the BCI loop efficiently.
+This is achieved by removing/disabling system services and applications which won't be required at all by BCIs.
+}
+
+\par{
+All of these optimizations reduce the overall power consumption of the embedded BCI which brings
+the possibility to use a battery-pack as power supply. This final achievement is key to ultimate
+portability of BCI systems.
+}
 \clearpage
 
 %%%%%%%%%%%%%%%%%%
@@ -862,40 +888,7 @@ area of the brain. A combination of a letter and a number is further used to ide
 %%%%%%%%%%%%%
 \clearpage
 \vspace*{-0.35cm}
-\mysection{HARDWARE}\label{seq:hardware}
-
-\mysubsection{Why Embedded Computer?}\label{seq:embeddedcomputer}
-
-\par{
-Single computer BCIs generally require decent computers as they can make use of heavy signal processing
-and machine learning algorithms while probably presenting visual stimuli in a precise timing.
-}
-
-\par{
-Today, the embedded computers found on smartphones are much powerful compared to the desktop PCs
-used in the BCI systems designed years ago. The main concern of this study is to assess whether small,
-(possibly) battery-powered and cheap embedded computers can be used to replace big, power hungry and
-expensive computers in a simple, online BCI system.
-}
-
-\mysubsubsection{Advantages}\label{seq:embeddedcomputer_advantages}
-
-\par{
-Majority of embedded computers runs Linux which does not require a graphical desktop environment
-to be available. This allows to reduce memory and CPU usage on these systems as the most resource
-hungry component of a modern operating systems is the Graphical User Interface (GUI).
-}
-
-\par{
-Using Linux also helps to prepare a custom OS designed to run the BCI loop efficiently.
-This is achieved by removing/disabling system services and applications which won't be required at all by BCIs.
-}
-
-\par{
-All of these optimizations reduce the overall power consumption of the embedded BCI which brings
-the possibility to use a battery-pack as power supply. This final achievement is key to ultimate
-portability of BCI systems.
-}
+\mysection{MATERIALS AND METHODS}\label{seq:mat_met}
 
 \mysubsection{Kondo KHR-3HV Humanoid Robot}\label{seq:kondo}
 \par{
@@ -968,30 +961,28 @@ general purpose connectivity, the board also provides a wide variety of low-leve
 
 \mysubsubsection{Initial Setup and Customization}\label{seq:embeddedcomputer_initialsetup}
 \par{
-We first installed Ubuntu to an 8GB micro SD card as it is a widely adopted Linux distribution with a rich software repository.
-A rich software repository is important for avoiding manual compilation/installation of several tools and libraries,
-which in turn decreases time needed to start experimenting with the BCI system.
-}
-
-\par{
-The list of tools and libraries that we'll be frequently using throughout this work are: {\em Git, python-emotiv, SciPy, NumPy, pycrypto, pyusb, python GPIO library for BBB.}
-}
-
-\par{
-Several background services are disabled before running the BCI application to avoid wasting
-processing and memory resources.
-}
-
-\mysubsubsection{Stimuli Generation on BBB}\label{seq:embeddedcomputer_stimuligen}
-\par{
-}
-\par{
     \begin{figure}[ht]
         \centering
         \includegraphics[width=0.7\textwidth]{images/led_circuit}
         \caption{Schematic of SSVEP LED Stimulator.}
         \label{fig:bbb_led_schema}
     \end{figure}
+    We first installed Ubuntu to an 8GB micro SD card as it is a widely adopted Linux distribution with a rich software repository.
+    A rich software repository is important for avoiding manual compilation/installation of several tools and libraries,
+    which in turn decreases time needed to start experimenting with the BCI system.
+}
+
+\par{
+    The list of tools and libraries that we'll be frequently using throughout this work are: {\em Git, python-emotiv, SciPy, NumPy, pycrypto, pyusb, python GPIO library for BBB.}
+}
+
+\par{
+    Several background services are disabled before running the BCI application to avoid wasting
+    processing and memory resources.
+}
+
+\mysubsubsection{Stimuli Generation on BBB}\label{seq:embeddedcomputer_stimuligen}
+\par{
     In order to preserve the portability of the system, we decided to use BBB's
     Input/Output capabilities for LED SSVEP stimulation (Figure ~\ref{fig:bbb_led_schema}).
     BBB has several General-Purpose Input/Output (GPIO) pins that can be used to communicate with external
@@ -1081,6 +1072,15 @@ implementing the open-source protocol to access the device on Linux. The module 
 to access the dongle in a cross-platform manner although it has only been tested on Linux
 so far.
 }
+
+
+%%%%%%%%%%%%%
+%% SECTION %%
+%%%%%%%%%%%%%
+\clearpage
+\vspace*{-0.35cm}
+\mysection{CONCLUSION}\label{seq:conclusion}
+
 
 %%%%%%%%%%%%%%%%
 %% REFERENCES %%
