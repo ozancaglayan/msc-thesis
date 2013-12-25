@@ -280,31 +280,35 @@ Ozet ozet ozet.
 \chead{\arabic{page}}
 \cfoot{}
 
+\mysubsection{Motivation}\label{seq:intro_motiv}
 \par{
-Single computer BCIs generally require decent computers as they can make use of heavy signal processing
-and machine learning algorithms while probably presenting stimuli (auditory/visual) in a precise timing.
+    Single computer BCIs generally require decent computers as they can make use of heavy signal processing
+    and machine learning algorithms while probably presenting stimuli (auditory/visual) in a precise timing.
+    Today, the embedded computers found on smartphones are much powerful compared to the desktop PCs
+    used in the initial BCI systems designed years ago. The main concern of this study is to assess whether small,
+    and possibly battery-powered, cheap embedded computers can be used to replace big, power hungry and
+    expensive computers in a simple, online BCI system.
+}
+\par{
+    Majority of embedded computers runs Linux which does not require a graphical desktop environment
+    to be available. This allows to reduce memory and CPU usage on these systems as the most resource
+    hungry component of a modern operating systems is the Graphical User Interface (GUI).
+    Using Linux also helps to prepare a custom OS designed to run the BCI loop efficiently.
+    This is achieved by removing/disabling system services and applications which won't be required at all by BCIs.
+}
+\par{
+    All of these optimizations reduce the overall power consumption of the embedded BCI which brings
+    the possibility to use a battery-pack as power supply. This final achievement is key to ultimate
+    portability of BCI systems.
 }
 
-\par{
-Today, the embedded computers found on smartphones are much powerful compared to the desktop PCs
-used in the initial BCI systems designed years ago. The main concern of this study is to assess whether small,
-and possibly battery-powered, cheap embedded computers can be used to replace big, power hungry and
-expensive computers in a simple, online BCI system.
+\mysubsection{Thesis Outline}\label{seq:intro_outline}
+\par
+{
+    outline
 }
 
-\par{
-Majority of embedded computers runs Linux which does not require a graphical desktop environment
-to be available. This allows to reduce memory and CPU usage on these systems as the most resource
-hungry component of a modern operating systems is the Graphical User Interface (GUI).
-Using Linux also helps to prepare a custom OS designed to run the BCI loop efficiently.
-This is achieved by removing/disabling system services and applications which won't be required at all by BCIs.
-}
 
-\par{
-All of these optimizations reduce the overall power consumption of the embedded BCI which brings
-the possibility to use a battery-pack as power supply. This final achievement is key to ultimate
-portability of BCI systems.
-}
 \clearpage
 
 %%%%%%%%%%%%%%%%%%
@@ -1071,6 +1075,16 @@ Python module called \emph{python-emotiv}\footnote{\url{https://github.com/ozanc
 implementing the open-source protocol to access the device on Linux. The module uses \emph{libusb}
 to access the dongle in a cross-platform manner although it has only been tested on Linux
 so far.
+}
+
+\mysubsection{Software Workflow}\label{seq:sof_workflow}
+\par{
+    %\begin{figure}[ht]
+    %    \centering
+    %    \includegraphics[scale=0.5]{images/flow}
+    %    \caption{BCI Workflow.}
+    %    \label{fig:workflow}
+    %\end{figure}
 }
 
 
