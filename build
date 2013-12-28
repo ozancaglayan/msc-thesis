@@ -1,12 +1,12 @@
 #!/bin/bash
 
 pdflatex Thesis.tex
-makeindex Thesis.nlo -s nomencl.ist -o Thesis.nls
 
 if [[ "x$1" == "xref" ]]; then
     sed -i "s/_guideline_1994/guideline_1994/g" ThesisLibrary.bib
+    makeindex Thesis.nlo -s nomencl.ist -o Thesis.nls
     bibtex Thesis.aux
     pdflatex Thesis.tex
 fi
 
-pdflatex Thesis.tex
+#pdflatex Thesis.tex

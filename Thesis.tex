@@ -282,12 +282,53 @@ Ozet ozet ozet.
 \chead{\arabic{page}}
 \cfoot{}
 
-\mysubsection{Motivation}\label{seq:intro_motiv}
+\mysubsection{Motivation and Objective}\label{seq:intro_motiv}
 \par{
-    Single computer BCIs generally require decent computers as they can make use of heavy signal processing
-    and machine learning algorithms while probably presenting stimuli (auditory/visual) in a precise timing.
-    Today, the embedded computers found on smartphones are much powerful compared to the desktop PCs
-    used in the initial BCI systems designed years ago. The main concern of this study is to assess whether small,
+    Research in Brain-Computer Interface (BCI) design often focuses
+    on discovering novel approaches in experiment protocol design and
+    boosting the performance of signal processing and machine learning algorithms
+    in order to improve the information transfer rate, the ergonomy and the
+    ease of use.
+}
+
+\par{
+    Although measuring brain activity with electroencephalography (EEG) is more
+    comfortable when compared to other measurement methods, clinical and research
+    EEG acquisition systems are still far from being portable: They heavily
+    rely on wired transmission, they are generally not battery powered and
+    the application of a conductive material between electrodes and the scalp is
+    often necessary to improve the signal quality. Also, the cost of such systems
+    generally exceeds the income level of many people, thus they can not be
+    considered as affordable technologies.
+}
+
+\par{
+    With the advent of technology in communication and electronics, new affordable
+    EEG systems started to appear in the market. These consumer grade wireless and
+    battery-powered headsets are equipped with either dry or saline
+    electrodes which simplify the setup process and make the whole experience
+    much more comfortable.
+}
+
+\par{
+    Online (real-time) BCIs generally require good computers as
+    stimuli presentation, data acquisition, signal processing, machine
+    learning and finally production of an output are all resource hungry
+    processes. Some of these processes are also timing sensitive, e.g.
+    the stimuli should be presented at exact intervals, the acquisition
+    should not miss a packet, etc.
+}
+
+    %The challenge behind improving the speed
+    %of BCIs often brings more sophisticated algorithms which in turn need
+    %more processing power.
+
+
+    Today, the embedded computers found on smartphones are much powerful compared
+    to the conventional PCs used in the initial BCI systems designed 10 years ago.
+    
+    \par{
+    The main concern of this study is to assess whether small,
     and possibly battery-powered, cheap embedded computers can be used to replace big, power hungry and
     expensive computers in a simple, online BCI system.
 }
@@ -307,9 +348,21 @@ Ozet ozet ozet.
 \mysubsection{Thesis Outline}\label{seq:intro_outline}
 \par
 {
-    outline
+    The remainder of this thesis is structured as follows.
 }
-
+\par{
+    In Chapter 2, we briefly introduce the neurophysiological processes
+    behind BCI design along with the brain activity measurement techniques and the cognitive paradigms
+    often used to extract useful information out of the brain.
+}
+\par{
+    Chapter 3 presents in detail the materials and methods for the embedded BCI
+    system proposed by this study.
+}
+\par{
+    Finally, Chapter 4 concludes what have been achieved by this thesis and
+    discusses further research possibilities about embedded BCI design.
+}
 
 \clearpage
 
