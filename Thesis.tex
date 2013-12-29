@@ -233,14 +233,25 @@ Ozan Çağlayan
 \vspace*{6pt}
 
 \par{
-The objective of a brain-computer interface is to provide an alternative way of interaction between the brain and the environment
-without the involvement of muscular pathways. Besides being a revolutionary human computer interface for gaming and entertainment,
-BCIs constitute the only way of interaction/communication with the outer world for people who cannot voluntarily control/move their muscles.
+    \nomenclature{BCI}{Brain-Computer Interface}
+    The objective of a brain-computer interface (BCI) is to provide an alternative way of interaction between the brain and the environment
+    without the involvement of muscular pathways. Besides being a revolutionary human computer interface for gaming and entertainment,
+    BCIs constitute the only way of interaction/communication with the outer world for people who cannot voluntarily control/move their muscles.
 }
-\par {
-Electroencephalography is a non-invasive method for measuring the electrical activity generated within the brain structures, through the scalp.
-Although an electrode placed on the scalp measures a linear mixture of various electrical sources underlying the electrode site,
-we can deduce some informations from those measurements using various signal processing and pattern recognition techniques.
+\par{
+    Electroencephalography (EEG) is a non-invasive method for measuring the electrical activity generated within the brain structures, through the scalp.
+    Although new consumer grade wireless EEG headsets are recently gaining popularity,
+    most of the BCI research depends on high quality but bulky and expensive acquisition systems.
+    Combined with a decent PC to implement the software stack of the BCI, the cost of the overall
+    BCI design increases and the technology quickly becomes inaffordable for many people.
+}
+\par{
+    In this study, we present a portable and embedded steady-state visual evoked potential BCI
+    system in which the user can choose between two targets by focusing on 2 LED lights flickering
+    at different frequencies. The output of the system can then be used for different
+    interaction scenarios like controlling a robot, answering simple yes/no questions, etc.
+    The use of a consumer grade, wireless EEG headset together with a cheap embedded computer
+    increases the mobility of the system while reducing the overall cost dramatically.
 }
 
 \clearpage
@@ -255,7 +266,27 @@ we can deduce some informations from those measurements using various signal pro
 \vspace*{6pt}
 
 \par{
-Resume resume resume.
+    L'objectif d'une interface cerveau-ordinateur (ICO) est de fournir un moyen alternatif d'interaction
+    entre le cerveau et l'environnement sans la participation des voies musculaires.
+    En plus d'être une interface homme-machine révolutionnaire pour le jeu et l'amusement,
+    les ICO constituent le seul moyen d'interaction et de communication avec le monde extérieur
+    pour les personnes qui ne peuvent pas contrôler/déplacer leurs muscles volontairement.
+}
+\par{
+    L'électroencéphalographie (EEG) est une méthode non-invasive pour mesurer l'activité électrique
+    générée à l'intérieur des structures du cerveau, à travers le cuir chevelu. Bien que nouveaux casques
+    EEG sans fil gagnent en popularité récemment, la plupart des recherches
+    dépend de systèmes d'acquisition encombrants et coûteux de haute qualité. En combinaison avec un
+    bon ordinateur pour mettre en œuvre la pile logicielle des ICO, le coût de la conception
+    augmente et la technologie devient vite inaffordable pour beaucoup de gens.
+}
+\par{
+    Dans cette étude, nous présentons une ICO réalisée avec un système embarqué
+    dans laquelle l'utilisateur peut choisir entre deux cibles en se concentrant sur deux LED
+    à différentes fréquences de clignotement. La sortie du système peut alors être utilisé pour différents
+    scénarios d'interaction comme commander un robot, répondre à des questions simples oui/non, etc.
+    L'utilisation d'une casque EEG sans fil avec un ordinateur embarqué pas cher
+    augmente la mobilité du système tout en réduisant considérablement le coût total.
 }
 \clearpage
 
@@ -303,46 +334,84 @@ Ozet ozet ozet.
 }
 
 \par{
-    With the advent of technology in communication and electronics, new affordable
+    With the advent of technology in communication and electronics, new affordable (less than \textasciitilde\$500)
     EEG systems started to appear in the market. These consumer grade wireless and
     battery-powered headsets are equipped with either dry or saline
     electrodes which simplify the setup process and make the whole experience
     much more comfortable.
 }
-
 \par{
+    \nomenclature{GUI}{Graphical User Interface}
+    \nomenclature{OS}{Operating System}
     Online (real-time) BCIs generally require good computers as
     stimuli presentation, data acquisition, signal processing, machine
     learning and finally production of an output are all resource hungry
     processes. Some of these processes are also timing sensitive, e.g.
     the stimuli should be presented at exact intervals, the acquisition
     should not miss a packet, etc.
+    The progress in computer hardware industry does not always bring the
+    same amount of progression into software components. According to Wirth's
+    Law stated by Niklaus Wirth, \emph{software is getting slower more
+    rapidly than hardware becomes faster} \citep{wirth_plea_1995}.
+    The fact that operating systems (OS) and their software components are
+    becoming much more sophisticated; negatively impacts the precision, the performance
+    and the real-time expectations of dedicated/critical tasks running on a computer.
+    Once the software part of a BCI heavily depends on a general purpose and end-user targeted
+    modern OS, the cost of the overall BCI system increases since the price of the minimum
+    PC (laptop or desktop) configuration adequate for the software stack is ranging between
+    \$700-1000.
 }
 
-    %The challenge behind improving the speed
-    %of BCIs often brings more sophisticated algorithms which in turn need
-    %more processing power.
+\par{
+    Embedded computers are small single-board computers designed to satisfy
+    application specific designs, e.g. mobile phones, tablets, robot controllers, etc.
+    The cost for these boards is dramatically reduced with the popularity of
+    smartphones and other ubiquitous appliances. The price for a \emph{Raspberry Pi} equipped with
+    single core 700MHz ARM microprocessor and 256MB of memory is \$25 while much more
+    powerful boards in the price range \$40-100 are available.
+    These embedded computers are traditionally running with Linux distributions
+    which are open-source software stacks built around the Linux kernel
+    and a plethora of other tools, libraries and utilities. Linux, with its
+    powerful and productive command line abilities, does not depend on the
+    existence of a graphical desktop environment. This allows to dedicate
+    the memory and CPU resources normally wasted by GUIs to other design-specific
+    tasks. The modular nature of Linux allows one to prepare a customized
+    OS image which will directly boot into the BCI software. More aggressive resource
+    optimization can be done by removing unused system services and applications.
+    Each customization step help in reducing overall power consumption of the
+    BCI system, which is key to designing a portable, battery-powered and ubiquitous
+    BCI.
+}
 
-
-    Today, the embedded computers found on smartphones are much powerful compared
-    to the conventional PCs used in the initial BCI systems designed 10 years ago.
-    
-    \par{
-    The main concern of this study is to assess whether small,
-    and possibly battery-powered, cheap embedded computers can be used to replace big, power hungry and
-    expensive computers in a simple, online BCI system.
+\par{
+    One big challenge in embedded BCI design is to decide which programming
+    language and libraries will be used for data acquisition,
+    signal processing, stimuli presentation and optionally machine learning. This
+    generally is not a big deal for BCIs running on top of conventional PCs
+    as there exists lots of alternatives be it standalone or MATLAB based.
+    The major obstacle in reusing these already available frameworks is that
+    they are all developed, tested and used on x86 CPU architecture and thus
+    are not available for ARM CPU architecture. Although MATLAB has support
+    for generating code for embedded targets, MATLAB itself is
+    a commercial product which can not be accessed free of charge.
 }
 \par{
-    Majority of embedded computers runs Linux which does not require a graphical desktop environment
-    to be available. This allows to reduce memory and CPU usage on these systems as the most resource
-    hungry component of a modern operating systems is the Graphical User Interface (GUI).
-    Using Linux also helps to prepare a custom OS designed to run the BCI loop efficiently.
-    This is achieved by removing/disabling system services and applications which won't be required at all by BCIs.
+    Python is a high-level, easy to learn interpreted language with a huge number of
+    extension modules developed by the community.
+    Python is also multi-platform thus it is possible
+    to run Python programs on a wide range of different operating systems and
+    architectures. Another advantage of Python which made it very popular
+    among scientific researchers is the ability to write code that will run
+    as fast as the underlying hardware allows, thanks to scientific Python modules
+    implemented in C like \emph{NumPy} and \emph{SciPy} \citep{oliphant_python_2007}.
 }
+
 \par{
-    All of these optimizations reduce the overall power consumption of the embedded BCI which brings
-    the possibility to use a battery-pack as power supply. This final achievement is key to ultimate
-    portability of BCI systems.
+    The objective of this thesis is to assess the feasibility of a low-cost and online BCI
+    design which will be completely driven by an inexpensive embedded computer
+    which runs BCI software written purely in Python on Linux OS. We believe that
+    application-specific embedded computing with consumer grade EEG headsets
+    will help in increasing the availability of BCIs by reducing the overall cost.
 }
 
 \mysubsection{Thesis Outline}\label{seq:intro_outline}
@@ -393,7 +462,6 @@ Ozet ozet ozet.
 }
 
 \par{
-    \nomenclature{BCI}{Brain-Computer Interface}
     \nomenclature{HCI}{Human-Computer Interaction}
     \nomenclature{BMI}{Brain-Machine Interface}
     \nomenclature{DBI}{Direct Brain Interface}
