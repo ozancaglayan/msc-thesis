@@ -1263,11 +1263,11 @@ area of the brain. A combination of a letter and a number is further used to ide
     the arrival of a new signal.
 }
 
-\mysubsection{Experiment Parameters}\label{seq:bci_details}
+\mysubsection{Experiment Workflow}\label{seq:bci_details}
 \par{
 }
 
-\mysubsection{BCI Workflow}\label{seq:bci_workflow}
+\mysubsection{Building Blocks}\label{seq:bci_workflow}
 \par{
     \begin{figure}[ht]
         \centering
@@ -1275,6 +1275,12 @@ area of the brain. A combination of a letter and a number is further used to ide
         \caption{BCI Workflow.}
         \label{fig:workflow}
     \end{figure}
+
+    Our BCI design is splitted into 3 separate Python programs
+    running concurrently: EEG acquisition block (ACK), SSVEP stimulation block
+    and signal processing block (SP). ACK is the main program
+    that manages the interconnection between the units. A detailed explanation
+    of the workflow can be seen in Figure ~\ref{fig:workflow}.
 }
 
 
