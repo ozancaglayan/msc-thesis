@@ -1086,6 +1086,14 @@ area of the brain. A combination of a letter and a number is further used to ide
     \label{fig:bbb}
 \end{figure}
 
+\mysubsubsection{Initial Setup and Customization}\label{seq:embeddedcomputer_initialsetup}
+\par{
+    We first installed Ubuntu to an 8GB micro SD card as it is a widely adopted Linux distribution with a rich software repository.
+    A rich software repository is important for avoiding manual compilation/installation of several tools and libraries,
+    which in turn decreases the time needed to start experimenting with the BCI system. We also disabled
+    several unused system services to avoid wasting processor and memory resources.
+}
+
 \mysubsubsection{Programmable Realtime Unit}\label{seq:embeddedcomputer_bbb_pru}
 \par{
     \nomenclature{PRU}{Programmable Realtime Unit}
@@ -1110,59 +1118,6 @@ area of the brain. A combination of a letter and a number is further used to ide
     By now, the PRU can only be programmed using assembly language. A helper library
     for C and Python is available to launch and terminate custom programs written for the PRU.
     It is also possible to share data between the PRU and the CPU using shared memory.
-}
-
-\mysubsubsection{Initial Setup and Customization}\label{seq:embeddedcomputer_initialsetup}
-\par{
-    \begin{figure}[ht]
-        \centering
-        \includegraphics[width=0.7\textwidth]{images/led_circuit}
-        \caption{Schematic of SSVEP LED Stimulator.}
-        \label{fig:bbb_led_schema}
-    \end{figure}
-    We first installed Ubuntu to an 8GB micro SD card as it is a widely adopted Linux distribution with a rich software repository.
-    A rich software repository is important for avoiding manual compilation/installation of several tools and libraries,
-    which in turn decreases time needed to start experimenting with the BCI system.
-}
-
-\par{
-    The list of tools and libraries that we'll be frequently using throughout this work are: {\em Git, python-emotiv, SciPy, NumPy, pycrypto, pyusb, python GPIO library for BBB.}
-}
-
-\par{
-    Several background services are disabled before running the BCI application to avoid wasting
-    processing and memory resources.
-}
-
-\mysubsubsection{SSVEP Stimulation on BBB}\label{seq:embeddedcomputer_stimuligen}
-\par{
-    In order to preserve the portability of the system, we decided to use BBB's
-    Input/Output capabilities for LED SSVEP stimulation.
-    BBB has several General-Purpose Input/Output (GPIO) pins that can be used to communicate with external
-    devices and circuits. These pins can be raised HIGH (+3.3v) or LOW (0v)
-    using Adafruit BBIO library\footnote{\url{https://github.com/adafruit/adafruit-beaglebone-io-python}} for Python.
-    For this study, a simple digital circuit is designed to drive the LEDs using transistors (Figure ~\ref{fig:bbb_led_schema}).
-    The use of transistors is important because BBB can not provide enough current
-    through its GPIO pins to light an LED brightly. The transistors rapidly switch
-    the LED circuits which can be powered by an external power source.
-}
-
-\mysubsubsection{SSVEP Stimulation Software}\label{seq:embeddedcomputer_stimuligen_software}
-\par{
-    A Python script is written to manage the external stimulation circuit. We do not
-    currently use the PRU for SSVEP stimulation as BBB seems to run good enough
-    all of the BCI stack without any issue.
-}
-\par{
-    To start the stimulator, the flickering frequencies, $f_1$ and $f_2$ are passed as command line arguments to the
-    script which changes the mode for GPIO pins to \emph{output}, computes
-    the triggering periods $T_1$ and $T_2$ for each frequency according to
-    the formula $T_i=\frac{1}{2f_i}$ and finally blocks until a signal (namely
-    \texttt{SIGUSR1} signal) is sent to it to start the stimulation.
-    Once the process receives this signal, it continuously compares the system time and
-    previously computed triggering periods to decide whether it is time for
-    changing the state of the LEDs or not. The stimulation continues until
-    the arrival of a new signal.
 }
 
 \mysubsection{Emotiv EEG}\label{seq:emotiveeg}
@@ -1265,7 +1220,44 @@ area of the brain. A combination of a letter and a number is further used to ide
     \end{itemize}
 }
 
-\mysubsection{Software Workflow}\label{seq:sof_workflow}
+\mysubsection{SSVEP Stimulation}\label{seq:ssvep_stimulation}
+\mysubsubsection{SSVEP Stimulation on BBB}\label{seq:ssvep_stimulation_hw}
+\par{
+    \begin{figure}[ht]
+        \centering
+        \includegraphics[width=0.6\textwidth]{images/led_circuit}
+        \caption{Schematic of SSVEP LED Stimulator.}
+        \label{fig:bbb_led_schema}
+    \end{figure}
+    In order to preserve the portability of the system, we decided to use BBB's
+    Input/Output capabilities for LED SSVEP stimulation.
+    BBB has several General-Purpose Input/Output (GPIO) pins that can be used to communicate with external
+    devices and circuits. These pins can be raised HIGH (+3.3v) or LOW (0v)
+    using Adafruit BBIO library\footnote{\url{https://github.com/adafruit/adafruit-beaglebone-io-python}} for Python.
+    For this study, a simple digital circuit is designed to drive the LEDs using transistors (Figure ~\ref{fig:bbb_led_schema}).
+    The use of transistors is important because BBB can not provide enough current
+    through its GPIO pins to light an LED brightly. The transistors rapidly switch
+    the LED circuits which can be powered by an external power source.
+}
+\mysubsubsection{Software}\label{seq:ssvep_stimulation_sw}
+\par{
+    A Python script is written to manage the external stimulation circuit. We do not
+    currently use the PRU for SSVEP stimulation as BBB seems to run good enough
+    all of the BCI stack without any issue.
+}
+\par{
+    To start the stimulator, the flickering frequencies, $f_1$ and $f_2$ are passed as command line arguments to the
+    script which changes the mode for GPIO pins to \emph{output}, computes
+    the triggering periods $T_1$ and $T_2$ for each frequency according to
+    the formula $T_i=\frac{1}{2f_i}$ and finally blocks until a signal (namely
+    \texttt{SIGUSR1} signal) is sent to it to start the stimulation.
+    Once the process receives this signal, it continuously compares the system time and
+    previously computed triggering periods to decide whether it is time for
+    changing the state of the LEDs or not. The stimulation continues until
+    the arrival of a new signal.
+}
+
+\mysubsection{BCI Workflow}\label{seq:bci_workflow}
 \par{
     %\begin{figure}[ht]
     %    \centering
