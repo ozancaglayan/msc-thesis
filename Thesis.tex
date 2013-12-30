@@ -1156,8 +1156,14 @@ area of the brain. A combination of a letter and a number is further used to ide
         \end{tabular}
         \label{table:emotiv_eeg_specs}
     \end{table}
-    Emotiv EEG (Figure ~\ref{fig:emotiv_eeg_headset}) is a battery-powered wireless consumer headset which can
-    acquire 14 channels (Figure ~\ref{fig:emotiv_eeg_1020}) of EEG signal. The headset internally applies a
+    Emotiv EEG (Figure ~\ref{fig:emotiv_eeg_headset}) is a battery-powered, wireless consumer headset which can
+    acquire 14 channels (Figure ~\ref{fig:emotiv_eeg_1020}) of EEG signal. Although Emotiv EEG is primarily
+    researched for gaming and entertainment applications (\citealp{van_vliet_designing_2012}; \citealp{chumerin_steady-state_2013}),
+    several research activities are targeting it to assess and exploit its usability for
+    assistive BCI applications (\citealp{liu_implementation_2012}; \citealp{badcock_validation_2013}; \citealp{caglayan_humanoid_2013}; \citealp{guneysu_ssvep_2013}; \citealp{choi_low-cost_2013}).
+}
+\par{
+    The headset internally applies a
     notch filter (At line frequency 50/60Hz) and a 5\textsuperscript{th} order band-pass filter (0.2-45Hz)
     to the signal. Although the internal sampling rate of the headset is 2048Hz, the device
     downsamples the signal to 128Hz before sending them to the computer. Full technical specifications found in the
@@ -1239,7 +1245,7 @@ area of the brain. A combination of a letter and a number is further used to ide
     through its GPIO pins to light an LED brightly. The transistors rapidly switch
     the LED circuits which can be powered by an external power source.
 }
-\mysubsubsection{Software}\label{seq:ssvep_stimulation_sw}
+\mysubsubsection{Stimulation Software}\label{seq:ssvep_stimulation_sw}
 \par{
     A Python script is written to manage the external stimulation circuit. We do not
     currently use the PRU for SSVEP stimulation as BBB seems to run good enough
@@ -1257,14 +1263,18 @@ area of the brain. A combination of a letter and a number is further used to ide
     the arrival of a new signal.
 }
 
+\mysubsection{Experiment Parameters}\label{seq:bci_details}
+\par{
+}
+
 \mysubsection{BCI Workflow}\label{seq:bci_workflow}
 \par{
-    %\begin{figure}[ht]
-    %    \centering
-    %    \includegraphics[scale=0.5]{images/flow}
-    %    \caption{BCI Workflow.}
-    %    \label{fig:workflow}
-    %\end{figure}
+    \begin{figure}[ht]
+        \centering
+        \includegraphics[scale=0.75]{images/flow2}
+        \caption{BCI Workflow.}
+        \label{fig:workflow}
+    \end{figure}
 }
 
 
