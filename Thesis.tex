@@ -379,7 +379,7 @@ Ozan Çağlayan
     Law stated by Niklaus Wirth, \emph{software is getting slower more
     rapidly than hardware becomes faster} \citep{wirth_plea_1995}.
     The fact that operating systems (OS) and their software components are
-    becoming much more sophisticated; negatively impacts the precision, the performance
+    becoming much more sophisticated negatively impacts the precision, the performance
     and the real-time expectations of dedicated/critical tasks running on a computer.
     Once the software part of a BCI heavily depends on a general purpose and end-user targeted
     modern OS, the cost of the overall BCI system increases since the price of the minimum
@@ -1071,11 +1071,12 @@ area of the brain. A combination of a letter and a number is further used to ide
 
 \par{
     \nomenclature{BBB}{BeagleBone Black}
-BeagleBone Black (BBB) is a 45\$ single board computer released in 2013. It has 1GHz TI AM3359 Sitara ARM Cortex-A8 microprocessor,
-512MB DDR3 memory, 3D accelerated PowerVR SGX530 graphical processing unit (GPU) with HDMI output, onboard 2GB embedded MMC (eMMC)
-flash storage pre-loaded with Ångström Linux distribution (Figure ~\ref{fig:bbb}). Along with a single USB 2.0 host port and 10/100 RJ45 Ethernet port for
-general purpose connectivity, the board also provides a wide variety of low-level expansion interfaces:
-4xUART, 8xPWM, 2xSPI, 1xADC and 2xI\textsuperscript{2}C.
+    BeagleBone Black (BBB) is a 45\$ single board computer released in 2013. It has 1GHz TI AM3359 Sitara ARM Cortex-A8 microprocessor,
+    512MB DDR3 memory, 3D accelerated PowerVR SGX530 graphical processing unit (GPU) with HDMI output, onboard 2GB embedded MMC (eMMC)
+    flash storage pre-loaded with Ångström Linux distribution (Figure ~\ref{fig:bbb}). Along with a single USB 2.0 host port and 10/100 RJ45 Ethernet port for
+    general purpose connectivity, the board also provides a wide variety of low-level expansion interfaces:
+    66xGPIO, 5xUART, 8xPWM, 8xADC, 2xI\textsuperscript{2}C, SPI and CAN. A 4 port bus powered external USB hub is used for
+    increasing the number of USB devices that can be connected to the BBB.
 }
 
 \begin{figure}[ht]
@@ -1088,9 +1089,8 @@ general purpose connectivity, the board also provides a wide variety of low-leve
 \mysubsubsection{Programmable Realtime Unit}\label{seq:embeddedcomputer_bbb_pru}
 \par{
     \nomenclature{PRU}{Programmable Realtime Unit}
-    \nomenclature{OS}{Operating System}
     Although the Cortex-A8 processor is powerful, real-time control of high-speed external hardware
-    and high precision tasks can be affected by operating system (OS) latencies. BBB improves the
+    and high precision tasks can be affected by OS latencies. BBB improves the
     situation by providing two programmable realtime units (PRU) optimized to perform embedded tasks
     with hard realtime constraints. The PRUs have:
     \begin{itemize}
@@ -1102,7 +1102,8 @@ general purpose connectivity, the board also provides a wide variety of low-leve
     It is sometimes possible to encounter delays in OS scheduling while EEG
     acquisition and SSVEP stimulation are both running simultaneously. This can negatively
     impact the precision of flickering intervals causing the BCI to perform badly.
-    Offloading SSVEP stimulation to the PRU resolves this problem as PRU is a distinct
+    Offloading SSVEP stimulation or any other high precision tasks to the
+    PRU can resolve jitters and delays as PRU is a distinct
     microcontroller unit which is completely decoupled from the main CPU of the device.
 }
 \par{
@@ -1133,13 +1134,35 @@ general purpose connectivity, the board also provides a wide variety of low-leve
     processing and memory resources.
 }
 
-\mysubsubsection{Stimuli Generation on BBB}\label{seq:embeddedcomputer_stimuligen}
+\mysubsubsection{SSVEP Stimulation on BBB}\label{seq:embeddedcomputer_stimuligen}
 \par{
     In order to preserve the portability of the system, we decided to use BBB's
-    Input/Output capabilities for LED SSVEP stimulation (Figure ~\ref{fig:bbb_led_schema}).
+    Input/Output capabilities for LED SSVEP stimulation.
     BBB has several General-Purpose Input/Output (GPIO) pins that can be used to communicate with external
     devices and circuits. These pins can be raised HIGH (+3.3v) or LOW (0v)
     using Adafruit BBIO library\footnote{\url{https://github.com/adafruit/adafruit-beaglebone-io-python}} for Python.
+    For this study, a simple digital circuit is designed to drive the LEDs using transistors (Figure ~\ref{fig:bbb_led_schema}).
+    The use of transistors is important because BBB can not provide enough current
+    through its GPIO pins to light an LED brightly. The transistors rapidly switch
+    the LED circuits which can be powered by an external power source.
+}
+
+\mysubsubsection{SSVEP Stimulation Software}\label{seq:embeddedcomputer_stimuligen_software}
+\par{
+    A Python script is written to manage the external stimulation circuit. We do not
+    currently use the PRU for SSVEP stimulation as BBB seems to run good enough
+    all of the BCI stack without any issue.
+}
+\par{
+    To start the stimulator, the flickering frequencies, $f_1$ and $f_2$ are passed as command line arguments to the
+    script which changes the mode for GPIO pins to \emph{output}, computes
+    the triggering periods $T_1$ and $T_2$ for each frequency according to
+    the formula $T_i=\frac{1}{2f_i}$ and finally blocks until a signal (namely
+    \texttt{SIGUSR1} signal) is sent to it to start the stimulation.
+    Once the process receives this signal, it continuously compares the system time and
+    previously computed triggering periods to decide whether it is time for
+    changing the state of the LEDs or not. The stimulation continues until
+    the arrival of a new signal.
 }
 
 \mysubsection{Emotiv EEG}\label{seq:emotiveeg}
@@ -1196,33 +1219,50 @@ general purpose connectivity, the board also provides a wide variety of low-leve
 \mysubsubsection{Official Software Development Kit (SDK)}\label{seq:emotiveeg_sdk}
 
 \par{
-Emotiv provides an SDK for Windows, Mac OS X and Linux operating systems but the provided SDK is
-closed-source and only available for x86 CPU architecture. This means that it is not possible
-to use the SDK on ARM embedded computers like Raspberry Pi or Beaglebone Black.
-Currently, the only way of using the Emotiv headset with an ARM based embedded computer is to use the
-open-source protocol reverse-engineered by Cody Brocious and Kyle Machulis.
-%Stopczynski et al. (2011) developed a mobile brain scanner framework\footnote{\url{https://github.com/SmartphoneBrainScanner}}
-%which runs on Nokia N900 ARM smartphones.
+    Emotiv provides an SDK for Windows, Mac OS X and Linux operating systems but the provided SDK is
+    closed-source and only available for x86 CPU architecture. This means that it is not possible
+    to use the SDK on ARM embedded computers like Raspberry Pi or Beaglebone Black.
+    Although Emotiv recently made available some closed-source C/C++ libraries initially
+    built for N900 ARM smartphones \citep{stopczynski_smartphone_2011}, they are still far from being usable due to possible binary
+    incompatibility between different ARM architectures and the lack of documentation. As of now,
+    the only reliable way of using the Emotiv headset with an ARM based embedded computer is to use the
+    open-source protocol reverse-engineered by Cody Brocious and Kyle Machulis.
 }
 
 \mysubsubsection{Open-Source Protocol}\label{seq:emotiveeg_opensource}
 
 \par{
-According to the protocol details\footnote{\url{https://raw.github.com/openyou/emokit/master/doc/emotiv_protocol.asciidoc}}
-the USB dongle acts as a simple Human Interface Device (HID) which relays an AES encrypted data packet of size 32 bytes with a rate of 128 packets/sec.
-Each decrypted EEG packet is tagged with an 8-bit sequence number ranging from 0 to 127.
-A sequence number greater than 127 carries the battery level of the device instead of EEG data.
-Real-time contact quality information for each sensor is also embedded within the EEG
-packets in a special rotating order: 0\textsuperscript{th} packet contains the contact quality for F3,
-1\textsuperscript{st} packet for FC5, and so on.
+    According to the protocol details\footnote{\url{https://raw.github.com/openyou/emokit/master/doc/emotiv_protocol.asciidoc}}
+    the USB dongle acts as a simple Human Interface Device (HID) which relays an AES encrypted data packet of size 32 bytes with a rate of 128 packets/sec.
+    Each decrypted EEG packet is tagged with an 8-bit sequence number ranging from 0 to 127.
+    A sequence number greater than 127 carries the battery level of the device instead of EEG data.
+    Real-time contact quality information for each sensor is also embedded within the EEG
+    packets in a special rotating order: 0\textsuperscript{th} packet contains the contact quality for F3,
+    1\textsuperscript{st} packet for FC5, and so on.
 }
 
+\mysubsubsection{Python-emotiv}\label{seq:emotiveeg_python_emotiv}
 \par{
-Since we decided to develop the BCI in pure Python, we wrote an object oriented
-Python module called \emph{python-emotiv}\footnote{\url{https://github.com/ozancaglayan/python-emotiv}}
-implementing the open-source protocol to access the device on Linux. The module uses \emph{libusb}
-to access the dongle in a cross-platform manner although it has only been tested on Linux
-so far.
+    Since we decided to realize the whole BCI in pure Python, we developed an object oriented
+    Python module called \emph{python-emotiv}\footnote{\url{https://github.com/ozancaglayan/python-emotiv}}
+    implementing the open-source protocol to access the device on Linux. The module uses \emph{libusb}
+    to access the dongle in a cross-platform manner although it has only been tested on Linux
+    so far.
+}
+\par{
+    \emph{python-emotiv} was received well by the open-source community. An individual developer
+    forked the project and added Mac OS X support\footnote{\url{https://github.com/simlay/python-emotiv}} to it.
+    It is also used in a newly started BCI controlled wheelchair project\footnote{\url{http://braingizer.blogspot.com}}.
+}
+\par{
+    As of December 2013, the features of \emph{python-emotiv} can be summarized as follows:
+    \begin{itemize}
+        \item Support for Emotiv EEG headset using libusb on any platform having Python and the necessary dependencies
+        \item Support for reading 14 channel raw EEG, 2-axis gyro, contact qualities and battery status
+        \item Synchronous acquisition of the data per single sample or requested duration
+        \item Ability to save the acquired data as \emph{FieldTrip} \citep{oostenveld_fieldtrip:_2011} compatible Matlab (.mat) data
+        \item Ability to stream EEG data through \emph{Lab Streaming Layer}\footnote{\url{https://code.google.com/p/labstreaminglayer}}
+    \end{itemize}
 }
 
 \mysubsection{Software Workflow}\label{seq:sof_workflow}
@@ -1266,11 +1306,11 @@ so far.
 \addcontentsline{toc}{section}{Biographical Sketch}
 \vspace*{6pt}
 \par{
-Ozan Çağlayan was born on September 11, 1985 in Istanbul, Turkey. After graduating from Saint-Joseph French High School in 2004,
-he began studying Computer Engineering at Galatasaray University. In 2007, he spent a semester at Université Joseph Fourier (Grenoble/France) as part of Erasmus Exchange Programme.
-In September 2007, he became a part-time software developer of Pardus Linux, the national Linux-based operating system project
-managed by The Scientific and Technological Research Council of Turkey (TUBITAK). After receiving his Bachelor of Science in 2008, he continued working for Pardus Linux project until January 2012.
-Since October 2012, he is working as a research assistant at Galatasaray University.
+    Ozan Çağlayan was born on September 11, 1985 in Istanbul, Turkey. After graduating from Saint-Joseph French High School in 2004,
+    he began studying Computer Engineering at Galatasaray University. In 2007, he spent a semester at Université Joseph Fourier (Grenoble/France) as part of Erasmus Exchange Programme.
+    In September 2007, he became a part-time software developer of Pardus Linux, the national Linux-based operating system project
+    managed by The Scientific and Technological Research Council of Turkey (TUBITAK). After receiving his Bachelor of Science in 2008, he continued working for Pardus Linux project until January 2012.
+    Since October 2012, he is working as a research assistant at Galatasaray University.
 }
 \clearpage
 
