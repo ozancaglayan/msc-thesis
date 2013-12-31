@@ -44,10 +44,11 @@
 
 \newcommand\textstyleJournalNames[1]{\foreignlanguage{english}{\textrm{\textmd{\textit{#1}}}}}
 
-\setcounter{secnumdepth}{3}
+\setcounter{secnumdepth}{4}
 \newcommand\mysection[1]{\vspace*{-0.35cm}\section{#1}\vspace*{6pt}\thispagestyle{empty}}
 \newcommand\mysubsection[1]{\subsection{#1}}
 \newcommand\mysubsubsection[1]{\subsubsection{#1}}
+\newcommand\mysubsubsubsection[1]{\paragraph{#1}\hspace{0pt}}
 
 \newtheorem{thm}{Theorem}[section]
 \newtheorem{cor}[thm]{Corollary}
@@ -434,7 +435,7 @@ Ozan Çağlayan
 \par{
     The objective of this thesis is to assess the feasibility of a low-cost and online BCI
     design which will be completely driven by an inexpensive embedded computer
-    which runs BCI software written purely in Python on Linux OS. We believe that
+    running BCI software written purely in Python on Linux OS. We believe that
     application-specific embedded computing with consumer grade EEG headsets
     will help in increasing the availability of BCIs by reducing the overall cost.
 }
@@ -572,7 +573,7 @@ Ozan Çağlayan
 \begin{table}[H]
     \footnotesize
     \centering
-    \caption{Functional Description of Cerebral Lobes.}
+    \caption{Functional Description of Cerebral Lobes}
     \begin{tabular}{l l}
         \hline
         Frontal Lobe & Executive functions, movement control \emph{(Primary motor cortex (M1))}\\ \hline
@@ -586,7 +587,7 @@ Ozan Çağlayan
 \begin{figure}[ht]
     \centering
     \includegraphics[scale=0.5]{images/Cerebrum_lobes}
-    \caption[Functional Regions of the Cerebral Cortex.]{Functional regions of the Cerebral Cortex. (Adapted from \href{http://en.wikipedia.org/wiki/File:Cerebrum_lobes.svg}{Wikipedia})}
+    \caption[Functional Regions of the Cerebral Cortex]{Functional Regions of the Cerebral Cortex (Adapted from \href{http://en.wikipedia.org/wiki/File:Cerebrum_lobes.svg}{Wikipedia})}
     \label{fig:brain_parts}
 \end{figure}
 }
@@ -601,7 +602,7 @@ Ozan Çağlayan
 \begin{figure}[ht]
     \centering
     \includegraphics[scale=0.9]{images/neuron}
-    \caption[The Structure of a Neuron.]{The Structure of a Neuron. (Adapted from \href{http://commons.wikimedia.org/wiki/File:Neuron.svg}{Wikipedia})}
+    \caption[The Structure of a Neuron]{The Structure of a Neuron (Adapted from \href{http://commons.wikimedia.org/wiki/File:Neuron.svg}{Wikipedia})}
     \label{fig:neuron}
 \end{figure}
 }
@@ -628,7 +629,7 @@ Ozan Çağlayan
     \begin{figure}[ht]
         \centering
         \includegraphics[scale=0.4]{images/ap}
-        \caption[Action Potential.]{Action Potential. \citep{sanei_eeg_2008}}
+        \caption[Action Potential]{Action Potential. \citep{sanei_eeg_2008}}
         \label{fig:action_pot}
     \end{figure}
     An action potential (AP), the electrical signal conducted through the neurons,
@@ -696,7 +697,7 @@ Ozan Çağlayan
     \begin{figure}[ht]
         \centering
         \includegraphics[scale=0.5]{images/eeg_vs_ecog}
-        \caption[Invasiveness of EEG, ECoG and Intracranial Recordings.]{Invasiveness of EEG, ECoG and Intracranial Recordings. (Courtesy of B. Blankertz)}
+        \caption[Invasiveness of EEG, ECoG and Intracranial Recordings]{Invasiveness of EEG, ECoG and Intracranial Recordings. (Courtesy of B. Blankertz)}
         \label{fig:methods_eeg_ecog}
     \end{figure}
 }
@@ -743,7 +744,7 @@ Ozan Çağlayan
 \begin{table}
     \footnotesize
     \centering
-    \caption[Comparison of Brain Imaging Methods.]{Comparison of Brain Imaging Methods \citep{nicolas-alonso_brain_2012}.}
+    \caption[Comparison of Brain Imaging Methods]{Comparison of Brain Imaging Methods \citep{nicolas-alonso_brain_2012}}
     \begin{tabular}{llllll}
         \hline
         \textbf{Method} &
@@ -776,7 +777,7 @@ area of the brain. A combination of a letter and a number is further used to ide
 \begin{figure}[ht]
     \centering
     \includegraphics[scale=0.75]{images/10_20_bembook_redrawn}
-    \caption[International 10-20 System.]{International 10-20 System. \citep{nicolas-alonso_brain_2012}}
+    \caption[International 10-20 System]{International 10-20 System. \citep{nicolas-alonso_brain_2012}}
     \label{fig:eeg_1020}
 \end{figure}
 
@@ -792,7 +793,7 @@ area of the brain. A combination of a letter and a number is further used to ide
     \begin{figure}[ht]
         \centering
         \includegraphics[scale=0.6]{images/10_20_extended}
-        \caption[10-10 Combinatorial System.]{10-10 Combinatorial System (Drawing courtesy of Marius 't Hart).}
+        \caption[10-10 Combinatorial System]{10-10 Combinatorial System (Drawing courtesy of Marius 't Hart)}
         \label{fig:eeg_1020_comb}
     \end{figure}
 }
@@ -928,7 +929,7 @@ area of the brain. A combination of a letter and a number is further used to ide
             \caption{}
             \label{fig:electrode_dry}
         \end{subfigure}
-        \caption[Different Types of Electrode]{Different Types of Electrode: (a) A passive electrode by \emph{g.tec} (b) An active electrode \citep{sullivan_low-noise_2007} (c) A dry electrode prototype \citep{grozea_bristle-sensorslow-cost_2011}.}
+        \caption[Different Types of Electrode]{Different Types of Electrode: (a) A passive electrode by \emph{g.tec} (b) An active electrode \citep{sullivan_low-noise_2007} (c) A dry electrode prototype \citep{grozea_bristle-sensorslow-cost_2011}}
         \label{fig:diff_types_electrode}
     \end{figure}
 
@@ -1042,12 +1043,21 @@ area of the brain. A combination of a letter and a number is further used to ide
 \vspace*{-0.35cm}
 \mysection{MATERIALS AND METHODS}\label{seq:mat_met}
 
-\mysubsection{Kondo KHR-3HV Humanoid Robot}\label{seq:kondo}
+\mysubsection{Materials}
+\par{
+    There exists 3 important hardware components of our embedded BCI
+    design: an EEG headset for brain signal acquisition, an embedded
+    computer to manage all kinds of interaction between the
+    individual parts of the BCI and finally an external actuator to reflect
+    the choices of the BCI user to the environment, e.g. a humanoid robot
+    for this study.
+}
+\mysubsubsection{Kondo KHR-3HV Humanoid Robot}\label{seq:kondo}
 \par{
     \begin{figure}[ht]
         \centering
         \includegraphics[scale=0.7]{images/kondo}
-        \caption{Kondo KHR-3HV Humanoid Robot.}
+        \caption{Kondo KHR-3HV Humanoid Robot}
         \label{fig:kondo}
     \end{figure}
     Kondo KHR-3HV is a 17 degrees of freedom humanoid robot manufactured by
@@ -1067,7 +1077,7 @@ area of the brain. A combination of a letter and a number is further used to ide
     The library has also language bindings to allow controlling the robot using Python and Java.
 }
 
-\mysubsection{BeagleBone Black}\label{seq:embeddedcomputer_bbb}
+\mysubsubsection{BeagleBone Black}\label{seq:embeddedcomputer_bbb}
 
 \par{
     \nomenclature{BBB}{BeagleBone Black}
@@ -1081,12 +1091,11 @@ area of the brain. A combination of a letter and a number is further used to ide
 
 \begin{figure}[ht]
     \centering
-    \includegraphics[width=0.4\textwidth]{images/bbb}
-    \caption{BeagleBone Black Single-board Computer.}
+    \includegraphics[width=0.55\textwidth]{images/bbb}
+    \caption{BeagleBone Black Single-board Computer}
     \label{fig:bbb}
 \end{figure}
 
-\mysubsubsection{Initial Setup and Customization}\label{seq:embeddedcomputer_initialsetup}
 \par{
     We first installed Ubuntu to an 8GB micro SD card as it is a widely adopted Linux distribution with a rich software repository.
     A rich software repository is important for avoiding manual compilation/installation of several tools and libraries,
@@ -1094,7 +1103,7 @@ area of the brain. A combination of a letter and a number is further used to ide
     several unused system services to avoid wasting processor and memory resources.
 }
 
-\mysubsubsection{Programmable Realtime Unit}\label{seq:embeddedcomputer_bbb_pru}
+\mysubsubsubsection{Programmable Realtime Unit}\label{seq:embeddedcomputer_bbb_pru}
 \par{
     \nomenclature{PRU}{Programmable Realtime Unit}
     Although the Cortex-A8 processor is powerful, real-time control of high-speed external hardware
@@ -1120,25 +1129,51 @@ area of the brain. A combination of a letter and a number is further used to ide
     It is also possible to share data between the PRU and the CPU using shared memory.
 }
 
-\mysubsection{Emotiv EEG}\label{seq:emotiveeg}
+\mysubsubsection{Emotiv EEG}\label{seq:emotiveeg}
 
 \par{
-    \begin{figure}[ht]
+    %\begin{figure}[ht]
+    %    \centering
+    %    \includegraphics[width=0.5\textwidth]{images/emotiv}
+    %    \caption{Emotiv EEG Headset}
+    %    \label{fig:emotiv_eeg_headset}
+    %\end{figure}
+    %\begin{figure}[ht]
+    %    \centering
+    %    \includegraphics[scale=0.5]{images/10_20_emotiv}
+    %    \caption{Emotiv EEG Electrode Locations}
+    %    \label{fig:emotiv_eeg_1020}
+    %\end{figure}
+    \begin{figure}
         \centering
-        \includegraphics[width=0.5\textwidth]{images/emotiv}
-        \caption{Emotiv EEG Headset.}
-        \label{fig:emotiv_eeg_headset}
+        \begin{subfigure}{.45\textwidth}
+            %\centering
+            \vspace*{2.55cm}
+            \includegraphics[height=5cm]{images/emotiv}
+            \caption{Emotiv EEG Headset}
+            \label{fig:emotiv_eeg_headset}
+        \end{subfigure}%
+        \begin{subfigure}{.55\textwidth}
+            \centering
+            \includegraphics[scale=.4]{images/10_20_emotiv}
+            \caption{Electrode Locations}
+            \label{fig:emotiv_eeg_1020}
+        \end{subfigure}
+        \caption{Emotiv EEG Headset and Electrode Locations}
+        \label{fig:emotiv_eeg_headset_locations}
     \end{figure}
-    \begin{figure}[ht]
-        \centering
-        \includegraphics[scale=0.5]{images/10_20_emotiv}
-        \caption{Emotiv EEG Electrode Locations.}
-        \label{fig:emotiv_eeg_1020}
-    \end{figure}
+
+    Emotiv EEG (Figure ~\ref{fig:emotiv_eeg_headset}) is a battery-powered, wireless consumer headset which can
+    acquire 14 channels (Figure ~\ref{fig:emotiv_eeg_1020}) of EEG signal. Although Emotiv EEG is primarily
+    researched for gaming and entertainment applications (\citealp{van_vliet_designing_2012}; \citealp{chumerin_steady-state_2013}),
+    several research activities are targeting it to assess and exploit its usability for
+    assistive BCI applications (\citealp{liu_implementation_2012}; \citealp{badcock_validation_2013}; \citealp{caglayan_humanoid_2013}; \citealp{guneysu_ssvep_2013}; \citealp{choi_low-cost_2013}).
+}
+\par{
     \begin{table}
         \footnotesize
         \centering
-        \caption{Technical Specifications of Emotiv EEG Headset.}
+        \caption{Technical Specifications of Emotiv EEG Headset}
         \begin{tabular}{ll}
             \hline
             Number of channels & 14 (+ CMS/DRL references, P3/P4 locations) \\ \hline
@@ -1156,13 +1191,6 @@ area of the brain. A combination of a letter and a number is further used to ide
         \end{tabular}
         \label{table:emotiv_eeg_specs}
     \end{table}
-    Emotiv EEG (Figure ~\ref{fig:emotiv_eeg_headset}) is a battery-powered, wireless consumer headset which can
-    acquire 14 channels (Figure ~\ref{fig:emotiv_eeg_1020}) of EEG signal. Although Emotiv EEG is primarily
-    researched for gaming and entertainment applications (\citealp{van_vliet_designing_2012}; \citealp{chumerin_steady-state_2013}),
-    several research activities are targeting it to assess and exploit its usability for
-    assistive BCI applications (\citealp{liu_implementation_2012}; \citealp{badcock_validation_2013}; \citealp{caglayan_humanoid_2013}; \citealp{guneysu_ssvep_2013}; \citealp{choi_low-cost_2013}).
-}
-\par{
     The headset internally applies a
     notch filter (At line frequency 50/60Hz) and a 5\textsuperscript{th} order band-pass filter (0.2-45Hz)
     to the signal. Although the internal sampling rate of the headset is 2048Hz, the device
@@ -1177,7 +1205,7 @@ area of the brain. A combination of a letter and a number is further used to ide
     instead of the default reference locations\footnote{\url{http://emotiv.com/ideas/forum/forum12/topic2507}}.
 }
 
-\mysubsubsection{Official Software Development Kit (SDK)}\label{seq:emotiveeg_sdk}
+\mysubsubsubsection{Official Software Development Kit (SDK)}\label{seq:emotiveeg_sdk}
 
 \par{
     Emotiv provides an SDK for Windows, Mac OS X and Linux operating systems but the provided SDK is
@@ -1190,7 +1218,7 @@ area of the brain. A combination of a letter and a number is further used to ide
     open-source protocol reverse-engineered by Cody Brocious and Kyle Machulis.
 }
 
-\mysubsubsection{Open-Source Protocol}\label{seq:emotiveeg_opensource}
+\mysubsubsubsection{Open-Source Protocol}\label{seq:emotiveeg_opensource}
 
 \par{
     According to the protocol details\footnote{\url{https://raw.github.com/openyou/emokit/master/doc/emotiv_protocol.asciidoc}}
@@ -1202,18 +1230,13 @@ area of the brain. A combination of a letter and a number is further used to ide
     1\textsuperscript{st} packet for FC5, and so on.
 }
 
-\mysubsubsection{Python-emotiv}\label{seq:emotiveeg_python_emotiv}
+\mysubsubsubsection{Python-emotiv}\label{seq:emotiveeg_python_emotiv}
 \par{
     Since we decided to realize the whole BCI in pure Python, we developed an object oriented
     Python module called \emph{python-emotiv}\footnote{\url{https://github.com/ozancaglayan/python-emotiv}}
     implementing the open-source protocol to access the device on Linux. The module uses \emph{libusb}
     to access the dongle in a cross-platform manner although it has only been tested on Linux
     so far.
-}
-\par{
-    \emph{python-emotiv} was received well by the open-source community. An individual developer
-    forked the project and added Mac OS X support\footnote{\url{https://github.com/simlay/python-emotiv}} to it.
-    It is also used in a newly started BCI controlled wheelchair project\footnote{\url{http://braingizer.blogspot.com}}.
 }
 \par{
     As of December 2013, the features of \emph{python-emotiv} can be summarized as follows:
@@ -1225,29 +1248,54 @@ area of the brain. A combination of a letter and a number is further used to ide
         \item Ability to stream EEG data through \emph{Lab Streaming Layer}\footnote{\url{https://code.google.com/p/labstreaminglayer}}
     \end{itemize}
 }
+\par{
+    \emph{python-emotiv} was received well by the open-source community. An individual developer
+    forked the project and added Mac OS X support\footnote{\url{https://github.com/simlay/python-emotiv}} to it.
+    It is also used in a newly started BCI controlled wheelchair project\footnote{\url{http://braingizer.blogspot.com}}.
+}
 
-\mysubsection{SSVEP Stimulation}\label{seq:ssvep_stimulation}
-\mysubsubsection{SSVEP Stimulation on BBB}\label{seq:ssvep_stimulation_hw}
+%%%%%%%%% Methods
+\mysubsection{Methods}
+\par{
+    Each hardware component mentioned in the previous section has a dedicated
+    controller software written in Python. These software blocks are briefly
+    explained in this section.
+}
+
+\mysubsubsection{SSVEP Stimulation}
+
+\mysubsubsubsection{Hardware Design}
 \par{
     \begin{figure}[ht]
         \centering
-        \includegraphics[width=0.6\textwidth]{images/led_circuit}
-        \caption{Schematic of SSVEP LED Stimulator.}
+        \includegraphics[width=0.55\textwidth]{images/led_circuit}
+        \caption{Schematic of SSVEP LED Stimulator}
         \label{fig:bbb_led_schema}
     \end{figure}
-    In order to preserve the portability of the system, we decided to use BBB's
-    Input/Output capabilities for LED SSVEP stimulation.
+
+    \begin{figure}[ht]
+    \centering
+    \includegraphics[scale=0.55]{images/bbb_ssvep}
+    \caption{LED Montage on BeagleBone Black}
+    \label{fig:bbb_ssvep}
+    \end{figure}
     BBB has several General-Purpose Input/Output (GPIO) pins that can be used to communicate with external
     devices and circuits. These pins can be raised HIGH (+3.3v) or LOW (0v)
     using Adafruit BBIO library\footnote{\url{https://github.com/adafruit/adafruit-beaglebone-io-python}} for Python.
-    For this study, a simple digital circuit is designed to drive the LEDs using transistors (Figure ~\ref{fig:bbb_led_schema}).
-    The use of transistors is important because BBB can not provide enough current
-    through its GPIO pins to light an LED brightly. The transistors rapidly switch
-    the LED circuits which can be powered by an external power source.
 }
-\mysubsubsection{Stimulation Software}\label{seq:ssvep_stimulation_sw}
 \par{
-    A Python script is written to manage the external stimulation circuit. We do not
+    In order to preserve the portability of the system, we decided to use BBB's
+    Input/Output capabilities for LED SSVEP stimulation. A simple digital circuit is designed to
+    drive the LEDs using transistors (Figure ~\ref{fig:bbb_led_schema}).
+    We had to use transistors to switch the LEDs because BBB can not provide enough current
+    through its GPIO pins to light an LED brightly. The transistors rapidly switch
+    the LED circuits which can be powered by an external power source. The final
+    montage of the stimulator can be seen in Figure ~\ref{fig:bbb_ssvep}.
+}
+
+\mysubsubsubsection{Software Design}
+\par{
+    A Python script (\texttt{bbb-bci-ssvepd.py}) is written to manage the external stimulation circuit. We do not
     currently use the PRU for SSVEP stimulation as BBB seems to run good enough
     all of the BCI stack without any issue.
 }
@@ -1263,20 +1311,28 @@ area of the brain. A combination of a letter and a number is further used to ide
     the arrival of a new signal.
 }
 
-\mysubsection{Experiment Workflow}\label{seq:bci_details}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\mysubsubsection{EEG Acquisition}
 \par{
+    This is the main entry point to the BCI application.
 }
 
-\mysubsection{Building Blocks}\label{seq:bci_workflow}
+
+
+\mysubsubsection{Experiment Protocol}
+\par{
+    Protcol.
+}
+
+\mysubsubsection{Experiment Workflow}
 \par{
     \begin{figure}[ht]
         \centering
-        \includegraphics[scale=0.75]{images/workflow}
-        \caption{BCI Workflow.}
+        \includegraphics[scale=0.65]{images/workflow}
+        \caption{BCI Workflow}
         \label{fig:workflow}
     \end{figure}
-
-    Our BCI design is splitted into 3 separate Python programs
+    Overall BCI design is splitted into 3 separate Python programs
     running concurrently: EEG acquisition block (ACK), SSVEP stimulation block
     and signal processing block (SP). ACK is the main program
     that manages the interconnection between the units. A detailed explanation
