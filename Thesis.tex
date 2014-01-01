@@ -139,6 +139,7 @@
 
 \begin{document}
 
+% White inner outer cover is for pre-jury submission, without the jury names
 \input{white_inner_outer_cover}
 %\input{black_outer_cover}
 %\input{black_inner_cover}
@@ -339,7 +340,7 @@ Ozan Çağlayan
 \chead{\arabic{page}}
 \cfoot{}
 
-\mysubsection{Motivation and Objective}\label{seq:intro_motiv}
+\mysubsection{Motivation and Objective}
 \par{
     Research in Brain-Computer Interface (BCI) design often focuses
     on discovering novel approaches in experiment protocol design and
@@ -440,7 +441,7 @@ Ozan Çağlayan
     will help in increasing the availability of BCIs by reducing the overall cost.
 }
 
-\mysubsection{Thesis Outline}\label{seq:intro_outline}
+\mysubsection{Thesis Outline}
 \par
 {
     The remainder of this thesis is structured as follows.
@@ -464,7 +465,7 @@ Ozan Çağlayan
 %%%%%%%%%%%%%%%%%%
 %% SECTION: BCI %%
 %%%%%%%%%%%%%%%%%%
-\mysection{BRAIN COMPUTER INTERFACES}\label{seq:bci}
+\mysection{BRAIN COMPUTER INTERFACES}
 
 \par{
     \nomenclature{LIS}{Locked-in Syndrome}
@@ -500,7 +501,7 @@ Ozan Çağlayan
     be the only way of interaction for completely locked-in people.
 }
 
-\mysubsection{Definition of a BCI}\label{seq:bci_definition}
+\mysubsection{Definition of a BCI}
 \par{
     According to \citet{wolpaw_braincomputer_2002}, a BCI is a communication system
     in which messages or commands sent to the external world do not pass through the
@@ -540,8 +541,8 @@ Ozan Çağlayan
     BCIs in literature \citep{jackson_neural_2010}.
 }
 
-\mysubsection{Neural Principles}\label{seq:neural_principles}
-\mysubsubsection{Central Nervous System}\label{seq:neural_principles_cns}
+\mysubsection{Neural Principles}
+\mysubsubsection{Central Nervous System}
 \par{
     \nomenclature{CNS}{Central Nervous System}
     \nomenclature{PNS}{Peripheral Nervous System}
@@ -592,7 +593,7 @@ Ozan Çağlayan
 \end{figure}
 }
 
-\mysubsubsection{Neurons}\label{seq:neural_principles_neurons}
+\mysubsubsection{Neurons}
 
 \par{
     Neurons or nerve cells are the core components of the brain. There are
@@ -655,7 +656,7 @@ Ozan Çağlayan
     and pathways which leads to the sensation of several external stimuli \citep{kandel_principles_2013}.
 }
 
-\mysubsection{Measuring Brain Activity}\label{seq:brain_imaging}
+\mysubsection{Measuring Brain Activity}
 \par{
     \nomenclature{EEG}{Electroencephalography}
     \nomenclature{MEG}{Magnetoencephalography}
@@ -678,7 +679,7 @@ Ozan Çağlayan
             reliably detected by the method.
     \end{itemize}
 }
-\mysubsubsection{Invasiveness}\label{seq:invasiveness}
+\mysubsubsection{Invasiveness}
 \par{
     Invasiveness is a measure of how deep is a sensor going through the skin.
     Electroencephalography (EEG), magnetoencephalography (MEG), functional magnetic
@@ -701,7 +702,7 @@ Ozan Çağlayan
         \label{fig:methods_eeg_ecog}
     \end{figure}
 }
-\mysubsubsection{Neurophysiological Origin}\label{seq:origin}
+\mysubsubsection{Neurophysiological Origin}
 \par{
     The neurophysiological origin of the measured activity can either be electrophysiological
     or hemodynamic \citep{nicolas-alonso_brain_2012}.
@@ -721,7 +722,7 @@ Ozan Çağlayan
     the hemodynamic response is the consequence of an augmented neuronal activity,
     these methods can be described as indirect methods \citep{nicolas-alonso_brain_2012}.
 }
-\mysubsubsection{Overview of Methods}\label{seq:imaging_summary}
+\mysubsubsection{Overview of Methods}
 \par{
     Although each of the imaging methods mentioned before can be used in a BCI system,
     EEG surpasses other methods due to its high temporal resolution, portability,
@@ -764,9 +765,9 @@ Ozan Çağlayan
 \end{table}
 }
 
-\mysubsection{Principles of EEG}\label{seq:eeg_principles}
+\mysubsection{Principles of EEG}
 
-\mysubsubsection{Electrode Placement}\label{seq:eeg_placement}
+\mysubsubsection{Electrode Placement}
 \par{
 Human EEG is recorded using an internationally recognized electrode naming and placement
 standard called 10-20 system \citep{jasper_ten_1958} (Figure ~\ref{fig:eeg_1020}).
@@ -823,7 +824,7 @@ area of the brain. A combination of a letter and a number is further used to ide
     A new 10-5 extension with 345 electrodes was also proposed by \citet{oostenveld_five_2001} for high resolution EEG studies.
 }
 
-\mysubsubsection{Montage and Recording}\label{seq:eeg_recording}
+\mysubsubsection{Montage and Recording}
 \begin{figure}
     \centering
     \begin{subfigure}{.5\textwidth}
@@ -867,7 +868,7 @@ area of the brain. A combination of a letter and a number is further used to ide
     Re-referencing to another electrode is also possible at this stage.
 }
 
-\mysubsubsection{Electrode Types}\label{seq:eeg_electrode_types}
+\mysubsubsection{Electrode Types}
 \par{
     There are basically two types of electrodes used for recording EEG: \emph{Passive} electrodes and
     \emph{active} electrodes.
@@ -939,7 +940,7 @@ area of the brain. A combination of a letter and a number is further used to ide
     of the mentioned sensor technologies can be seen in Figure ~\ref{fig:diff_types_electrode}.
 }
 
-\mysubsubsection{Brain Rhythms in EEG}\label{seq:brain_rhythms}
+\mysubsubsection{Brain Rhythms in EEG}
 \par{
     The frequency (or spectral) content of EEG signals is generally divided into five frequency
     bands: Delta rhythm (0.1-3.5 Hz), theta rhythm (4-7.5 Hz), alpha rhythm (8-13 Hz),
@@ -963,25 +964,25 @@ area of the brain. A combination of a letter and a number is further used to ide
     is attenuated during visual processing, e.g. while the eyes are open (Figure ~\ref{fig:eeg_alpha}\footnote{\url{https://wiki.ml.tu-berlin.de/wiki/NT/Courses/SS13_IL_AAND}}).
 }
 
-\mysubsection{BCI Paradigms}\label{seq:bci_signals}
+\mysubsection{BCI Paradigms}
 \par{
     There are several paradigms used in BCI design for extracting control information
     out of the brain. A BCI system is defined as active/endogenous or
     reactive/exogenous based on the underlying cognitive mechanism of the paradigm used.
 }
-\mysubsubsection{Event-Related Potentials}\label{seq:bci_erp}
+\mysubsubsection{Event-Related Potentials}
 \par{
     \nomenclature{ERP}{Event-Related Potential}
     Event-Related potentials (ERP) are defined as potential changes in
     neural activity associated with specific cognitive events \citep{luck_introduction_2005}.
 }
-\mysubsubsection{Visual Evoked Potentials}\label{seq:bci_vep}
+\mysubsubsection{Visual Evoked Potentials}
 \par{
     \nomenclature{VEP}{Visual Evoked Potential}
     \nomenclature{SSVEP}{Steady-State Visual Evoked Potential}
 }
 
-\mysubsubsection{Slow Cortical Potentials}\label{seq:bci_scp}
+\mysubsubsection{Slow Cortical Potentials}
 \par{
     \nomenclature{SCP}{Slow Cortical Potentials}
     Slow Cortical Potentials (SCP) are voltage changes in EEG which occur
@@ -999,7 +1000,7 @@ area of the brain. A combination of a letter and a number is further used to ide
     the alphabet in each step \citep{birbaumer_thought_2000}.
 }
 
-\mysubsubsection{Sensorimotor Rhythms}\label{seq:bci_motor}
+\mysubsubsection{Sensorimotor Rhythms}
 \par{
     \nomenclature{SMR}{Sensorimotor Rhythms}
     \nomenclature{MI}{Motor Imagery}
@@ -1036,12 +1037,12 @@ area of the brain. A combination of a letter and a number is further used to ide
 
 
 
-%%%%%%%%%%%%%
-%% SECTION %%
-%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% MATERIALS AND METHODS %%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \clearpage
 \vspace*{-0.35cm}
-\mysection{MATERIALS AND METHODS}\label{seq:mat_met}
+\mysection{MATERIALS AND METHODS}
 
 \mysubsection{Materials}
 \par{
@@ -1052,7 +1053,7 @@ area of the brain. A combination of a letter and a number is further used to ide
     the choices of the BCI user to the environment, e.g. a humanoid robot
     for this study.
 }
-\mysubsubsection{Kondo KHR-3HV Humanoid Robot}\label{seq:kondo}
+\mysubsubsection{Kondo KHR-3HV Humanoid Robot}
 \par{
     \begin{figure}[ht]
         \centering
@@ -1077,7 +1078,7 @@ area of the brain. A combination of a letter and a number is further used to ide
     The library has also language bindings to allow controlling the robot using Python and Java.
 }
 
-\mysubsubsection{BeagleBone Black}\label{seq:embeddedcomputer_bbb}
+\mysubsubsection{BeagleBone Black}
 
 \par{
     \nomenclature{BBB}{BeagleBone Black}
@@ -1103,7 +1104,7 @@ area of the brain. A combination of a letter and a number is further used to ide
     several unused system services to avoid wasting processor and memory resources.
 }
 
-\mysubsubsubsection{Programmable Realtime Unit}\label{seq:embeddedcomputer_bbb_pru}
+\mysubsubsubsection{Programmable Realtime Unit}
 \par{
     \nomenclature{PRU}{Programmable Realtime Unit}
     Although the Cortex-A8 processor is powerful, real-time control of high-speed external hardware
@@ -1129,7 +1130,7 @@ area of the brain. A combination of a letter and a number is further used to ide
     It is also possible to share data between the PRU and the CPU using shared memory.
 }
 
-\mysubsubsection{Emotiv EEG}\label{seq:emotiveeg}
+\mysubsubsection{Emotiv EEG}
 
 \par{
     %\begin{figure}[ht]
@@ -1205,7 +1206,7 @@ area of the brain. A combination of a letter and a number is further used to ide
     instead of the default reference locations\footnote{\url{http://emotiv.com/ideas/forum/forum12/topic2507}}.
 }
 
-\mysubsubsubsection{Official Software Development Kit (SDK)}\label{seq:emotiveeg_sdk}
+\mysubsubsubsection{Official Software Development Kit (SDK)}
 
 \par{
     Emotiv provides an SDK for Windows, Mac OS X and Linux operating systems but the provided SDK is
@@ -1218,7 +1219,7 @@ area of the brain. A combination of a letter and a number is further used to ide
     open-source protocol reverse-engineered by Cody Brocious and Kyle Machulis.
 }
 
-\mysubsubsubsection{Open-Source Protocol}\label{seq:emotiveeg_opensource}
+\mysubsubsubsection{Open-Source Protocol}
 
 \par{
     According to the protocol details\footnote{\url{https://raw.github.com/openyou/emokit/master/doc/emotiv_protocol.asciidoc}}
@@ -1230,7 +1231,7 @@ area of the brain. A combination of a letter and a number is further used to ide
     1\textsuperscript{st} packet for FC5, and so on.
 }
 
-\mysubsubsubsection{Python-emotiv}\label{seq:emotiveeg_python_emotiv}
+\mysubsubsubsection{Python-emotiv}
 \par{
     Since we decided to realize the whole BCI in pure Python, we developed an object oriented
     Python module called \emph{python-emotiv}\footnote{\url{https://github.com/ozancaglayan/python-emotiv}}
@@ -1340,12 +1341,14 @@ area of the brain. A combination of a letter and a number is further used to ide
 }
 
 
-%%%%%%%%%%%%%
-%% SECTION %%
-%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%
+%% CONCLUSION %%
+%%%%%%%%%%%%%%%%
 \clearpage
 \vspace*{-0.35cm}
-\mysection{CONCLUSION}\label{seq:conclusion}
+\mysection{CONCLUSION}
+\par{
+}
 
 
 %%%%%%%%%%%%%%%%
