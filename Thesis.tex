@@ -1050,7 +1050,7 @@ area of the brain. A combination of a letter and a number is further used to ide
     design: an EEG headset for brain signal acquisition, an embedded
     computer to manage all kinds of interaction between the
     individual parts of the BCI and finally an external actuator to reflect
-    the choices of the BCI user to the environment, e.g. a humanoid robot
+    the choices of the BCI user to the environment, e.g. the arms of a humanoid robot
     for this study.
 }
 \mysubsubsection{Kondo KHR-3HV Humanoid Robot}
@@ -1227,7 +1227,7 @@ area of the brain. A combination of a letter and a number is further used to ide
     Each decrypted EEG packet is tagged with an 8-bit sequence number ranging from 0 to 127.
     A sequence number greater than 127 carries the battery level of the device instead of EEG data.
     Real-time contact quality information for each sensor is also embedded within the EEG
-    packets in a special rotating order: 0\textsuperscript{th} packet contains the contact quality for F3,
+    packets in an interleaved order: 0\textsuperscript{th} packet contains the contact quality for F3,
     1\textsuperscript{st} packet for FC5, and so on.
 }
 
@@ -1258,9 +1258,10 @@ area of the brain. A combination of a letter and a number is further used to ide
 %%%%%%%%% Methods
 \mysubsection{Methods}
 \par{
-    Each hardware component mentioned in the previous section has a dedicated
-    controller software written in Python. These software blocks are briefly
-    explained in this section.
+    The interaction of the materials described in the previous section
+    is realized through the intercommunication of various software blocks
+    written in Python. These software blocks are explained in detail
+    in the following section.
 }
 
 \mysubsubsection{SSVEP Stimulation}
@@ -1269,20 +1270,13 @@ area of the brain. A combination of a letter and a number is further used to ide
 \par{
     \begin{figure}[ht]
         \centering
-        \includegraphics[width=0.55\textwidth]{images/led_circuit}
+        \includegraphics[width=0.5\textwidth]{images/led_circuit}
         \caption{Schematic of SSVEP LED Stimulator}
         \label{fig:bbb_led_schema}
     \end{figure}
-
-    \begin{figure}[ht]
-    \centering
-    \includegraphics[scale=0.55]{images/bbb_ssvep}
-    \caption{LED Montage on BeagleBone Black}
-    \label{fig:bbb_ssvep}
-    \end{figure}
     BBB has several General-Purpose Input/Output (GPIO) pins that can be used to communicate with external
     devices and circuits. These pins can be raised HIGH (+3.3v) or LOW (0v)
-    using Adafruit BBIO library\footnote{\url{https://github.com/adafruit/adafruit-beaglebone-io-python}} for Python.
+    using Adafruit BBIO library for Python.
 }
 \par{
     In order to preserve the portability of the system, we decided to use BBB's
@@ -1292,9 +1286,15 @@ area of the brain. A combination of a letter and a number is further used to ide
     through its GPIO pins to light an LED brightly. The transistors rapidly switch
     the LED circuits which can be powered by an external power source. The final
     montage of the stimulator can be seen in Figure ~\ref{fig:bbb_ssvep}.
+    \begin{figure}[ht]
+    \centering
+    \includegraphics[scale=0.55]{images/bbb_ssvep}
+    \caption{LED Montage on BeagleBone Black}
+    \label{fig:bbb_ssvep}
+    \end{figure}
 }
 
-\mysubsubsubsection{Software Design}
+\mysubsubsubsection{SSVEP Software Block}
 \par{
     A Python script (\texttt{bbb-bci-ssvepd.py}) is written to manage the external stimulation circuit. We do not
     currently use the PRU for SSVEP stimulation as BBB seems to run good enough
@@ -1312,34 +1312,70 @@ area of the brain. A combination of a letter and a number is further used to ide
     the arrival of a new signal.
 }
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\mysubsubsection{Signal Processing}
+\par{
+    The signal processing (SP) block (\texttt{bbb-bci-dspd.py}) creates a UNIX
+    socket and waits for new data which will eventually be sent by the EEG acquisition block.
+    Once a new chunk of data is received, \texttt{process\_eeg()}
+    function is called to process, evaluate and send a control signal
+    to the humanoid robot. The SP block then returns to its main loop
+    to wait for new data.
+}
+
 \mysubsubsection{EEG Acquisition}
-\par{
-    This is the main entry point to the BCI application.
-}
-
-
-
-\mysubsubsection{Experiment Protocol}
-\par{
-    Protcol.
-}
-
-\mysubsubsection{Experiment Workflow}
 \par{
     \begin{figure}[ht]
         \centering
-        \includegraphics[scale=0.65]{images/workflow}
+        \includegraphics[width=\textwidth]{images/workflow}
         \caption{BCI Workflow}
         \label{fig:workflow}
     \end{figure}
-    Overall BCI design is splitted into 3 separate Python programs
-    running concurrently: EEG acquisition block (ACK), SSVEP stimulation block
-    and signal processing block (SP). ACK is the main program
-    that manages the interconnection between the units. A detailed explanation
-    of the workflow can be seen in Figure ~\ref{fig:workflow}.
+    The EEG acquisition block is actually what manages other blocks and thus
+    can be considered as the main entry point to the BCI application. It first
+    starts SSVEP block with the desired flickering frequencies, then it starts
+    SP block and connects to it through the UNIX socket. After collecting
+    some personal information about the subject (Initials, age and sex), it starts the acquisition
+    loop which is detailed in Figure ~\ref{fig:workflow}.
 }
 
+%%%%%%%%%%%%%%%%%%%%%%%%
+%%% Experiment Setup %%%
+%%%%%%%%%%%%%%%%%%%%%%%%
+\mysubsection{Experiment Protocol}
+
+\par{
+    We currently tuned the SSVEP stimulator to flicker two green LEDs at
+    frequencies $f_1=13Hz$ and $f_2=17Hz$ to represent the left and the right
+    arm of the humanoid robot.
+}
+\par{
+    For each run, after activating SSVEP stimulation, 10 seconds of EEG is acquired through the occipital electrodes
+    $O1$ and $O2$ where SSVEP response is prominent \citep{herrmann_human_2001}.
+    The acquired data is then sent to the SP block for signal processing
+    and feature extraction.
+}
+\par{
+    Once the EEG data is received by the SP block, it is:
+    \nomenclature{FFT}{Fast Fourier Transform}
+    \begin{itemize}
+        \item Detrended using the \texttt{detrend} method from \texttt{scipy.signal} package
+        \item Re-referenced against $O1$ to further filter unwanted EEG components
+    \end{itemize}
+    The resulting signal is band-pass filtered between $8-45Hz$ before computing
+    its frequency spectrum using fast fourier transform (FFT) algorithm.
+}
+\par{
+    For feature extraction, a simple \emph{area under the curve} (AUC) computation is applied on the
+    frequency spectrum of the signal near ($\pm1Hz$) the flickering frequencies $f_1$ and $f_2$.
+    The AUC is then used to decide the LED frequency attended by the user to
+    choose between 2 states representing the arms of the humanoid robot.
+    The relevant command is finally sent to the robot to realize the actual
+    movement of the selected arm.
+}
+
+\mysubsection{Results}
+\par{
+}
 
 %%%%%%%%%%%%%%%%
 %% CONCLUSION %%
