@@ -8,6 +8,7 @@
 \usepackage[pdftex]{graphicx}
 \usepackage{grffile}
 \usepackage{rotating}
+\usepackage{listings}
 \usepackage[usenames]{color}
 \usepackage{tabularx,supertabular}
 \usepackage{multirow}
@@ -242,7 +243,7 @@ Ozan Çağlayan
 }
 \par{
     Electroencephalography (EEG) is a non-invasive method for measuring the electrical activity generated within the brain structures, through the scalp.
-    Although new consumer grade, wireless, portable and battery powered EEG headsets are recently gaining popularity,
+    Although new consumer grade, wireless, portable and battery-powered EEG headsets are recently gaining popularity,
     most of the non-invasive BCI research depends on high quality but bulky and expensive EEG acquisition systems.
     Combined with a decent PC to implement the software stack of the BCI, the cost of the overall
     BCI design increases and the technology quickly becomes inaffordable for many people.
@@ -353,7 +354,7 @@ Ozan Çağlayan
     Although measuring brain activity with electroencephalography (EEG) is more
     comfortable when compared to other measurement methods, clinical and research
     EEG acquisition systems are still far from being portable: They heavily
-    rely on wired transmission, they are generally not battery powered and
+    rely on wired transmission, they are generally not battery-powered and
     the application of a conductive material between electrodes and the scalp is
     often necessary to improve the signal quality. Also, the cost of such systems
     generally exceeds the income level of many people, thus they can not be
@@ -970,17 +971,45 @@ area of the brain. A combination of a letter and a number is further used to ide
     out of the brain. A BCI system is defined as active/endogenous or
     reactive/exogenous based on the underlying cognitive mechanism of the paradigm used.
 }
-\mysubsubsection{Event-Related Potentials}
-\par{
-    \nomenclature{ERP}{Event-Related Potential}
-    Event-Related potentials (ERP) are defined as potential changes in
-    neural activity associated with specific cognitive events \citep{luck_introduction_2005}.
-}
-\mysubsubsection{Visual Evoked Potentials}
+% FIXME: Explain later
+%\mysubsubsection{Event-Related Potentials}
+%\par{
+%    \nomenclature{ERP}{Event-Related Potential}
+%    Event-Related potentials (ERP) are defined as potential changes in
+%    neural activity associated with specific cognitive events \citep{luck_introduction_2005}.
+%}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newpage
+\mysubsubsection{Steady-State Visual Evoked Potentials}
 \par{
     \nomenclature{VEP}{Visual Evoked Potential}
     \nomenclature{SSVEP}{Steady-State Visual Evoked Potential}
+    \begin{figure}[ht]
+        \centering
+        \includegraphics[width=0.7\textwidth]{images/ssvep_flow}
+        \caption[Diagram of a SSVEP BCI]{Diagram of a SSVEP BCI \citep{chumerin_decoding_2012}}
+        \label{fig:eeg_ssvep_bci}
+    \end{figure}
+    A steady-state visual evoked potential (SSVEP) is an exogenous response
+    to a repetitive visual stimuli which usually oscillates at the fundamental
+    and harmonic frequencies of the flickering stimulus \citep{wu_stimulator_2008}.
 }
+\par{
+    In a typical SSVEP BCI setup, targets are generally represented to the user
+    in a flickering fashion be it an LED light, a pattern on a CRT or LCD screen, etc (Figure ~\ref{fig:eeg_ssvep_bci}).
+    The type of stimulation device, the color and the shape of the stimulus,
+    the frequency band of the oscillation rate and the phase between stimuli
+    are characteristics of the light stimuli which can affect the SSVEP \citep{zhu_survey_2010}.
+}
+\par{
+    Since SSVEP is a response to a repetitive visual stimulus, it is prominent
+    and observable through the occipital locations near the primary visual
+    cortex \citep{herrmann_human_2001}.
+}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newpage
 
 \mysubsubsection{Slow Cortical Potentials}
 \par{
@@ -1019,6 +1048,9 @@ area of the brain. A combination of a letter and a number is further used to ide
     The terms SMR, MI or mu rhythm can be used interchangeably to define this
     type of BCI.
 }
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newpage
+
 \par{
     \begin{figure}[ht]
         \centering
@@ -1026,7 +1058,6 @@ area of the brain. A combination of a letter and a number is further used to ide
         \caption[Hand Orthosis for Neurorehabilitation]{Hand Orthosis for Neurorehabilitation \citep{ramos-murguialday_proprioceptive_2012}}
         \label{fig:motor_orthosis}
     \end{figure}
-
     SMR-based BCIs are active/endogenous systems as the user has to initiate/plan/imagine
     a movement to adjust their EEG rhythms. SMR-based BCIs are used in cursor control
     applications to select between targets
@@ -1341,7 +1372,7 @@ area of the brain. A combination of a letter and a number is further used to ide
 %%%%%%%%%%%%%%%%%%%%%%%%
 %%% Experiment Setup %%%
 %%%%%%%%%%%%%%%%%%%%%%%%
-\mysubsection{Experiment Protocol}
+\mysubsection{Experimental Setup}
 
 \par{
     We currently tuned the SSVEP stimulator to flicker two green LEDs at
@@ -1350,8 +1381,7 @@ area of the brain. A combination of a letter and a number is further used to ide
 }
 \par{
     For each run, after activating SSVEP stimulation, 10 seconds of EEG is acquired through the occipital electrodes
-    $O1$ and $O2$ where SSVEP response is prominent \citep{herrmann_human_2001}.
-    The acquired data is then sent to the SP block for signal processing
+    $O1$ and $O2$. The acquired data is then sent to the SP block for signal processing
     and feature extraction.
 }
 \par{
@@ -1372,10 +1402,10 @@ area of the brain. A combination of a letter and a number is further used to ide
     The relevant command is finally sent to the robot to realize the actual
     movement of the selected arm.
 }
-
-\mysubsection{Results}
-\par{
-}
+% FIXME Results
+%\mysubsection{Results}
+%\par{
+%}
 
 %%%%%%%%%%%%%%%%
 %% CONCLUSION %%
@@ -1384,8 +1414,18 @@ area of the brain. A combination of a letter and a number is further used to ide
 \vspace*{-0.35cm}
 \mysection{CONCLUSION}
 \par{
+    In this study, a proof of concept, portable and embedded SSVEP BCI system to demonstrate
+    humanoid robot control is presented. A cheap, single-core embedded computer is used
+    along with a consumer grade, battery-powered, wireless and affordable EEG headset
+    to reach maximum portability and minimum cost.
 }
-
+\par{
+    All software blocks regarding stimuli presentation,
+    EEG acquisition, signal processing and robot control are implemented in Python and
+    they are all running in parallel without any jitters and delays. This is
+    an important achievement to prove that the usage of embedded computers in BCI
+    research is possible.
+}
 
 %%%%%%%%%%%%%%%%
 %% REFERENCES %%
@@ -1397,6 +1437,37 @@ area of the brain. A combination of a letter and a number is further used to ide
 \thispagestyle{empty}
 \addcontentsline{toc}{section}{References}
 \bibliography{ThesisLibrary}
+
+%%%%%%%%%%%%%%
+%% APPENDIX %%
+%%%%%%%%%%%%%%
+\clearpage
+\cfoot{}
+\vspace*{-0.35cm}
+\thispagestyle{empty}
+\section*{Appendix}
+\addcontentsline{toc}{section}{Appendix}
+\vspace*{6pt}
+
+\subsection*{SSVEP Stimulator}
+
+\renewcommand{\baselinestretch}{1.0}
+\lstinputlisting[language=Python, basicstyle=\footnotesize\ttfamily,
+                 breaklines=true, tabsize=2,
+                 showspaces=false, keepspaces=true, showstringspaces=false,
+                 keywordstyle=\color{blue},
+                 commentstyle=\color{gray},
+                 stringstyle=\color{purple},
+                 ]{code/bbb-bci-ssvepd.py}
+\newpage
+\subsection*{EEG Acquisition Block}
+\lstinputlisting[language=Python, basicstyle=\footnotesize\ttfamily,
+                 breaklines=true, tabsize=2,
+                 showspaces=false, keepspaces=true, showstringspaces=false,
+                 keywordstyle=\color{blue},
+                 commentstyle=\color{gray},
+                 stringstyle=\color{purple},
+                 ]{code/bbb-bci-acquire.py}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%
 %% BIOGRAPHICAL SKETCH %%
