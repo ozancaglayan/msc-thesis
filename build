@@ -10,3 +10,5 @@ if [[ "x$1" == "xref" ]]; then
     pdflatex Thesis.tex
 fi
 
+# gs -dSAFER -dBATCH -dNOPAUSE  -sDEVICE=pdfwrite -sOutputFile=output.pdf Thesis.pdf
+
