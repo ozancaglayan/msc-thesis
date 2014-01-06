@@ -1262,6 +1262,21 @@ area of the brain. A combination of a letter and a number is further used to ide
     1\textsuperscript{st} packet for FC5, and so on.
 }
 
+\par{
+    \begin{figure}[ht]
+        \centering
+        \includegraphics[width=0.75\textwidth]{images/emokit_validation}
+        \caption{Validation of the Open-Source Protocol}
+        \label{fig:emokit_validation}
+    \end{figure}
+    In order to validate the open-source protocol, we connected a function generator
+    to the headset. The generator is adjusted to produce a $15Hz$ sinusoidal waveform
+    which is injected to the O2 electrode of the headset. The frequency spectrum
+    of the signal acquired over O2 clearly shows the fundamental and harmonic
+    frequencies of the injected waveform (Figure ~\ref{fig:emokit_validation}).
+    This proves that the protocol correctly decrypts and resolves the data packets streamed by the headset.
+}
+
 \mysubsubsubsection{Python-emotiv}
 \par{
     Since we decided to realize the whole BCI in pure Python, we developed an object oriented
