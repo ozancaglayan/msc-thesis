@@ -1078,38 +1078,12 @@ area of the brain. A combination of a letter and a number is further used to ide
 
 \mysubsection{Materials}
 \par{
-    There exists 3 important hardware components of our embedded BCI
-    design: an EEG headset for brain signal acquisition, an embedded
-    computer to manage all kinds of interaction between the
-    individual parts of the BCI and finally an external actuator to reflect
-    the choices of the BCI user to the environment, e.g. the arms of a humanoid robot
-    for this study.
+    There exists three important hardware components of our embedded BCI
+    design: an embedded computer to manage all kinds of interaction between the
+    individual parts of the BCI, an EEG headset for brain signal acquisition and
+    finally an external actuator to reflect the choices of the BCI user to the
+    environment, e.g. the arms of a humanoid robot for this study.
 }
-\mysubsubsection{Kondo KHR-3HV Humanoid Robot}
-\par{
-    \begin{figure}[ht]
-        \centering
-        \includegraphics[scale=0.7]{images/kondo}
-        \caption{Kondo KHR-3HV Humanoid Robot}
-        \label{fig:kondo}
-    \end{figure}
-    Kondo KHR-3HV is a 17 degrees of freedom humanoid robot manufactured by
-    \emph{Kondo Kagaku} (Figure ~\ref{fig:kondo}). The RCB-4 microcontroller of the robot has the
-    ability to drive up to 35 serial servos. The board is also equipped with
-    several I/O ports to extend the robot with sensors and other add-ons.
-}
-\par{
-    The motions for KHR-3HV is designed and programmed into the microcontroller
-    using a Windows application called \emph{Heart-to-Heart}. All communication
-    between the computer and the robot (both for programming and controlling)
-    is realized over a serial USB dongle. Once the motions are designed and written
-    into the microcontroller using the proprietary software,
-    it is possible to play those preprogrammed motions and
-    control individual servos separately with the open-source and community
-    contributed \emph{libkondo4} library\footnote{\url{https://bitbucket.org/vo/libkondo4}}.
-    The library has also language bindings to allow controlling the robot using Python and Java.
-}
-
 \mysubsubsection{BeagleBone Black}
 
 \par{
@@ -1163,20 +1137,7 @@ area of the brain. A combination of a letter and a number is further used to ide
 }
 
 \mysubsubsection{Emotiv EEG}
-
 \par{
-    %\begin{figure}[ht]
-    %    \centering
-    %    \includegraphics[width=0.5\textwidth]{images/emotiv}
-    %    \caption{Emotiv EEG Headset}
-    %    \label{fig:emotiv_eeg_headset}
-    %\end{figure}
-    %\begin{figure}[ht]
-    %    \centering
-    %    \includegraphics[scale=0.5]{images/10_20_emotiv}
-    %    \caption{Emotiv EEG Electrode Locations}
-    %    \label{fig:emotiv_eeg_1020}
-    %\end{figure}
     \begin{figure}
         \centering
         \begin{subfigure}{.45\textwidth}
@@ -1278,6 +1239,7 @@ area of the brain. A combination of a letter and a number is further used to ide
     This proves that the protocol correctly decrypts and resolves the data packets streamed by the headset.
 }
 
+\newpage
 \mysubsubsubsection{Python-emotiv}
 \par{
     Since we decided to realize the whole BCI in pure Python, we developed an object oriented
@@ -1301,6 +1263,32 @@ area of the brain. A combination of a letter and a number is further used to ide
     forked the project and added Mac OS X support\footnote{\url{https://github.com/simlay/python-emotiv}} to it.
     It is also used in a newly started BCI controlled wheelchair project\footnote{\url{http://braingizer.blogspot.com}}.
 }
+
+\mysubsubsection{Kondo KHR-3HV Humanoid Robot}
+\par{
+    \begin{figure}[ht]
+        \centering
+        \includegraphics[scale=0.7]{images/kondo}
+        \caption{Kondo KHR-3HV Humanoid Robot}
+        \label{fig:kondo}
+    \end{figure}
+    Kondo KHR-3HV is a 17 degrees of freedom humanoid robot manufactured by
+    \emph{Kondo Kagaku} (Figure ~\ref{fig:kondo}). The RCB-4 microcontroller of the robot has the
+    ability to drive up to 35 serial servos. The board is also equipped with
+    several I/O ports to extend the robot with sensors and other add-ons.
+}
+\par{
+    The motions for KHR-3HV is designed and programmed into the microcontroller
+    using a Windows application called \emph{Heart-to-Heart}. All communication
+    between the computer and the robot (both for programming and controlling)
+    is realized over a serial USB dongle. Once the motions are designed and written
+    into the microcontroller using the proprietary software,
+    it is possible to play those preprogrammed motions and
+    control individual servos separately with the open-source and community
+    contributed \emph{libkondo4} library\footnote{\url{https://bitbucket.org/vo/libkondo4}}.
+    The library has also language bindings to allow controlling the robot using Python and Java.
+}
+
 
 %%%%%%%%% Methods
 \mysubsection{Methods}
