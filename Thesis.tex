@@ -251,7 +251,7 @@ Ozan Çağlayan
 }
 \par{
     In this study, we present a portable and embedded steady-state visual evoked potential BCI
-    system in which the user can choose between two targets by focusing on 2 LED lights flickering
+    system in which the user can choose between two targets by focusing on 2 LED matrices flickering
     at different frequencies. The output of the system can then be used for different
     interaction scenarios like controlling a robot, answering simple yes/no questions, etc.
     The use of a consumer grade, wireless EEG headset together with a cheap embedded computer
@@ -286,7 +286,7 @@ Ozan Çağlayan
 }
 \par{
     Dans cette étude, nous présentons une ICO réalisée avec un système embarqué
-    dans laquelle l'utilisateur peut choisir entre deux cibles en se concentrant sur deux LED
+    dans laquelle l'utilisateur peut choisir entre deux cibles en se concentrant sur deux matrices de LED
     avec différentes fréquences de clignotement. La sortie du système peut alors être utilisé pour différents
     scénarios d'interaction comme commander un robot, répondre à des questions simples oui/non, etc.
     L'utilisation d'une casque EEG sans fil avec un ordinateur embarqué pas cher
@@ -322,7 +322,7 @@ Ozan Çağlayan
     aşacak düzeye ulaşmaktadır.
 }
 \par{
-    Bu çalışmada, kullanıcının farklı frekanslarda yanıp sönen LED ışıklara
+    Bu çalışmada, kullanıcının farklı frekanslarda yanıp sönen LED matrislerine
     odaklanarak iki farklı durumdan birini seçebilecekleri taşınabilir ve gömülü
     bir BBA tasarımı sunulmaktadır. İki çıkışlı bu BBA, robot kontrolü için veya
     sorulan sorulara evet/hayır şeklinde cevap verilmesine olanak sağlayacak
@@ -1316,15 +1316,15 @@ area of the brain. A combination of a letter and a number is further used to ide
 \par{
     In order to preserve the portability of the system, we decided to use BBB's
     Input/Output capabilities for LED SSVEP stimulation. A simple digital circuit is designed to
-    drive the LEDs using transistors (Figure ~\ref{fig:bbb_led_schema}).
+    drive LED light sources using transistors (Figure ~\ref{fig:bbb_led_schema}).
     We had to use transistors to switch the LEDs because BBB can not provide enough current
-    through its GPIO pins to light an LED brightly. The transistors rapidly switch
-    the LED circuits which can be powered by an external power source. The final
+    through its GPIO pins to light LEDs brightly. The transistors rapidly switch
+    the current going to the light sources which can be powered by an external power source. The final
     montage of the stimulator can be seen in Figure ~\ref{fig:bbb_ssvep}.
     \begin{figure}[ht]
     \centering
-    \includegraphics[scale=0.55]{images/bbb_ssvep}
-    \caption{LED Montage on BeagleBone Black}
+    \includegraphics[scale=0.30]{images/bbb_ssvep}
+    \caption{LED Matrix Montage on BeagleBone Black}
     \label{fig:bbb_ssvep}
     \end{figure}
 }
@@ -1339,7 +1339,7 @@ area of the brain. A combination of a letter and a number is further used to ide
     \texttt{SIGUSR1} signal) is sent to it to start the stimulation.
     Once the process receives this signal, it continuously compares the system time and
     previously computed triggering periods to decide whether it is time for
-    changing the state of the LEDs or not. The stimulation continues until
+    changing the state of the lights or not. The stimulation continues until
     the arrival of a new signal.
 }
 \par{
@@ -1382,9 +1382,10 @@ area of the brain. A combination of a letter and a number is further used to ide
 \mysubsection{Experimental Setup}
 
 \par{
-    We currently tuned the SSVEP stimulator to flicker two green LEDs at
+    We currently tuned the SSVEP stimulator to flicker two RED 5x7 LED matrices at
     frequencies $f_1=17Hz$ and $f_2=19Hz$ to represent the left and the right
-    arm of the humanoid robot.
+    arm of the humanoid robot. We only enabled 9 LEDs per LED matrix as turning on
+    all of them is exhausting for visual perception.
 }
 \par{
     For each run, after activating SSVEP stimulation, 10 seconds of EEG is acquired through the occipital electrodes
@@ -1402,12 +1403,6 @@ area of the brain. A combination of a letter and a number is further used to ide
     its frequency spectrum using fast fourier transform (FFT) algorithm.
 }
 \par{
-    For feature extraction, a simple \emph{area under the curve} (AUC) computation is applied on the
-    frequency spectrum of the signal near ($\pm1Hz$) the flickering frequencies $f_1$ and $f_2$.
-    The AUC is then used to decide the LED frequency attended by the user to
-    choose between 2 states representing the arms of the humanoid robot.
-    The relevant command is finally sent to the robot to realize the actual
-    movement of the selected arm.
 }
 
 \mysubsection{Preliminary Results}
@@ -1421,17 +1416,26 @@ area of the brain. A combination of a letter and a number is further used to ide
 \vspace*{-0.35cm}
 \mysection{CONCLUSION}
 \par{
-    In this study, a proof of concept, portable and embedded SSVEP BCI system allowing
-    humanoid robot control is presented. A cheap, single-core embedded computer is used
-    along with a consumer grade, battery-powered, wireless and affordable EEG headset
-    to reach maximum portability and minimum cost.
+    In this study, a proof of concept, portable, embedded and affordable SSVEP BCI system allowing
+    humanoid robot control is proposed.
 }
 \par{
-    All software blocks regarding stimuli presentation,
-    EEG acquisition, signal processing and robot control are implemented in Python and
-    they are all running in parallel without any jitters and/or delays. This is
-    an important achievement to prove that the usage of embedded computers in BCI
-    research is possible.
+    Initially, a free, open-source and architecture independent Python library allowing hardware access to Emotiv EEG
+    is developed from scratch due to the lack of proper SDK support for ARM architecture.
+    The next step was to tune and customize the selected embedded computer, namely the BeagleBone Black, to suit the needs of
+    a complete BCI system.
+}
+\par{
+    All of the software blocks regarding stimuli presentation,
+    EEG acquisition, signal processing and robot control are also implemented in Python.
+    We thus conclude that Python is a very powerful, free and open-source programming language
+    for a wide range of scientific research topics.
+}
+\par{
+    Preliminary results show that the deployment of embedded computers in the BCI field can be considered feasible
+    depending on the selected BCI paradigm and the complexity of the overall design.
+    To our knowledge, this is the first BCI system which completely runs on an embedded
+    computer.
 }
 
 %%%%%%%%%%%%%%%%
