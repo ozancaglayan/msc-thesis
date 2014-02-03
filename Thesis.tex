@@ -500,7 +500,7 @@ Ozan Çağlayan
     acquisition techniques and computers. These composite systems are called
     Brain-Computer Interfaces (BCI), Brain-Machine Interfaces (BMI) or Direct Brain Interfaces (DBI).
     BCIs in general have the potential to improve the life quality of disabled people and may actually
-    be the only way of interaction for completely locked-in people.\\\\
+    be the only way of interaction for completely locked-in people.\\
 }
 
 \mysubsection{Definition of a BCI}
@@ -979,9 +979,28 @@ area of the brain. A combination of a letter and a number is further used to ide
     Event-Related potentials (ERP) are defined as potential changes in
     neural activity associated with specific cognitive events \citep{luck_introduction_2005}.
 }
+\par{
+    P300 is a widely used and researched ERP in BCI field. It is a positive ERP component (a positive
+    amplitude change happens in the ongoing activity) elicited by the brain approximately
+    300ms after the presentation of an infrequent target stimulus in a set of frequent
+    non-target stimuli \citep{polich_updating_2007}.
+    A special letter matrix (Figure ~\ref{fig:p300_speller}) was proposed by \citet{farwell_talking_1988} in order to use
+    this neurophysiological fact in the BCI field. The system randomly highlights the rows and
+    the columns of the letter matrix while the user focuses on the letter that he/she
+    wants to select. Each letter is highlighted once for its row and once for its column
+    in a sequence of $2N$ highlights for a $NxN$ square letter matrix. The P300 response
+    evoked by these infrequent highlights are further detected to select the focused letter.
+    \begin{figure}[ht]
+        \centering
+        \includegraphics[scale=0.6]{images/p300_speller}
+        \caption{Layout of the Farwell-Donchin P300 Speller}
+        \label{fig:p300_speller}
+    \end{figure}
+}
+\par{
+    P300 response is also evoked in auditory and tactile stimulation paradigms.
+}
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\newpage
 \mysubsubsection{Steady-State Visual Evoked Potentials}
 \par{
     \nomenclature{VEP}{Visual Evoked Potential}
@@ -1008,9 +1027,6 @@ area of the brain. A combination of a letter and a number is further used to ide
     and observable through the occipital locations near the primary visual
     cortex \citep{herrmann_human_2001}.
 }
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\newpage
 
 \mysubsubsection{Slow Cortical Potentials}
 \par{
@@ -1049,9 +1065,6 @@ area of the brain. A combination of a letter and a number is further used to ide
     The terms SMR, MI or mu rhythm can be used interchangeably to define this
     type of BCI.
 }
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\newpage
-
 \par{
     \begin{figure}[ht]
         \centering
