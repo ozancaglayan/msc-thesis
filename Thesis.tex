@@ -1335,8 +1335,11 @@ area of the brain. A combination of a letter and a number is further used to ide
     drive LED light sources using transistors (Figure ~\ref{fig:bbb_led_schema}).
     We had to use transistors to switch the LEDs because BBB can not provide enough current
     through its GPIO pins to light LEDs brightly. The transistors rapidly switch
-    the current going to the light sources which can be powered by an external power source. The final
-    montage of the stimulator using LED matrices can be seen in Figure ~\ref{fig:bbb_ssvep}.
+    the current going to the light sources which can be powered by an external power source.
+}
+\par{
+    The final montage of the stimulator using 2 red 5x7 LED matrices can be seen in Figure ~\ref{fig:bbb_ssvep}.
+    Note that only 9 LEDs per LED matrix are enabled as using all of them is exhausting for visual perception.
     \begin{figure}[ht]
     \centering
     \includegraphics[scale=0.30]{images/bbb_ssvep}
@@ -1344,6 +1347,8 @@ area of the brain. A combination of a letter and a number is further used to ide
     \label{fig:bbb_ssvep}
     \end{figure}
 }
+
+\newpage
 
 \mysubsubsubsection{SSVEP Software Block}
 \par{
@@ -1361,52 +1366,22 @@ area of the brain. A combination of a letter and a number is further used to ide
 \par{
     The correctness of the flickering frequencies is tested using an Arduino and a simple oscilloscope
     software written with the \emph{FreqMeasure}\footnote{\url{http://www.pjrc.com/teensy/td_libs_FreqMeasure.html}} Arduino library.
-    It has been observed that the flickering frequencies are pretty accurate during a BCI experiment, e.g. a drift of maximum 0.04Hz is measured
-    for a recording session with stimulation frequencies tuned to $f_1=17Hz$ and $f_2=19Hz$. This led us to the decision
-    that using the PRU for SSVEP stimulation will sophisticate the design.\\\\\\
-}
-
-\mysubsubsection{Signal Processing}
-\par{
-    The signal processing (SP) block (\texttt{bbb-bci-dspd.py}) creates a UNIX
-    socket and waits for new data which will eventually be sent by the EEG acquisition block.
-    Once a new chunk of data is received, \texttt{process\_eeg()}
-    function is called to process, evaluate and send a control signal
-    to the humanoid robot. The SP block then returns to its main loop
-    to wait for new data.
-}
-
-\mysubsubsection{EEG Acquisition}
-\par{
-    \begin{figure}[ht]
-        \centering
-        \includegraphics[width=\textwidth]{images/workflow}
-        \caption{BCI Workflow}
-        \label{fig:workflow}
-    \end{figure}
-    The EEG acquisition block is actually what manages other blocks and thus
-    can be considered as the main entry point to the BCI application. It first
-    starts SSVEP block with the desired flickering frequencies, then it starts
-    SP block and connects to it through the UNIX socket. After collecting
-    some personal information about the subject (Initials, age and sex), it starts the acquisition
-    loop which is detailed in Figure ~\ref{fig:workflow}.
-}
-
-%%%%%%%%%%%%%%%%%%%%%%%%
-%%% Experiment Setup %%%
-%%%%%%%%%%%%%%%%%%%%%%%%
-\mysubsection{Experimental Setup}
-
-\par{
-    We currently tuned the SSVEP stimulator to flicker two RED 5x7 LED matrices at
-    frequencies $f_1=17Hz$ and $f_2=19Hz$ to represent the left and the right
-    arm of the humanoid robot. We only enabled 9 LEDs per LED matrix as turning on
-    all of them is exhausting for visual perception.
+    It has been observed that the flickering frequencies are pretty accurate during a BCI experiment which led us to the decision
+    that using the PRU for SSVEP stimulation is not absolutely necessary for the currently proposed design.
 }
 \par{
-    For each run, after activating SSVEP stimulation, 10 seconds of EEG is acquired through the occipital electrodes
-    $O1$ and $O2$. The acquired data is then sent to the SP block for signal processing
-    and feature extraction.
+    The stimulation frequencies are currently tuned to $f_1=17Hz$ and $f_2=19Hz$ to represent respectively
+    the left and the right arm of the robot.
+}
+
+\mysubsubsection{Signal Processing and Classification}
+\par{
+    The signal processing and classification (SPC) block is implemented
+    as a Python function which runs as a separate process in the background.
+    The main block and the SPC are connected to each other using a UNIX inter-process
+    communication (IPC) method called \emph{pipe}.
+    SPC continuously receives and analyzes EEG data and sends back a classification
+    result to the main block over this established pipe channel.
 }
 \par{
     Once the EEG data is received by the SP block, it is:
@@ -1418,7 +1393,31 @@ area of the brain. A combination of a letter and a number is further used to ide
     The resulting signal is band-pass filtered between $8-45Hz$ before computing
     its frequency spectrum using fast fourier transform (FFT) algorithm.
 }
+
+\mysubsubsection{EEG Acquisition and BCI Workflow}
 \par{
+    %\begin{figure}[ht]
+    %    \centering
+    %    \includegraphics[width=\textwidth]{images/workflow}
+    %    \caption{BCI Workflow}
+    %    \label{fig:workflow}
+    %\end{figure}
+    The EEG acquisition (ACQ) block is actually what manages the SSVEP and the SPC block.
+    It can actually be considered as the entry point to the BCI application.
+}
+\par{
+    ACQ first launches the SSVEP block with the desired flickering frequencies.
+    After initializing Emotiv EEG headset and establishing connection to the robot,
+    it signals the SSVEP block to start the flickering.
+    ACQ continuously acquires 2 seconds length EEG chunks
+    and passes them to the SPC block until SPC sends back a classification
+    result. Once the result is received, ACQ signals the SSVEP block to stop the
+    flickering and sends a control command to the robot according to the result.
+}
+\par{
+    The proposed BCI can run infinitely until the user or someone
+    else interrupts it. The length of each trial is not fixed to a predetermined
+    value which qualifies the BCI as being a \emph{dynamic stopping} one.
 }
 
 \mysubsection{Preliminary Results}
