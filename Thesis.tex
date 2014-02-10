@@ -1397,22 +1397,27 @@ area of the brain. A combination of a letter and a number is further used to ide
 }
 \par{
     A cumulative moving average of the PSD estimates of previously received chunks and the new one is then calculated for smoothing the spectrum and thus improving
-    the SNR.
+    the SNR. A weighted sum of the PSD estimates at the 1\textsuperscript{st} harmonic and at the neighborhood of the 2\textsuperscript{nd} harmonic is used as a score for each flickering frequency $f_i$:
+    $$Score(f_i)=PSD(f_i) + \frac{PSD(2f_i-1)+PSD(2f_i)+PSD(2f_i+1)}{2}$$
+}
+\par{
+    If one of the scores win over the other one 3 times consecutively, SPC block sends it back as the
+    classification result and waits for new data.
 }
 
 \mysubsubsection{EEG Acquisition and BCI Workflow}
 \par{
-    The EEG acquisition (ACQ) block is actually what manages the SSVEP and the SPC block.
+    The main acquisition block (ACQ) is actually what manages the SSVEP and the SPC block.
     It can actually be considered as the entry point to the BCI application.
 }
 \par{
     ACQ first launches the SSVEP block with the desired flickering frequencies.
     After initializing Emotiv EEG headset and establishing connection to the robot,
-    it signals the SSVEP block to start the flickering.
+    it signals the SSVEP block to start the stimulation.
     ACQ continuously acquires 2 seconds length EEG chunks
-    and passes them to the SPC block until SPC sends back a classification
+    and sends them to the SPC block (over the pipe) until SPC sends back a classification
     result. Once the result is received, ACQ signals the SSVEP block to stop the
-    flickering and sends a control command to the robot according to the result.
+    stimulation and sends a control command to the robot according to the result.
 }
 \par{
     The proposed BCI (Figure ~\ref{fig:workflow}) can run infinitely until the user or someone
@@ -1429,7 +1434,43 @@ area of the brain. A combination of a letter and a number is further used to ide
 
 \mysubsection{Preliminary Results}
 \par{
+    The BCI is initially tested on 2 subjects with 2 different recording sessions. Each
+    session consisted of 6 repetitions of 14 seconds. 7 chunks of 2 seconds length EEG
+    data has been used in order to classify the attended frequency.
 }
+\newpage
+\begin{figure}
+    \centering
+    \begin{subfigure}{.5\textwidth}
+        \centering
+        \includegraphics[scale=0.9]{images/results-psd-OC_23-01-2014-16-04}
+        \label{fig:results_oc_1}
+    \end{subfigure}%
+    \begin{subfigure}{.5\textwidth}
+        \centering
+        \includegraphics[scale=0.9]{images/results-psd-OC_23-01-2014-19-56}
+        \label{fig:results_oc_2}
+    \end{subfigure}
+    \vspace*{-1cm}\caption{Averaged PSD estimates of subject OC (2 sessions)}
+    \label{fig:results_OC}
+\end{figure}
+\newpage
+\begin{figure}
+    \centering
+    \begin{subfigure}{.5\textwidth}
+        \centering
+        \includegraphics[scale=0.9]{images/results-psd-PU_23-01-2014-18-48}
+        \label{fig:results_pu_1}
+    \end{subfigure}%
+    \begin{subfigure}{.5\textwidth}
+        \centering
+        \includegraphics[scale=0.9]{images/results-psd-PU_23-01-2014-18-59}
+        \label{fig:results_pu_2}
+    \end{subfigure}
+    \vspace*{-1cm}\caption{Averaged PSD estimates of subject PU (2 sessions)}
+    \label{fig:results_OC}
+\end{figure}
+
 
 %%%%%%%%%%%%%%%%
 %% CONCLUSION %%
