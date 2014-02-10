@@ -889,8 +889,9 @@ area of the brain. A combination of a letter and a number is further used to ide
     possible, electrode cables must be short, shielded and fixed.
 }
 \par{
+    \nomenclature{SNR}{Signal-to-Noise Ratio}
     A good contact between the scalp and the electrodes is also crucial to
-    improve the signal-to-noise ratio of the acquired signals. A layer of conductive
+    improve the signal-to-noise ratio (SNR) of the acquired signals. A layer of conductive
     gel paste is generally applied before recordings to reduce the skin-electrode impedance (opposition to current).
     Unfortunately, the application of the gel paste is cumbersome, time consuming and
     leaves pasty residue that will not go away without washing. An easier and
@@ -1339,7 +1340,7 @@ area of the brain. A combination of a letter and a number is further used to ide
 }
 \par{
     The final montage of the stimulator using 2 red 5x7 LED matrices can be seen in Figure ~\ref{fig:bbb_ssvep}.
-    Note that only 9 LEDs per LED matrix are enabled as using all of them is exhausting for visual perception.
+    Note that only 9 LEDs per LED matrix are enabled as using all of them is not comfortable for visual perception.
     \begin{figure}[ht]
     \centering
     \includegraphics[scale=0.30]{images/bbb_ssvep}
@@ -1384,24 +1385,23 @@ area of the brain. A combination of a letter and a number is further used to ide
     result to the main block over this established pipe channel.
 }
 \par{
-    Once the EEG data is received by the SP block, it is:
-    \nomenclature{FFT}{Fast Fourier Transform}
+    Once a new EEG chunk is received by the SPC block, the predetermined channel of interest is:
+    \nomenclature{PSD}{Power Spectral Density}
+    \nomenclature{AR}{Autoregressive}
     \begin{itemize}
-        \item Detrended using the \texttt{detrend} method from \texttt{scipy.signal} package
-        \item Re-referenced against $O1$ to further filter unwanted EEG components
+        \item Detrended to remove the linear trend,
+        \item High-pass filtered using 2\textsuperscript{nd} order Butterworth filter with a cutoff frequency of $5Hz$ to eliminate low frequency noise components.
     \end{itemize}
-    The resulting signal is band-pass filtered between $8-45Hz$ before computing
-    its frequency spectrum using fast fourier transform (FFT) algorithm.
+    The power spectral density (PSD) of the received chunk is estimated using autoregressive (AR) Burg's method \citep{kay_spectrum_1981} with model order set to 64
+    (Burg's method is available in Python through the \emph{spectrum}\footnote{\url{https://pypi.python.org/pypi/spectrum}} package).
+}
+\par{
+    A cumulative moving average of the PSD estimates of previously received chunks and the new one is then calculated for smoothing the spectrum and thus improving
+    the SNR.
 }
 
 \mysubsubsection{EEG Acquisition and BCI Workflow}
 \par{
-    %\begin{figure}[ht]
-    %    \centering
-    %    \includegraphics[width=\textwidth]{images/workflow}
-    %    \caption{BCI Workflow}
-    %    \label{fig:workflow}
-    %\end{figure}
     The EEG acquisition (ACQ) block is actually what manages the SSVEP and the SPC block.
     It can actually be considered as the entry point to the BCI application.
 }
@@ -1415,9 +1415,16 @@ area of the brain. A combination of a letter and a number is further used to ide
     flickering and sends a control command to the robot according to the result.
 }
 \par{
-    The proposed BCI can run infinitely until the user or someone
+    The proposed BCI (Figure ~\ref{fig:workflow}) can run infinitely until the user or someone
     else interrupts it. The length of each trial is not fixed to a predetermined
     value which qualifies the BCI as being a \emph{dynamic stopping} one.
+    \begin{figure}[ht]
+        \centering
+        \includegraphics[width=\textwidth]{images/workflow2}
+        \caption{BCI Workflow}
+        \label{fig:workflow}
+    \end{figure}
+
 }
 
 \mysubsection{Preliminary Results}
