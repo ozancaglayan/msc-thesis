@@ -80,6 +80,7 @@
 \setlength\footskip{1.1cm} %printer
 \setlength\headheight{0,6cm}
 \setlength\headsep{1,4cm}
+\setlength{\skip\footins}{1cm}
 
 \makeatletter
 \newcommand\ps@Standard{
@@ -168,8 +169,12 @@
 \par{
     Finally, I would like to dedicate this thesis to Ethem Sarısülük,
     Mehmet Ayvalıtaş, Abdullah Cömert, Medeni Yıldırım, Ali İsmail Korkmaz,
-    Ahmet Atakan and Hasan Ferit Gedik who passed away during Gezi Protests.\\\\
-    \emph{"Our hearts shall wither if we ever forget."}\\
+    Ahmet Atakan and Hasan Ferit Gedik who passed away during Gezi Protests.
+}
+\par{
+    \emph{"Our hearts shall wither if we ever forget."}
+}
+\par{
     \emph{"Wake up Berkin Elvan."}
 }
 
@@ -500,7 +505,7 @@ Ozan Çağlayan
     acquisition techniques and computers. These composite systems are called
     Brain-Computer Interfaces (BCI), Brain-Machine Interfaces (BMI) or Direct Brain Interfaces (DBI).
     BCIs in general have the potential to improve the life quality of disabled people and may actually
-    be the only way of interaction for completely locked-in people.\\
+    be the only way of interaction for completely locked-in people.
 }
 
 \mysubsection{Definition of a BCI}
@@ -968,14 +973,12 @@ area of the brain. A combination of a letter and a number is further used to ide
     findings. For example, an alpha rhythm around 10 Hz over the visual cortex
     is attenuated during visual processing, e.g. while the eyes are open (Figure ~\ref{fig:eeg_alpha}\footnote{\url{https://wiki.ml.tu-berlin.de/wiki/NT/Courses/SS13_IL_AAND}}).
 }
-
 \mysubsection{BCI Paradigms}
 \par{
     There are several paradigms used in BCI design for extracting control information
     out of the brain. A BCI paradigm is defined as active/endogenous or
     reactive/exogenous based on the underlying cognitive mechanism of the paradigm used.
 }
-
 \mysubsubsection{Event-Related Potentials}
 \par{
     \nomenclature{ERP}{Event-Related Potential}
@@ -995,7 +998,7 @@ area of the brain. A combination of a letter and a number is further used to ide
     evoked by these infrequent highlights are further detected to select the focused letter.
     \begin{figure}[ht]
         \centering
-        \includegraphics[scale=0.6]{images/p300_speller}
+        \includegraphics[scale=0.5]{images/p300_speller}
         \caption{Layout of the Farwell-Donchin P300 Speller}
         \label{fig:p300_speller}
     \end{figure}
@@ -1268,7 +1271,7 @@ area of the brain. A combination of a letter and a number is further used to ide
 \par{
     As of December 2013, the features of \emph{python-emotiv} can be summarized as follows:
     \begin{itemize}
-        \item Support for Emotiv EEG headset using libusb on any platform having Python and the necessary dependencies
+        \item Support for Emotiv EEG using libusb on any platform with Python installed
         \item Support for reading 14 channel raw EEG, 2-axis gyro, contact qualities and battery status
         \item Synchronous acquisition of the data per single sample or requested duration
         \item Ability to save the acquired data as \emph{FieldTrip} \citep{oostenveld_fieldtrip:_2011} compatible Matlab (.mat) data
@@ -1313,7 +1316,7 @@ area of the brain. A combination of a letter and a number is further used to ide
     The interaction of the materials described in the previous section
     is realized through the intercommunication of various software blocks
     written in Python. These software blocks are explained in detail
-    in the following section.\\\\
+    in the following section.
 }
 
 \mysubsubsection{SSVEP Stimulation}
@@ -1365,10 +1368,10 @@ area of the brain. A combination of a letter and a number is further used to ide
     the arrival of the same signal.
 }
 \par{
-    The correctness of the flickering frequencies is tested using an Arduino and a simple oscilloscope
+    The correctness of the flickering frequencies is tested using an Arduino and a simple
     software written with the \emph{FreqMeasure}\footnote{\url{http://www.pjrc.com/teensy/td_libs_FreqMeasure.html}} Arduino library.
     It has been observed that the flickering frequencies are pretty accurate during a BCI experiment which led us to the decision
-    that using the PRU for SSVEP stimulation is not absolutely necessary for the currently proposed design.
+    that using the PRU for stimulation is not necessary for the proposed design.
 }
 \par{
     The stimulation frequencies are currently tuned to $f_1=17Hz$ and $f_2=19Hz$ to represent respectively
@@ -1409,6 +1412,12 @@ area of the brain. A combination of a letter and a number is further used to ide
 \par{
     The main acquisition block (ACQ) is actually what manages the SSVEP and the SPC block.
     It can actually be considered as the entry point to the BCI application.
+    \begin{figure}[ht]
+        \centering
+        \includegraphics[scale=0.7]{images/workflow2}
+        \caption{Workflow of the Proposed BCI}
+        \label{fig:workflow}
+    \end{figure}
 }
 \par{
     ACQ first launches the SSVEP block with the desired flickering frequencies.
@@ -1423,35 +1432,30 @@ area of the brain. A combination of a letter and a number is further used to ide
     The proposed BCI (Figure ~\ref{fig:workflow}) can run infinitely until the user or someone
     else interrupts it. The length of each trial is not fixed to a predetermined
     value which qualifies the BCI as being a \emph{dynamic stopping} one.
-    \begin{figure}[ht]
-        \centering
-        \includegraphics[width=\textwidth]{images/workflow2}
-        \caption{BCI Workflow}
-        \label{fig:workflow}
-    \end{figure}
-
 }
 
 \mysubsection{Preliminary Results}
 \par{
     The BCI is initially tested on 2 subjects with 2 different recording sessions. Each
-    session consisted of 6 repetitions of 14 seconds. 7 chunks of 2 seconds length EEG
+    session consisted of 6 trials of 14 seconds. 7 chunks of 2 seconds length EEG
     data has been used in order to classify the attended frequency.
+    The plots of averaged PSD estimations for a subject with short hair and a subject with long hair are
+    respectively presented in Figure ~\ref{fig:results_OC} and ~\ref{fig:results_PU}.
 }
 \newpage
 \begin{figure}
     \centering
     \begin{subfigure}{.5\textwidth}
         \centering
-        \includegraphics[scale=0.9]{images/results-psd-OC_23-01-2014-16-04}
+        \includegraphics[scale=0.85]{images/results-psd-OC_23-01-2014-16-04}
         \label{fig:results_oc_1}
     \end{subfigure}%
     \begin{subfigure}{.5\textwidth}
         \centering
-        \includegraphics[scale=0.9]{images/results-psd-OC_23-01-2014-19-56}
+        \includegraphics[scale=0.85]{images/results-psd-OC_23-01-2014-19-56}
         \label{fig:results_oc_2}
     \end{subfigure}
-    \vspace*{-1cm}\caption{Averaged PSD estimates of subject OC (2 sessions)}
+    \vspace*{-1cm}\caption{Averaged PSD Estimates of Subject OC}
     \label{fig:results_OC}
 \end{figure}
 \newpage
@@ -1459,16 +1463,16 @@ area of the brain. A combination of a letter and a number is further used to ide
     \centering
     \begin{subfigure}{.5\textwidth}
         \centering
-        \includegraphics[scale=0.9]{images/results-psd-PU_23-01-2014-18-48}
+        \includegraphics[scale=0.85]{images/results-psd-PU_23-01-2014-18-48}
         \label{fig:results_pu_1}
     \end{subfigure}%
     \begin{subfigure}{.5\textwidth}
         \centering
-        \includegraphics[scale=0.9]{images/results-psd-PU_23-01-2014-18-59}
+        \includegraphics[scale=0.85]{images/results-psd-PU_23-01-2014-18-59}
         \label{fig:results_pu_2}
     \end{subfigure}
-    \vspace*{-1cm}\caption{Averaged PSD estimates of subject PU (2 sessions)}
-    \label{fig:results_OC}
+    \vspace*{-1cm}\caption[Averaged PSD Estimates of Subject PU]{Averaged PSD estimates of subject PU. Misclassification is represented with dashed lines}
+    \label{fig:results_PU}
 \end{figure}
 
 
