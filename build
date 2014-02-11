@@ -8,7 +8,7 @@ if [[ "x$1" == "xref" ]]; then
     bibtex Thesis.aux
     pdflatex Thesis.tex
     pdflatex Thesis.tex
+    gs -dSAFER -dBATCH -dNOPAUSE -sDEVICE=pdfwrite -sOutputFile=Thesis-Processed.pdf Thesis.pdf
 fi
 
-# gs -dSAFER -dBATCH -dNOPAUSE  -sDEVICE=pdfwrite -sOutputFile=output.pdf Thesis.pdf
 
