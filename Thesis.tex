@@ -1437,13 +1437,33 @@ area of the brain. A combination of a letter and a number is further used to ide
     value which qualifies the BCI as being a \emph{dynamic stopping} one.
 }
 
-\mysubsection{Preliminary Results}
+\mysubsection{Results and Discussion}
 \par{
     The BCI is initially tested on 2 subjects with 2 different recording sessions. Each
     session consisted of 6 trials of 14 seconds. 7 chunks of 2 seconds length EEG
     data has been used in order to classify the attended frequency.
-    The plots of averaged PSD estimations for a subject with short hair and a subject with long hair are
+    The plots of averaged PSD estimation for a subject with short hair (OC) and a subject with long hair (PU) are
     respectively presented in Figure ~\ref{fig:results_OC} and ~\ref{fig:results_PU}.
+}
+\par{
+    A classification rate of $\%100$ has been achieved in both sessions for the subject OC while
+    $\%66.7$ and $\%83.3$ were reached by the subject PU.
+}
+\par{
+    The misclassification can be caused by several reasons including movement related artifacts or
+    poor conductivity (especially for the subject PU with long hair).
+    Artifact rejection methods can be dynamically applied to the data during the acquisition
+    to eliminate noisy trials or chunks of EEG.
+}
+\par{
+    It can also be observed empirically that the PSD estimate at the 1\textsuperscript{st} harmonic
+    is more significant compared to the neighborhood of the 2\textsuperscript{nd} harmonic. So a scoring method
+    solely based around the 1\textsuperscript{st} harmonic may improve the classification rate.
+}
+\par{
+    Finally, the relationship between the duration of a single EEG chunk (which is currently set to 2 seconds)
+    and the SNR of the smoothed spectrum can be analyzed to see whether increasing the duration improves
+    the SNR or not.
 }
 \newpage
 \begin{figure}
@@ -1458,7 +1478,7 @@ area of the brain. A combination of a letter and a number is further used to ide
         \includegraphics[scale=0.75]{images/results-psd-OC_23-01-2014-19-56}
         \label{fig:results_oc_2}
     \end{subfigure}
-    \caption{Averaged PSD Estimates of Subject OC}
+    \caption{Averaged PSD Estimation of Subject OC}
     \label{fig:results_OC}
 \end{figure}
 \newpage
@@ -1474,7 +1494,7 @@ area of the brain. A combination of a letter and a number is further used to ide
         \includegraphics[scale=0.75]{images/results-psd-PU_23-01-2014-18-59}
         \label{fig:results_pu_2}
     \end{subfigure}
-    \caption[Averaged PSD Estimates of Subject PU]{Averaged PSD estimates of subject PU. Misclassification is represented with dashed lines}
+    \caption[Averaged PSD Estimation of Subject PU]{Averaged PSD estimation of subject PU. Misclassified trials are drawn with dashed lines}
     \label{fig:results_PU}
 \end{figure}
 
@@ -1508,12 +1528,7 @@ area of the brain. A combination of a letter and a number is further used to ide
     computer.
 }
 
-%%%%%%%%%%%%%%%%
-%% DISCUSSION %%
-%%%%%%%%%%%%%%%%
-\clearpage
-\vspace*{-0.35cm}
-\mysection{DISCUSSION}
+\par{\textbf{Future studies}}
 \par{
     More advanced methods like common spatial pattern (CSP) can be implemented and
     applied to the channels to select the most feature rich channel combination
